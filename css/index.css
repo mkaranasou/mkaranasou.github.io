@@ -7,7 +7,7 @@
 }
 
 .step {
-    margin-bottom: 300px;
+    margin-bottom: 500px;
 }
 
 .container-fluid{
@@ -45,6 +45,7 @@ nav{
 
 #graphic{
     margin-left: 30px;
+    padding-left: 10px;
 }
 
 .profile-img{
@@ -54,13 +55,15 @@ nav{
 }
 
 .profile-img.lg{
-    width: 250px;
-    height: 250px;
+    width: 245px;
+    height: 264px;
+    border: 25px solid rgba(240, 128, 128, 0.3);
 }
 
 .profile-img.sm{
-    width: 50px;
+    width: 47px;
     height: 50px;
+    border: 5px solid rgba(240, 128, 128, 0.4);
 }
 
 .fixed-welcome{
@@ -75,6 +78,19 @@ nav{
 }
 
 .intro{
-    font-size: x-large;
-    color: rgba(240, 128, 128, 1.0)!important;
+    margin-top:15%;
+    font-size: xx-large;
+    color: rgba(240, 128, 128, 1.0);
+}
+
+.title {
+    margin-right: 10px;
+    font-size: large;
+    color: rgba(240, 128, 128, 1.0);
+}
+
+.close.lg{
+    color:rgba(240, 128, 128, 1.0);
+    font-size: 4em;
+    font-weight: lighter;
 }
