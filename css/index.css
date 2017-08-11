@@ -2,7 +2,6 @@
     position: relative;
     display: inline-block;
     width: 250px;
-    top: 60px;
     z-index: 90;
 }
 
@@ -11,7 +10,7 @@
 }
 
 .container-fluid{
-    margin-top: 150px;
+    margin-top: 95px;
 }
 
 nav{
@@ -33,7 +32,7 @@ nav{
     z-index: 1;
     margin-left: 0;
     height: 100%;
-    width: 60%;
+    width: 70%;
     background-color: rgba(247, 247, 247, 0.4) !important;
     padding: 20px;
     /*background-color: #ddd;*/
@@ -93,4 +92,27 @@ nav{
     color:rgba(240, 128, 128, 1.0);
     font-size: 4em;
     font-weight: lighter;
+}
+
+.card > div > div > a > img {
+    max-width:35px;
+    max-height:35px;
+    padding: 4px;
+}
+.card-header{
+    padding-bottom: 0;
+    font-size: large;
+    border: none;
+    border-bottom: 2px solid darkcyan;
+    background-color: transparent;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.card {
+    border: none;
+}
+
+#social{
+    position: fixed;
 }
