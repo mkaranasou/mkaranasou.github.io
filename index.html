@@ -6,52 +6,116 @@
     <title>Maria Karanasou</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
           integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="index.css">
-
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <script src="data.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/d3/4.9.1/d3.js"></script>
-    <script src="scroller.js"></script>
-    <script src="index.js"></script>
+    <!--<script src="scroller.js"></script>-->
+    <!--<script src="index.js"></script>-->
 </head>
 <body>
 <nav class="navbar navbar-light bg-faded fixed-top">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand me" href="#">
+        <img src="img/IMG_20161011_143159.jpg" class="profile-img sm">
         <!--<img src="/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">-->
-        Maria Karanasou
+        &nbsp;Maria Karanasou
+        <div class="float-right">
+            <div class="nav navbar-brand welcome "></div>
+        </div>
     </a>
 </nav>
-<div class="container">
-    <div id='graphic'>
-        <div id='sections'>
-            <section class="step">
-                <div class="title">About me</div>
-            </section>
-            <section class="step">
-                <div class="title">Experience</div>
-            </section>
-            <section class="step">
-                <div class="title">What I like</div>
-            </section>
-            <section class="step">
-                <div class="title">What I am looking for</div>
-            </section>
-            <section class="step">
-                <div class="title">Books</div>
-            </section>
-        </div>
-        <div id='vis'>
+<div class="fixed-welcome">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <img src="img/IMG_20161011_143159.jpg" class="profile-img lg">
+            </div>
+            <div class="col-md-8">
+                <div class="intro"></div>
+            </div>
         </div>
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
-        integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous">
+<div class="container-fluid">
+    <div id='graphic'>
+        <div id='sections'>
+            <div class="row">
+                <div class="col-md-12">
+                    <section class="step">
+                        <div class="title">About me</div>
+                    </section>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <section class="step">
+                        <div class="title">Experience</div>
+                    </section>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <section class="step">
+                        <div class="title">What I like</div>
+                    </section>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <section class="step">
+                        <div class="title">What I am looking for</div>
+                    </section>
+                </div>
+            </div>
 
-</script>
+            <div class="row">
+                <div class="col-md-12">
+                    <section class="step">
+                        <div class="title">Interesting stuff</div>
+                    </section>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <section class="step">
+                        <div class="title">Contact</div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <div id='vis'>
+            <div id="about-me">
+
+            </div>
+            <div id="experience">
+
+            </div>
+            <div id="what-i-like">
+
+            </div>
+            <div id="what-i-am-looking-for">
+
+            </div>
+            <div id="interesting-stuff">
+
+            </div>
+            <div id="contact">
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
         integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous">
 
 </script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
         integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous">
-
-</script></body>
+</script>
+<script src="js/typed.js"></script>
+<script src="js/index_.js"></script>
+</body>
 </html>
