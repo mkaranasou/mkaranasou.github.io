@@ -124,12 +124,15 @@ nav{
     font-weight: lighter;
 }
 
-.card > div > div > a > img {
+.card > div > div > div > a > img {
     max-width:60px;
     max-height:60px;
     padding: 4px;
 }
-.card-header{
+.card > div > div > div{
+    text-align: center;
+}
+.card-title{
     padding-bottom: 0;
     font-size: large;
     border: none;

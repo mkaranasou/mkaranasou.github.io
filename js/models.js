@@ -121,7 +121,7 @@ var D3Force = (function () {
                 d3.select(self.selector).html('');
                 // initialize w, h
                 self.width = window.innerWidth;
-                self.height = window.innerWidth / aspect;
+                // self.height = window.innerWidth / aspect;
                 // redraw
                 self.create(data);
             });
