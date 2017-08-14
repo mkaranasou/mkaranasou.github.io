@@ -197,3 +197,8 @@ text{
     font-size: medium;
     cursor: pointer;
 }
+
+.badge{
+    background-color: #f00;
+    color: white;
+}

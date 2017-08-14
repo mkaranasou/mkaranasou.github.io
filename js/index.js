@@ -1,6 +1,7 @@
 "use strict";
 var introTyped;
 var introShown;
+var times = 0;
 
 var createForce = function () {
     var d3Force = new D3Force('#experience-chart', parseInt($('.container-fluid').css('width')), 900);
@@ -31,6 +32,7 @@ var startTyping = function () {
 var welcomeClose = function () {
     introTyped? introTyped.stop() : null;
     localStorage.setItem("intro", true)
+    localStorage.setItem("times", times+1)
     $(".typed-cursor").hide();
     $('.fixed-welcome').fadeOut(1200, function () {
         startTyping();
@@ -43,10 +45,12 @@ var welcomeClose = function () {
 (function () {
 
     introShown = localStorage.getItem("intro");
-    if(introShown){
+    times = localStorage.getItem("times");
+    if(introShown && times < 2){
         welcomeClose();
     }
     else{
+        times = 0;
         introTyped = new Typed('.intro', {
             strings: data.sections["intro"],
             typeSpeed: 40,
