@@ -146,7 +146,7 @@ var D3Force = (function () {
                 })
 
             texts
-                .attr("x", function (d) { return d.x; })
+                .attr("x", function (d) { return d.x - 7; })
                 .attr("y", function (d) { return d.y; });
         }
         function dragstarted(d) {
