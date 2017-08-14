@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
           integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/css/tether.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.js"></script>-->
     <script src="js/data.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/4.9.1/d3.js"></script>
-    <!--<script src="scroller.js"></script>-->
-    <!--<script src="index.js"></script>-->
+    <script src="js/typed.js"></script>
+    <script src="js/models.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-light bg-faded fixed-top">
@@ -49,6 +49,9 @@
                         <div class="col-md-12">
                             <section class="step">
                                 <div class="title">About me</div>
+                                <div id="about-me">
+
+                                </div>
                             </section>
                         </div>
                     </div>
@@ -56,6 +59,9 @@
                         <div class="col-md-12">
                             <section class="step">
                                 <div class="title">Experience</div>
+                                <div id="experience">
+
+                                </div>
                             </section>
                         </div>
                     </div>
@@ -93,12 +99,12 @@
             </div>
             <div class="col-md-9">
                 <div id='vis'>
-                    <div id="about-me">
+<!--                    <div id="about-me">
 
                     </div>
                     <div id="experience">
 
-                    </div>
+                    </div>-->
                     <div id="what-i-like">
 
                     </div>
@@ -120,7 +126,7 @@
                             <div class="card-header">Contact</div>
                             <div class="row">
                                 <div class="col-sm-2">
-                                    <a href="https://www.linkedin.com/in/maria-karanasou-a4772011/" target="_blank">
+                                    <a href="https://www.linkedin.com/in/maria-karanasou/" target="_blank">
                                         <img src="img/In-2C-108px-R.png">
                                     </a>
                                 </div>
@@ -165,13 +171,11 @@
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
-        integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous">
-
-</script>
+        integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
-        integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous">
-</script>
-<script src="js/typed.js"></script>
-<script src="js/index_.js"></script>
+        integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+<script src="//d3js.org/d3.v4.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.js"></script>
+<script src="js/index.js"></script>
 </body>
 </html>

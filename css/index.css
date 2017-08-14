@@ -1,3 +1,31 @@
+@keyframes pulse
+{
+    0%
+    {
+        border: 5px solid rgba(240, 128, 128, 0.3);
+    }
+    20%
+    {
+        border: 15px solid rgba(240, 128, 128, 0.6);
+    }
+    40%
+    {
+        border: 25px solid rgba(240, 128, 128, 0.9);
+    }
+    60%
+    {
+        border: 15px solid rgba(240, 128, 128, 0.6);
+    }
+    80%
+    {
+        border: 10px solid rgba(240, 128, 128, 0.3);
+    }
+    100%
+    {
+        border: 5px solid rgba(240, 128, 128, 0.3);
+    }
+}
+
 #sections {
     position: relative;
     display: inline-block;
@@ -57,6 +85,7 @@ nav{
     width: 245px;
     height: 264px;
     border: 25px solid rgba(240, 128, 128, 0.3);
+    /*animation: pulse 1s infinite;*/
 }
 
 .profile-img.sm{
@@ -115,4 +144,13 @@ nav{
 
 #social{
     position: fixed;
+}
+
+line{
+    stroke: rgba(240, 128, 128, 1.0);
+}
+
+text{
+    font-size: x-small;
+    font-family: "Helvetica Neue", monospace;
 }

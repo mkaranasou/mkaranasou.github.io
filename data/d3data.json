@@ -1,0 +1,95 @@
+{
+  "nodes": [
+    {"id": 0, "name": "Ionios Brokers SA", "type": "employer", "details": "From 2009 to 2013", "url": "https://ioniosbrokers.gr"},
+    {"id": 1, "name": "Nokia", "type": "employer", "details": "From 2013 to 2014", "url": "https://nokia.com"},
+    {"id": 2, "name": "CLMS UK", "type": "employer", "details": "From 2014 to 2016", "url": "https://clmsuk.com"},
+    {"id": 3, "name": "University of Piraeus Research Center", "type": "employer", "details": "From 2015 to 2015", "url": "https://www.kep.unipi.gr"},
+    {"id": 4, "name": "ENCODE", "type": "employer", "details": "From 2014 to 2016","url": "https://encodegroup.com"},
+
+    {"id": 5, "name": "IT Engineer", "type": "position", "details": "From 2014 to 2016"},
+    {"id": 6, "name": "Software Engineer", "type": "position", "details": "From 2014 to 2016"},
+    {"id": 7, "name": "Researcher", "type": "position", "details": "From 6/2015 to 10/2015 - Remote"},
+    {"id": 8, "name": "Python Developer (Machine Learning)", "type": "position", "details": "From 2014 to 2016"},
+
+    {"id": 9, "name": "C#", "type": "programming language"},
+    {"id": 10, "name": "Python", "type": "programming language"},
+    {"id": 11, "name": "Java", "type": "programming language"},
+    {"id": 12, "name": "JavaScript", "type": "programming language"},
+    {"id": 13, "name": "SQL", "type": "programming language"},
+    {"id": 14, "name": "C", "type": "programming language"},
+    {"id": 15, "name": "C++", "type": "programming language"},
+    {"id": 16, "name": "TNSDL", "type": "programming language"},
+
+    {"id": 17, "name": "AngularJS", "type": "framework"},
+    {"id": 18, "name": "KnockoutJS", "type": "framework"},
+    {"id": 19, "name": "TypeScript", "type": "framework"},
+    {"id": 20, "name": "d3.js", "type": "framework"},
+    {"id": 21, "name": "scikit-learn", "type": "framework"},
+    {"id": 22, "name": "pandas", "type": "framework"},
+    {"id": 23, "name": "numpy", "type": "framework"},
+    {"id": 24, "name": "scipy", "type": "framework"},
+    {"id": 25, "name": "nltk", "type": "framework"},
+    {"id": 26, "name": "seneca.js", "type": "framework"},
+    {"id": 27, "name": "Apache Storm", "type": "framework"},
+    {"id": 28, "name": "Apache Spark", "type": "framework"},
+    {"id": 29, "name": "Selenium / Robot", "type": "framework"},
+    {"id": 30, "name": "Node.js", "type": "framework"},
+    {"id": 31, "name": ".NET", "type": "framework"},
+    {"id": 32, "name": "Django", "type": "framework"},
+    {"id": 33, "name": "Flask", "type": "framework"},
+    {"id": 34, "name": "Jupyter Notebook", "type": "framework"},
+
+    {"id": 35, "name": "MS SQL Server", "type": "data storage"},
+    {"id": 36, "name": "MySQL", "type": "data storage"},
+    {"id": 37, "name": "MongoDB", "type": "data storage"},
+    {"id": 38, "name": "Redis", "type": "data storage"},
+
+    {"id": 39, "name": "Web Development", "type": "skill"},
+    {"id": 40, "name": "Software Development", "type": "skill"},
+    {"id": 41, "name": "Help Desk", "type": "skill"},
+    {"id": 42, "name": "DBA", "type": "skill"},
+    {"id": 43, "name": "SysAdmin", "type": "skill"},
+    {"id": 44, "name": "Full-Stack", "type": "skill"},
+    {"id": 45, "name": "Data Science", "type": "skill"},
+    {"id": 46, "name": "Machine Learning", "type": "skill"},
+    {"id": 46, "name": "Sentiment Analysis", "type": "skill"},
+
+    {"id": 47, "name": "EU Projects", "type": "project"},
+    {"id": 48, "name": "Sentiment Analysis on Figurative Data", "type": "project", "details": "Thesis"},
+    {"id": 49, "name": "Scalable and Real-time Sentiment Analysis", "type": "project", "details": ""}
+
+  ],
+
+  "links": [
+    {"source": 0, "target": 5},
+    {"source": 1, "target": 6},
+    {"source": 2, "target": 6},
+    {"source": 3, "target": 7},
+    {"source": 4, "target": 8},
+
+    {"source": 6, "target": 9},
+    {"source": 6, "target": 10},
+    {"source": 6, "target": 12},
+    {"source": 6, "target": 13},
+    {"source": 7, "target": 10},
+    {"source": 7, "target": 11},
+    {"source": 8, "target": 10},
+
+    {"source":10, "target": 21},
+    {"source":10, "target": 22},
+    {"source":10, "target": 23},
+    {"source":10, "target": 24},
+    {"source":10, "target": 25},
+    {"source":10, "target": 26},
+    {"source":10, "target": 27},
+    {"source":10, "target": 32},
+    {"source":10, "target": 33},
+    {"source":10, "target": 34},
+    {"source":10, "target": 39},
+    {"source":10, "target": 40},
+    {"source":10, "target": 45},
+    {"source":10, "target": 46},
+    {"source":10, "target": 47}
+
+  ]
+}
