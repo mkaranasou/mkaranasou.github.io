@@ -15,7 +15,7 @@ var D3Force = (function () {
             "rgba(137, 196, 244, 1.0)",
             "rgba(78,205,196, 1.0)",
             "rgba(54, 215, 183, 1.0)",
-            "rgba(231, 76, 60,1.0)",
+            "rgba(210, 77, 87,1.0)",
             // "rgba(38, 194, 129, 1.0)",
         ]
     }
@@ -63,6 +63,39 @@ var D3Force = (function () {
             return value.length + 10;
         };
 
+        var h3 = function (v) {
+            return "<h3>" + v + "</h3>";
+        }
+        var p = function (v) {
+            return "<p>" + v + "</p>";
+        }
+        var a = function (v) {
+            return "<a href='" + v + "'>" + v + "</a>";
+        }
+
+        var img = function (v) {
+            return "<img src='" + v + "'>";
+        }
+        var getInfo = function (d) {
+            switch (d.type){
+                case "person":
+                    return h3(d.name) + p(d.details) + p(img(d.url));
+                case "employer":
+                    return h3(d.name) + p(d.details) + a(d.url);
+                case "position":
+                    return h3(d.name) + p(d.details);
+                case "programming language":
+                    return h3(d.name) + p(d.details);
+                case "framework":
+                case "data storage":
+                    return h3(d.name) + p(d.details);;
+                case "skill":
+                    return h3(d.name) + p(d.details);
+                case "project":
+                    return h3(d.name) + p(d.details);
+            }
+        }
+
         var simulation = d3.forceSimulation()
             .force("link", d3.forceLink().id(function (d, i) { return i; }).distance(130))
             .force("charge", d3.forceManyBody())
@@ -84,16 +117,14 @@ var D3Force = (function () {
             .attr("r", function (d, i) { return radius(d.type); })
             .attr("fill", function (d) { return colorScale(d.type.length % 10); })
             .on("mouseover", function (d) {
-                var t = d.details;
-                toolTip.show(t);
+                toolTip.show(getInfo(d));
             })
             .on("mouseout", function (d) {
                 toolTip.hide();
             })
-            .call(d3.drag()
-                .on("start", dragstarted)
-                .on("drag", dragged)
-                .on("end", dragended));
+            .on("dblclick", function (d) {
+                simulation.alphaTarget(0.3).restart();
+            })
 
         node.append("title")
             .text(function (d) { return d.name; });
@@ -103,7 +134,13 @@ var D3Force = (function () {
                         .selectAll("text")
                         .data(data.nodes)
                         .enter().append("text")
-                        .text(function (d) { return d.name; });
+                        .text(function (d) { return d.name; })
+                        .on("mouseover", function (d) {
+                            toolTip.show(getInfo(d));
+                        })
+                        .on("mouseout", function (d) {
+                            toolTip.hide();
+                        });
 
         simulation
             .nodes(data.nodes)
@@ -111,6 +148,13 @@ var D3Force = (function () {
 
         simulation.force("link")
             .links(data.links);
+
+        var drag_handler = d3.drag()
+            .on("start", drag_start)
+            .on("drag", drag_drag)
+            .on("end", drag_end);
+        //same as using .call on the node variable as in https://bl.ocks.org/mbostock/4062045
+        drag_handler(node)
 
         var aspect = this.width / this.height;
 
@@ -164,6 +208,20 @@ var D3Force = (function () {
                 simulation.alphaTarget(0);
             d.fx = null;
             d.fy = null;
+        }
+        function drag_start(d) {
+            if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+            d.fx = d.x;
+            d.fy = d.y;
+        }
+        function drag_drag(d) {
+            d.fx = d3.event.x;
+            d.fy = d3.event.y;
+        }
+        function drag_end(d) {
+            if (!d3.event.active) simulation.alphaTarget(0);
+            d.fx = d.x;
+            d.fy = d.y;
         }
     };
     D3Force.prototype.create = function (data) {

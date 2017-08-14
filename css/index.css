@@ -145,7 +145,13 @@ div > a > img {
 }
 
 label.grey{
-    color: gray;
+    color: lightgray;
+}
+.nav-link{
+    color: lightgray;
+}
+.nav-item.active{
+    color:rgba(245, 128, 128, 1.0);
 }
 .card {
     border: none;
@@ -162,4 +168,32 @@ line{
 text{
     font-size: x-small;
     font-family: "Helvetica Neue", monospace;
+}
+
+.d3-tip{
+    z-index: 100;
+    background-color: rgba(240, 128, 128, 0.9);
+    color: lightgray;
+    padding: 10px;
+    max-width:350px;
+    max-height:350px;
+}
+
+.d3-tip > p > img{
+    max-width:200px;
+    max-height:200px;
+}
+
+.node.fixed {
+    fill: #f00;
+}
+
+circle{
+    cursor: pointer;
+}
+
+text{
+    fill: lightblue;
+    font-size: medium;
+    cursor: pointer;
 }

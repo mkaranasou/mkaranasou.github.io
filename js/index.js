@@ -1,5 +1,6 @@
 "use strict";
 var introTyped;
+var introShown;
 
 var createForce = function () {
     var d3Force = new D3Force('#experience-chart', parseInt($('.container-fluid').css('width')), 900);
@@ -7,17 +8,32 @@ var createForce = function () {
 };
 
 var startTyping = function () {
-    var aboutMe = new Typed('#about-me', {
-        strings: data.sections["about-me"],
-        typeSpeed: 10,
-        onComplete: createForce
-    });
+    if(!introShown){
+        $('#about-me').empty();
+
+    for(let i=0; i < data.sections["about-me"].length; i++) {
+        $('#about-me').append("<p id='about-me" + i + "'></p>");
+
+        var aboutMe = new Typed('#about-me' + i, {
+            strings: [data.sections["about-me"][i]],
+            typeSpeed: 20,
+        });
+        $(".typed-cursor").hide();
+    }
+    }
+    else{
+        for(let i=0; i < data.sections["about-me"].length; i++) {
+            $('#about-me').append("<p id='about-me" + i + "'>"+data.sections["about-me"][i]+"</p>");
+        }
+    }
+
 };
 var welcomeClose = function () {
     introTyped? introTyped.stop() : null;
     localStorage.setItem("intro", true)
     $(".typed-cursor").hide();
     $('.fixed-welcome').fadeOut(1200, function () {
+        startTyping();
         createForce();
 
     });
@@ -26,8 +42,8 @@ var welcomeClose = function () {
 /* Main */
 (function () {
 
-    var shownIntro = localStorage.getItem("intro");
-    if(shownIntro){
+    introShown = localStorage.getItem("intro");
+    if(introShown){
         welcomeClose();
     }
     else{
