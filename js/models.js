@@ -3,6 +3,7 @@
 var D3Force = (function () {
     function D3Force(selector, width, height) {
         this.selector = selector;
+        this.byId = selector.indexOf("#") === 0;
         this.width = width;
         this.height = height;
         this.colorRange = [
@@ -20,11 +21,12 @@ var D3Force = (function () {
     }
     D3Force.prototype._createForce = function (data) {
         console.log(data)
+        var self = this;
 
         this.svg = d3.select(this.selector)
-                        .append("svg")
-                        .attr("width",  this.width)
-                        .attr("height", this.height);
+            .append("svg")
+            .attr("width",  this.width)
+            .attr("height", this.height);
 
         let toolTip = d3.tip()
             .attr("class", "d3-tip")
@@ -41,12 +43,30 @@ var D3Force = (function () {
 
         var color = d3.scaleOrdinal(d3.schemeCategory20);
         var radius = function (value) {
+            switch (value){
+                case "person":
+                    return 40;
+                case "employer":
+                    return 35;
+                case "position":
+                    return 35;
+                case "programming language":
+                    return 30;
+                case "framework":
+                case "data storage":
+                    return 25;
+                case "skill":
+                    return 20;
+                case "project":
+                    return 15;
+            }
             return value.length + 10;
         };
 
         var simulation = d3.forceSimulation()
-            .force("link", d3.forceLink().id(function (d, i) { return i; }).distance(100))
+            .force("link", d3.forceLink().id(function (d, i) { return i; }).distance(130))
             .force("charge", d3.forceManyBody())
+            .force("collide", d3.forceCollide().radius(function(d) { return radius(d.type) + 0.5; }).iterations(2))
             .force("center", d3.forceCenter(this.width / 2, this.height / 2));
 
         var link = this.svg.append("g")
@@ -61,7 +81,7 @@ var D3Force = (function () {
             .selectAll("circle")
             .data(data.nodes)
             .enter().append("circle")
-            .attr("r", function (d) { return radius(d.type); })
+            .attr("r", function (d, i) { return radius(d.type); })
             .attr("fill", function (d) { return colorScale(d.type.length % 10); })
             .on("mouseover", function (d) {
                 var t = d.details;
@@ -92,15 +112,38 @@ var D3Force = (function () {
         simulation.force("link")
             .links(data.links);
 
+        var aspect = this.width / this.height;
+
+        d3.select(window)
+            .on("resize", function() {
+                // var targetWidth = self.svg.node().getBoundingClientRect().width;
+                // emtpy element
+                d3.select(self.selector).html('');
+                // initialize w, h
+                self.width = window.innerWidth;
+                self.height = window.innerWidth / aspect;
+                // redraw
+                self.create(data);
+            });
+
+
         function ticked() {
             link
                 .attr("x1", function (d) { return d.source.x; })
                 .attr("y1", function (d) { return d.source.y; })
                 .attr("x2", function (d) { return d.target.x; })
                 .attr("y2", function (d) { return d.target.y; });
+
+            // Set the top bottom left right collision rules:
             node
-                .attr("cx", function (d) { return d.x; })
-                .attr("cy", function (d) { return d.y; });
+                .attr("cx", function(d) {
+                    d.r = d.r || radius(d.type);
+                    return (d.x = Math.max(d.r, Math.min(self.width - d.r, d.x)));
+                })
+                .attr("cy", function(d) {
+                    d.r = d.r || radius(d.type);
+                    return (d.y = Math.max(d.r, Math.min(self.height - d.r, d.y)));
+                })
 
             texts
                 .attr("x", function (d) { return d.x; })

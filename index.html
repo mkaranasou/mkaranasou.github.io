@@ -15,7 +15,7 @@
     <script src="js/models.js"></script>
 </head>
 <body>
-<nav class="navbar navbar-light bg-faded fixed-top">
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded fixed-top">
     <a class="navbar-brand me" href="#">
         <img src="img/IMG_20161011_143159.jpg" class="profile-img sm">
         <!--<img src="/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">-->
@@ -23,7 +23,28 @@
         <div class="float-right">
             <div class="nav navbar-brand welcome "></div>
         </div>
+
     </a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"></button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link title" href="#about">About me<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link title" href="#experience">Experience</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link title" href="#education">Education</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link title" href="#interesting-stuff">Interesting stuff</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link title" href="#contact">Contact</a>
+            </li>
+        </ul>
+    </div>
 </nav>
 <div class="fixed-welcome">
     <div class="container">
@@ -43,12 +64,11 @@
 <div class="container-fluid">
     <div id='graphic'>
         <div class="row">
-            <div class="col-md-1">
+            <div class="col-md-10">
                 <div id='sections'>
                     <div class="row">
                         <div class="col-md-12">
-                            <section class="step">
-                                <div class="title">About me</div>
+                            <section class="step" id="about">
                                 <div id="about-me">
 
                                 </div>
@@ -57,9 +77,11 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <section class="step">
-                                <div class="title">Experience</div>
-                                <div id="experience">
+                            <section class="step" id="experience">
+                                <div id="experience-chart">
+
+                                </div>
+                                <div id="experience-timeseries">
 
                                 </div>
                             </section>
@@ -67,8 +89,8 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <section class="step">
-                                <div class="title">What I like</div>
+                            <section class="step" id="education">
+                                <div class="title">Education</div>
                             </section>
                         </div>
                     </div>
@@ -82,62 +104,33 @@
 
                     <div class="row">
                         <div class="col-md-12">
-                            <section class="step">
+                            <section class="step" id="interesting-stuff">
                                 <div class="title">Interesting stuff</div>
                             </section>
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-md-12">
-                            <section class="step">
-                                <div class="title">Contact</div>
-                            </section>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-9">
-                <div id='vis'>
-<!--                    <div id="about-me">
-
-                    </div>
-                    <div id="experience">
-
-                    </div>-->
-                    <div id="what-i-like">
-
-                    </div>
-                    <div id="what-i-am-looking-for">
-
-                    </div>
-                    <div id="interesting-stuff">
-
-                    </div>
-                    <div id="contact">
-
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div id="social">
-                    <div class="card-row">
-                        <div class="card">
-                            <div class="card-header">Contact</div>
-                            <div class="row">
-                                <div class="col-sm-2">
-                                    <a href="https://www.linkedin.com/in/maria-karanasou/" target="_blank">
-                                        <img src="img/In-2C-108px-R.png">
-                                    </a>
-                                </div>
-                                <div class="col-sm-2">
-                                    <a href="https://bitbucket.org/mkaranasou" target="_blank">
-                                        <img src="img/bitbucket-repository-svn-manage-files-contribute-branch-128.png">
-                                    </a>
-                                </div>
-                                <div class="col-sm-2">
-                                    <a href="https://stackoverflow.com/users/3433323/mkaran" target="_blank">
-                                        <svg xmlns="http://www.w3.org/2000/svg"
+                        <div class="col-md-4 offset-3">
+                            <section class="step" id="contact">
+                                <div id="social">
+                                    <div class="card-row">
+                                        <div class="card">
+                                            <div class="card-header">Contact</div>
+                                            <div class="row">
+                                                <div class="col-sm-2">
+                                                    <a href="https://www.linkedin.com/in/maria-karanasou/" target="_blank">
+                                                        <img src="img/In-2C-108px-R.png">
+                                                    </a>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <a href="https://bitbucket.org/mkaranasou" target="_blank">
+                                                        <img src="img/bitbucket-repository-svn-manage-files-contribute-branch-128.png">
+                                                    </a>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <a href="https://stackoverflow.com/users/3433323/mkaran" target="_blank">
+                                                        <svg xmlns="http://www.w3.org/2000/svg"
                                              xmlns:xlink="http://www.w3.org/1999/xlink"
                                              version="1.1" x="0px" y="0px" viewBox="0 0 120 120"
                                              style="enable-background:new 0 0 120 120;"
@@ -150,19 +143,24 @@
                                         <polygon class="st0" points="84.4,93.8 84.4,70.6 92.1,70.6 92.1,101.5 22.6,101.5 22.6,70.6 30.3,70.6 30.3,93.8 "/>
                                         <path class="st1" d="M38.8,68.4l37.8,7.9l1.6-7.6l-37.8-7.9L38.8,68.4z M43.8,50.4l35,16.3l3.2-7l-35-16.4L43.8,50.4z M53.5,33.2  l29.7,24.7l4.9-5.9L58.4,27.3L53.5,33.2z M72.7,14.9l-6.2,4.6l23,31l6.2-4.6L72.7,14.9z M38,86h38.6v-7.7H38V86z"/>
                                         </svg>
-                                    </a>
+                                                    </a>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <a href="https://github.com/mkaranasou" target="_blank">
+                                                        <img src="img/GitHub-Mark.png">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-sm-2">
-                                    <a href="https://github.com/mkaranasou" target="_blank">
-                                        <img src="img/GitHub-Mark.png">
-                                    </a>
-                                </div>
-                            </div>
-
-                            </p>
+                            </section>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="col-md-2">
+
             </div>
         </div>
     </div>

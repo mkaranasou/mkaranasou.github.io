@@ -52,15 +52,35 @@
     {"id": 44, "name": "Full-Stack", "type": "skill"},
     {"id": 45, "name": "Data Science", "type": "skill"},
     {"id": 46, "name": "Machine Learning", "type": "skill"},
-    {"id": 46, "name": "Sentiment Analysis", "type": "skill"},
+    {"id": 47, "name": "Sentiment Analysis", "type": "skill"},
+    {"id": 48, "name": "Data Visualization", "type": "skill"},
+    {"id": 49, "name": "Scrum Master", "type": "skill"},
 
-    {"id": 47, "name": "EU Projects", "type": "project"},
-    {"id": 48, "name": "Sentiment Analysis on Figurative Data", "type": "project", "details": "Thesis"},
-    {"id": 49, "name": "Scalable and Real-time Sentiment Analysis", "type": "project", "details": ""}
+    {"id": 50, "name": "EU Projects", "type": "project"},
+    {"id": 51, "name": "Sentiment Analysis on Figurative Data", "type": "project", "details": "Thesis"},
+    {"id": 52, "name": "Scalable and Real-time Sentiment Analysis", "type": "project", "details": ""},
+    {"id": 53, "name": "API consumption semi-automation", "type": "project", "details": ""},
+    {"id": 54, "name": "Enorasys Security Analytics: Anomaly/ Outlier Detection", "type": "project", "details": ""},
+    {"id": 55, "name": "Enorasys Security Analytics: Evaluation & Visualization of Results", "type": "project", "details": ""},
+    {"id": 56, "name": "Legacy System Migration", "type": "project", "details": ""},
+    {"id": 57, "name": "SGSN features implementation", "type": "project", "details": ""},
+    {"id": 58, "name": "Figurative Tweets Sentiment Analysis", "type": "project", "details": ""},
+    {"id": 59, "name": "normalizer", "type": "project", "details": ""},
+    {"id": 60, "name": "TweetUtils", "type": "project", "details": ""},
+    {"id": 61, "name": "replicable_experiments", "type": "project", "details": ""},
+    {"id": 62, "name": "Snippetmate", "type": "project", "details": ""},
+
+    {"id": 63, "name": "Maria Karanasou", "type": "person", "details": ""}
 
   ],
 
   "links": [
+    {"source": 63, "target": 0},
+    {"source": 63, "target": 1},
+    {"source": 63, "target": 2},
+    {"source": 63, "target": 3},
+    {"source": 63, "target": 4},
+
     {"source": 0, "target": 5},
     {"source": 1, "target": 6},
     {"source": 2, "target": 6},

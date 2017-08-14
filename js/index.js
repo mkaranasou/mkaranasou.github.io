@@ -2,7 +2,7 @@
 var introTyped;
 
 var createForce = function () {
-    var d3Force = new D3Force('#about-me', 1000, 800);
+    var d3Force = new D3Force('#about-me', parseInt($('.container-fluid').css('width')), 800);
     d3Force.create('./data/d3data.json');
 };
 
@@ -14,7 +14,8 @@ var startTyping = function () {
     });
 };
 var welcomeClose = function () {
-    introTyped.stop();
+    introTyped? introTyped.stop() : null;
+    localStorage.setItem("intro", true)
     $(".typed-cursor").hide();
     $('.fixed-welcome').fadeOut(1200, function () {
         createForce();
@@ -25,9 +26,16 @@ var welcomeClose = function () {
 /* Main */
 (function () {
 
-    introTyped = new Typed('.intro', {
-        strings: data.sections["intro"],
-        typeSpeed: 40,
-        onComplete: welcomeClose
-    });
+    var shownIntro = localStorage.getItem("intro");
+    if(shownIntro){
+        welcomeClose();
+    }
+    else{
+        introTyped = new Typed('.intro', {
+            strings: data.sections["intro"],
+            typeSpeed: 40,
+            onComplete: welcomeClose
+        });
+    }
+
 })();

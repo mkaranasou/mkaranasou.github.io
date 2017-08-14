@@ -38,7 +38,7 @@
 }
 
 .container-fluid{
-    margin-top: 95px;
+    margin-top: 74px;
 }
 
 nav{
@@ -51,6 +51,7 @@ nav{
 .navbar-brand.me{
     margin-left: 2%;
     color: rgba(240, 128, 128, 1.0)!important;
+    height: 50px;
 }
 
 #vis {
@@ -71,8 +72,8 @@ nav{
 }
 
 #graphic{
-    margin-left: 30px;
-    padding-left: 10px;
+    /*margin-left: 30px;*/
+    /*padding-left: 10px;*/
 }
 
 .profile-img{
@@ -124,8 +125,8 @@ nav{
 }
 
 .card > div > div > a > img {
-    max-width:35px;
-    max-height:35px;
+    max-width:60px;
+    max-height:60px;
     padding: 4px;
 }
 .card-header{
@@ -143,7 +144,7 @@ nav{
 }
 
 #social{
-    position: fixed;
+    /*position: fixed;*/
 }
 
 line{
