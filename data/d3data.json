@@ -57,29 +57,30 @@
     {"id": 49, "name": "Scrum Master", "type": "skill", "details": " "},
 
     {"id": 50, "name": "EU Projects", "type": "project", "details": " "},
-    {"id": 51, "name": "Sentiment Analysis on Figurative Data", "type": "project", "details": "Thesis"},
-    {"id": 52, "name": "Scalable and Real-time Sentiment Analysis", "type": "project", "details": ""},
-    {"id": 53, "name": "API consumption semi-automation", "type": "project", "details": ""},
+    {"id": 51, "name": "Sentiment Analysis on Figurative Data", "type": "project", "details": "Thesis", "url": ""},
+    {"id": 52, "name": "Scalable and Real-time Sentiment Analysis", "type": "project", "details": "", "url": ""},
+    {"id": 53, "name": "API consumption semi-automation", "type": "project", "details": "", "url": ""},
     {"id": 54, "name": "Enorasys Security Analytics: Anomaly/ Outlier Detection", "type": "project", "details": ""},
     {"id": 55, "name": "Enorasys Security Analytics: Evaluation & Visualization of Results", "type": "project", "details": ""},
     {"id": 56, "name": "Legacy System Migration", "type": "project", "details": ""},
     {"id": 57, "name": "SGSN features implementation", "type": "project", "details": ""},
-    {"id": 58, "name": "Figurative Tweets Sentiment Analysis", "type": "project", "details": ""},
-    {"id": 59, "name": "normalizer", "type": "project", "details": ""},
-    {"id": 60, "name": "TweetUtils", "type": "project", "details": ""},
-    {"id": 61, "name": "replicable_experiments", "type": "project", "details": ""},
-    {"id": 62, "name": "Snippetmate", "type": "project", "details": ""},
+    {"id": 58, "name": "Figurative Tweets Sentiment Analysis", "type": "project", "details": "", "url": ""},
+    {"id": 59, "name": "normalizer", "type": "project", "details": "", "url": ""},
+    {"id": 60, "name": "TweetUtils", "type": "project", "details": "", "url": ""},
+    {"id": 61, "name": "replicable_experiments", "type": "project", "details": "", "url": ""},
+    {"id": 62, "name": "Snippetmate", "type": "project", "details": "", "url": "https://snippetmate.com"},
+    {"id": 63, "name": "Silver Linings", "type": "project", "details": "", "url": "http://www.silverlinings.today/"},
 
-    {"id": 63, "name": "Maria Karanasou", "type": "person", "details": "", "url": "./img/IMG_20161011_143159_color.jpg"}
+    {"id": 64, "name": "Maria Karanasou", "type": "person", "details": "", "url": "./img/IMG_20161011_143159_color.jpg"}
 
   ],
 
   "links": [
-    {"source": 63, "target": 0},
-    {"source": 63, "target": 1},
-    {"source": 63, "target": 2},
-    {"source": 63, "target": 3},
-    {"source": 63, "target": 4},
+    {"source": 64, "target": 0},
+    {"source": 64, "target": 1},
+    {"source": 64, "target": 2},
+    {"source": 64, "target": 3},
+    {"source": 64, "target": 4},
 
     {"source": 0, "target": 5},
     {"source": 1, "target": 6},

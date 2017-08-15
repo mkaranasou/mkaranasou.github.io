@@ -45,20 +45,20 @@ var D3Force = (function () {
         var radius = function (value) {
             switch (value){
                 case "person":
-                    return 40;
+                    return 60;
                 case "employer":
-                    return 35;
+                    return 55;
                 case "position":
-                    return 35;
+                    return 50;
                 case "programming language":
-                    return 30;
+                    return 45;
                 case "framework":
                 case "data storage":
-                    return 25;
+                    return 40;
                 case "skill":
-                    return 20;
+                    return 35;
                 case "project":
-                    return 15;
+                    return 30;
             }
             return value.length + 10;
         };
@@ -88,7 +88,7 @@ var D3Force = (function () {
                     return h3(d.name) + p(d.details);
                 case "framework":
                 case "data storage":
-                    return h3(d.name) + p(d.details);;
+                    return h3(d.name) + p(d.details);
                 case "skill":
                     return h3(d.name) + p(d.details);
                 case "project":
@@ -99,7 +99,7 @@ var D3Force = (function () {
         var simulation = d3.forceSimulation()
             .force("link", d3.forceLink().id(function (d, i) { return i; }).distance(130))
             .force("charge", d3.forceManyBody())
-            .force("collide", d3.forceCollide().radius(function(d) { return radius(d.type) + 0.5; }).iterations(2))
+            .force("collide", d3.forceCollide().radius(function(d) { return radius(d.type) + 1.; }).iterations(2))
             .force("center", d3.forceCenter(this.width / 2, this.height / 2));
 
         var link = this.svg.append("g")

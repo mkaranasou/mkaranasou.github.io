@@ -133,28 +133,25 @@ div > a > img {
 .card > div > div > div{
     text-align: center;
 }
-.card-title{
-    padding-bottom: 0;
-    font-size: large;
-    border: none;
-    border-bottom: 2px solid darkcyan;
-    background-color: transparent;
-    text-align: center;
-    margin-bottom: 10px;
-    color:rgba(240, 128, 128, 1.0);
-}
+/*.card-title{*/
+    /*padding-bottom: 0;*/
+    /*font-size: large;*/
+    /*border: none;*/
+    /*border-bottom: 2px solid darkcyan;*/
+    /*background-color: transparent;*/
+    /*text-align: center;*/
+    /*margin-bottom: 10px;*/
+    /*color:rgba(240, 128, 128, 1.0);*/
+/*}*/
 
 label.grey{
-    color: lightgray;
+    color: grey;
 }
 .nav-link{
     color: lightgray;
 }
 .nav-item.active{
     color:rgba(245, 128, 128, 1.0);
-}
-.card {
-    border: none;
 }
 
 #social{
@@ -163,6 +160,7 @@ label.grey{
 
 line{
     stroke: rgba(240, 128, 128, 1.0);
+    stroke-width: 4px;
 }
 
 text{
@@ -172,11 +170,16 @@ text{
 
 .d3-tip{
     z-index: 100;
-    background-color: rgba(240, 128, 128, 0.9);
+    border: 2px solid rgba(240, 128, 128, 0.9);
+    background-color: white;
     color: lightgray;
     padding: 10px;
     max-width:350px;
     max-height:350px;
+}
+
+.d3-tip > h3{
+    color: grey;
 }
 
 .d3-tip > p > img{
@@ -190,15 +193,56 @@ text{
 
 circle{
     cursor: pointer;
+    fill: #FFFFFF;
+    stroke: blue;
+    stroke-width: 3px;
+    stroke-opacity: 0.5;
 }
 
 text{
-    fill: lightblue;
+    fill: darkgrey;
     font-size: medium;
     cursor: pointer;
+}
+.card{
+    border: none;
+    border-radius: 0;
+}
+
+.card-text{
+    padding: 7px;
+    height: 120px;
+    min-height:120px;
+    overflow-y: scroll;
+}
+
+.card-header{
+    border-radius: 0!important;
+    background-color: #FFFFFF;
+    border-left: 7px solid rgba(240, 128, 128, 0.9);
+    border-top: 1px solid rgba(240, 128, 128, 0.9);;
+    border-right: none;
+    border-bottom: none;
+}
+.card-footer{
+    color: darkgray;
+    font-size:small;
+    border-radius: 0!important;
+    background-color: #FFFFFF;
+    border-left: 7px solid rgba(240, 128, 128, 0.9);
+    border-top: none;
+    border-right: none;
+    border-bottom: 1px solid rgba(240, 128, 128, 0.9);
+    min-height: 64px;
+    padding-bottom:0;
 }
 
 .badge{
     background-color: #f00;
     color: white;
+}
+
+.img-fluid{
+    width: 100%;
+    height:300px;
 }
