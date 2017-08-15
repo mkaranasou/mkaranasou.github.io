@@ -97,7 +97,7 @@ var D3Force = (function () {
         }
 
         var simulation = d3.forceSimulation()
-            .force("link", d3.forceLink().id(function (d, i) { return i; }).distance(130))
+            .force("link", d3.forceLink().id(function (d, i) { return i; }).distance(200))
             .force("charge", d3.forceManyBody())
             .force("collide", d3.forceCollide().radius(function(d) { return radius(d.type) + 1.; }).iterations(2))
             .force("center", d3.forceCenter(this.width / 2, this.height / 2));
@@ -164,7 +164,7 @@ var D3Force = (function () {
                 // emtpy element
                 d3.select(self.selector).html('');
                 // initialize w, h
-                self.width = window.innerWidth;
+                self.width = window.innerWidth - 50;
                 // self.height = window.innerWidth / aspect;
                 // redraw
                 self.create(data);

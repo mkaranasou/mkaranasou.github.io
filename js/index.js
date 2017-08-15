@@ -4,7 +4,7 @@ var introShown;
 var times = 0;
 
 var createForce = function () {
-    var d3Force = new D3Force('#experience-chart', parseInt($('.container-fluid').css('width')), 900);
+    var d3Force = new D3Force('#experience-chart', parseInt($('.container-fluid').css('width'))-50, 900);
     d3Force.create('./data/d3data.json');
 };
 
