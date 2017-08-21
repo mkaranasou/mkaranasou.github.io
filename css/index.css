@@ -286,5 +286,5 @@ text{
 }
 
 .image{
-    border-radius: 100%;
+    cursor: pointer;
 }
