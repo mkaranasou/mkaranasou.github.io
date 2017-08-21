@@ -65,17 +65,18 @@ var welcomeClose = function () {
         imgLarge.src = placeholder.dataset.large;
             imgLarge.onload = function () {
                 imgLarge.classList.add('loaded');
+                times = 0;
+                introTyped = new Typed('.intro', {
+                    strings: data.sections["intro"],
+                    typeSpeed: 40,
+                    onComplete: welcomeClose
+                });
             };
         placeholder.appendChild(imgLarge);
         placeholder.removeChild(small);
         imgLarge.className="calm loaded profile-img lg";
 
-                    times = 0;
-        introTyped = new Typed('.intro', {
-            strings: data.sections["intro"],
-            typeSpeed: 40,
-            onComplete: welcomeClose
-        });
+
     }
 
 })();

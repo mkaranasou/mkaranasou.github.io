@@ -43,6 +43,20 @@
     }
 }
 
+.calm{
+
+/*    !*background: url(/app/img/calm.jpg) no-repeat center center fixed;*!
+    !*-webkit-background-size: cover; !* For WebKit*!*!
+    !*-moz-background-size: cover;    !* Mozilla*!*!
+    !*-o-background-size: cover;      !* Opera*!*!
+    !*background-size: cover;         !* Generic*!*!
+    z-index: -10;
+    position: fixed;
+    top: 0;
+    bottom: 0;*/
+    animation: img-blur-animation 2s;
+}
+
 #sections {
     position: relative;
     display: inline-block;
