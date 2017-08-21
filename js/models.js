@@ -106,14 +106,14 @@ var D3Force = (function () {
                 case "person":
                     return h3(d.name) + p(d.details) + p(img(d.url));
                 case "employer":
-                    return h3(d.name) + p(d.details) + a(d.url);
+                    return h3(d.name) + p(d.details) + a(d.url) + p(img(d.img));
                 case "position":
                     return h3(d.name) + p(d.details);
                 case "programming language":
-                    return h3(d.name) + p(d.details);
+                    return h3(d.name) + p(d.details) + p(img(d.img));
                 case "framework":
                 case "data storage":
-                    return h3(d.name) + p(d.details);
+                    return h3(d.name) + p(d.details) + p(img(d.img));
                 case "skill":
                     return h3(d.name) + p(d.details);
                 case "project":
@@ -122,10 +122,12 @@ var D3Force = (function () {
         }
 
         var simulation = d3.forceSimulation()
-            .force("link", d3.forceLink().id(function (d, i) { return i; }).distance(200))
+            .force("link", d3.forceLink().id(function (d, i) { return i; }).distance(250).iterations(10))
             .force("charge", d3.forceManyBody())
             .force("collide", d3.forceCollide().radius(function(d) { return radius(d.type) + 1.5; }).iterations(2))
-            .force("center", d3.forceCenter(this.width / 2, this.height / 2));
+            .force("center", d3.forceCenter(this.width / 2, this.height / 2))
+            .force("y", d3.forceY(0))
+            .force("x", d3.forceX(0));
 
         var link = this.svg.append("g")
             .attr("class", "links")
@@ -160,6 +162,9 @@ var D3Force = (function () {
                         .data(data.nodes)
                         .enter()
                         .append("text")
+                        .attr("opacity", function (d) {
+                            return d.img===undefined? 1: 0;
+                        })
                         .text(function (d) { return fitText(d.name, d.r || radius(d.type)); })
                         .attr("fill", function (d, i) {
                             return fillColor(d);
@@ -178,11 +183,25 @@ var D3Force = (function () {
             .data(data.nodes)
             .enter()
             .append("svg:image")
+            .attr("opacity", function (d) {
+                            return d.img!==undefined? 1: 0;
+             })
             .attr("xlink:href",  function(d) { return d.img;})
-            .attr("x", function(d) { return -25;})
-            .attr("y", function(d) { return -25;})
-            .attr("height", 50)
-            .attr("width", 50);
+            .attr("x", function(d) { return -45;})
+            .attr("y", function(d) { return -35;})
+            .attr("height", function (d) {
+                return radius(d.type) + 10;
+            })
+            .attr("clip-path", "url(#clip)")
+            .attr("width", function (d) {
+                return radius(d.type) + 10;
+            })
+            .on("mouseover", function (d) {
+                    toolTip.show(getInfo(d));
+            })
+            .on("mouseout", function (d) {
+                    toolTip.hide();
+            });
 
         simulation
             .nodes(data.nodes)
