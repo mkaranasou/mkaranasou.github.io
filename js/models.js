@@ -42,6 +42,31 @@ var D3Force = (function () {
         this.svg.call(toolTip);
 
         var color = d3.scaleOrdinal(d3.schemeCategory20);
+        var fitText = function (text, r) {
+            return text.substr(0, 10);
+           /* return text.length < r * 2
+                        ? text
+                        : text.substr(0, r-3) + "...";*/
+        }
+        var fillColor = function (d) {
+            switch (d.type) {
+                case "person":
+                    return "rgb(249, 105, 14)"; // ECSTASY
+                case "employer":
+                    return "rgb(108, 122, 137)"; // LYNCH
+                case "position":
+                    return "rgb(191, 85, 236)"; // MEDIUM PURPLE
+                case "programming language":
+                    return "rgb(3, 201, 169)"; // CARIBBEAN GREEN
+                case "framework":
+                case "data storage":
+                    return "rgb(34, 167, 240)"; // PICTON BLUE
+                case "skill":
+                    return "rgb(210, 77, 87)"; //  CHESTNUT ROSE
+                case "project":
+                    return "rgb(246, 71, 71)"; // SUNSET ORANGE
+            }
+        }
         var radius = function (value) {
             switch (value){
                 case "person":
@@ -99,7 +124,7 @@ var D3Force = (function () {
         var simulation = d3.forceSimulation()
             .force("link", d3.forceLink().id(function (d, i) { return i; }).distance(200))
             .force("charge", d3.forceManyBody())
-            .force("collide", d3.forceCollide().radius(function(d) { return radius(d.type) + 1.; }).iterations(2))
+            .force("collide", d3.forceCollide().radius(function(d) { return radius(d.type) + 1.5; }).iterations(2))
             .force("center", d3.forceCenter(this.width / 2, this.height / 2));
 
         var link = this.svg.append("g")
@@ -133,14 +158,31 @@ var D3Force = (function () {
                         .attr("class", "texts")
                         .selectAll("text")
                         .data(data.nodes)
-                        .enter().append("text")
-                        .text(function (d) { return d.name; })
+                        .enter()
+                        .append("text")
+                        .text(function (d) { return fitText(d.name, d.r || radius(d.type)); })
+                        .attr("fill", function (d, i) {
+                            return fillColor(d);
+                        })
                         .on("mouseover", function (d) {
                             toolTip.show(getInfo(d));
                         })
                         .on("mouseout", function (d) {
                             toolTip.hide();
                         });
+
+        // Append images
+        var images = this.svg.append("g")
+            .attr("class", "image")
+            .selectAll("image")
+            .data(data.nodes)
+            .enter()
+            .append("svg:image")
+            .attr("xlink:href",  function(d) { return d.img;})
+            .attr("x", function(d) { return -25;})
+            .attr("y", function(d) { return -25;})
+            .attr("height", 50)
+            .attr("width", 50);
 
         simulation
             .nodes(data.nodes)
@@ -188,9 +230,16 @@ var D3Force = (function () {
                     d.r = d.r || radius(d.type);
                     return (d.y = Math.max(d.r, Math.min(self.height - d.r, d.y)));
                 })
-
+            images.attr("x", function(d) {
+                    d.r = d.r || radius(d.type);
+                    return (d.x = Math.max(d.r, Math.min(self.width - d.r -20, d.x-20)));
+                })
+                .attr("y", function(d) {
+                    d.r = d.r || radius(d.type);
+                    return (d.y = Math.max(d.r, Math.min(self.height - d.r-20, d.y-20)));
+                })
             texts
-                .attr("x", function (d) { return d.x - 7; })
+                .attr("x", function (d) { return d.x - radius(d.type) + 10; })
                 .attr("y", function (d) { return d.y; });
         }
         function dragstarted(d) {

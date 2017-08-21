@@ -24,7 +24,7 @@ var startTyping = function () {
     }
     else{
         for(let i=0; i < data.sections["about-me"].length; i++) {
-            $('#about-me').append("<p id='about-me" + i + "'>"+data.sections["about-me"][i]+"</p>");
+            $('#about-me').append("<p id='about-me" + i + "'>" + data.sections["about-me"][i] + "</p>");
         }
     }
 
@@ -33,10 +33,10 @@ var welcomeClose = function () {
     introTyped? introTyped.stop() : null;
     localStorage.setItem("intro", true)
     localStorage.setItem("times", times+1)
+    createForce();
     $(".typed-cursor").hide();
     $('.fixed-welcome').fadeOut(1200, function () {
         startTyping();
-        createForce();
 
     });
 };

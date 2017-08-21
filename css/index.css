@@ -36,6 +36,8 @@
 .step {
     margin-bottom: 100px;
     padding-top:74px;
+    min-height: 350px;
+
 }
 
 .container-fluid{
@@ -126,23 +128,13 @@ nav{
 }
 
 div > a > img {
-    max-width:60px;
-    max-height:60px;
+    width:60px;
+    height:60px;
     padding: 4px;
 }
 .card > div > div > div{
     text-align: center;
 }
-/*.card-title{*/
-    /*padding-bottom: 0;*/
-    /*font-size: large;*/
-    /*border: none;*/
-    /*border-bottom: 2px solid darkcyan;*/
-    /*background-color: transparent;*/
-    /*text-align: center;*/
-    /*margin-bottom: 10px;*/
-    /*color:rgba(240, 128, 128, 1.0);*/
-/*}*/
 
 label.grey{
     color: grey;
@@ -200,9 +192,10 @@ circle{
 }
 
 text{
-    fill: darkgrey;
-    font-size: medium;
+    /*fill: darkgrey;*/
+    font-size: small;
     cursor: pointer;
+    font-weight: 500;
 }
 .card{
     border: none;
@@ -246,4 +239,17 @@ text{
 .img-fluid{
     width: 100%;
     height:300px;
+}
+
+#search-ico,
+#search{
+    border: none;
+    border-bottom: 1px solid grey;
+    border-radius: 0;
+}
+
+#search-ico{
+    background-color: transparent;
+    color: rgba(240, 128, 128, 0.9);
+    cursor: pointer;
 }

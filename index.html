@@ -16,7 +16,7 @@
 <body>
 <nav class="navbar navbar-toggleable-md navbar-light bg-faded fixed-top">
     <a class="navbar-brand me" href="#">
-        <div class="badge">WIP</div>
+        <div class="badge" data-container="body" data-toggle="popover" title="Work In Progress" data-content="Figuratively and Literally :)">WIP</div>
         <img src="img/IMG_20161011_143159.jpg" class="profile-img sm">
         <!--<img src="/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">-->
         &nbsp;Maria Karanasou
@@ -105,11 +105,21 @@
                         <div class="col-md-12">
                             <section class="step" id="experience">
                                 <label class="title">Experience</label>
+                                <div class="input-group col-md-3">
+                                    <input id="search" type="text" class="form-control" placeholder="Search..." aria-describedby="basic-addon2">
+                                    <span class="input-group-addon fa fa-search" id="search-ico"></span>
+                                </div>
                                 <div id="experience-chart">
 
                                 </div>
                                 <div id="experience-timeseries">
-
+                                    <!--
+                                        Todo: combine:
+                                        https://codepen.io/chris-creditdesign/pen/yuFjr
+                                        https://www.npmjs.com/package/d3-timelines
+                                        http://bl.ocks.org/TBD/600b23e56545026ae6fda2905efa42ce
+                                        http://bl.ocks.org/bunkat/2338034
+                                    -->
                                 </div>
                             </section>
                         </div>
