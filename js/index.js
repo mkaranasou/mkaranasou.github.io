@@ -50,7 +50,27 @@ var welcomeClose = function () {
         welcomeClose();
     }
     else{
-        times = 0;
+        // source: https://jmperezperez.com/medium-image-progressive-loading-placeholder/
+        let placeholder = document.querySelector('.placeholder');
+        let small = placeholder.querySelector('.calm');
+        // 1: load small image and show it
+        let img = new Image();
+        img.src = small.src;
+        img.onload = function () {
+            small.classList.add('loaded');
+        };
+
+        // 2: load large image
+        let imgLarge = new Image();
+        imgLarge.src = placeholder.dataset.large;
+            imgLarge.onload = function () {
+                imgLarge.classList.add('loaded');
+            };
+        placeholder.appendChild(imgLarge);
+        placeholder.removeChild(small);
+        imgLarge.className="calm loaded profile-img lg";
+
+                    times = 0;
         introTyped = new Typed('.intro', {
             strings: data.sections["intro"],
             typeSpeed: 40,
