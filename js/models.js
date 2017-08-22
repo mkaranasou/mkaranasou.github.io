@@ -20,17 +20,21 @@ var D3Force = (function () {
             "rgba(210, 77, 87,1.0)",
             // "rgba(38, 194, 129, 1.0)",
         ]
+        this.simulation = null;
     }
+
     D3Force.prototype._createForce = function (data) {
         var self = this;
-        console.log(data, self.data);
-        if (Object.keys( self.data).length === 0){
+
+        // set data once
+        if (Object.keys(self.data).length === 0) {
             self.data = data;
         }
+
         this.svg = d3.select(this.selector)
             .html('')
             .append("svg")
-            .attr("width",  this.width)
+            .attr("width", this.width)
             .attr("height", this.height);
 
         let toolTip = d3.tip()
@@ -49,16 +53,25 @@ var D3Force = (function () {
         var color = d3.scaleOrdinal(d3.schemeCategory20);
         var fitText = function (text, r) {
             return text.substr(0, 10);
-           /* return text.length < r * 2
-                        ? text
-                        : text.substr(0, r-3) + "...";*/
+            /* return text.length < r * 2
+                         ? text
+                         : text.substr(0, r-3) + "...";*/
         };
-        var fillColor = function (d) {
-            switch (d.type) {
+        var fillColor = function (value) {
+            switch (value) {
+                case "employer":
+                    return "rgb(246, 71, 71)"; // LYNCH
+                default:
+                    return "#7979FF"
+            }
+        };
+
+        var fillTextColor = function (value) {
+            switch (value) {
                 case "person":
                     return "rgb(249, 105, 14)"; // ECSTASY
                 case "employer":
-                    return "rgb(108, 122, 137)"; // LYNCH
+                    return "rgb(25, 181, 254)"; // DODGER BLUE
                 case "position":
                     return "rgb(191, 85, 236)"; // MEDIUM PURPLE
                 case "programming language":
@@ -73,7 +86,7 @@ var D3Force = (function () {
             }
         };
         var radius = function (value) {
-            switch (value){
+            switch (value) {
                 case "person":
                     return 60;
                 case "employer":
@@ -107,7 +120,7 @@ var D3Force = (function () {
             return "<img src='" + v + "'>";
         };
         var getInfo = function (d) {
-            switch (d.type){
+            switch (d.type) {
                 case "person":
                     return h3(d.name) + p(d.details) + p(img(d.url));
                 case "employer":
@@ -115,10 +128,10 @@ var D3Force = (function () {
                 case "position":
                     return h3(d.name) + p(d.details);
                 case "programming language":
-                    return h3(d.name) + p(d.details) + (d.img?p(img(d.img)):"");
+                    return h3(d.name) + p(d.details) + (d.img ? p(img(d.img)) : "");
                 case "framework":
                 case "data storage":
-                    return h3(d.name) + p(d.details) + (d.img?p(img(d.img)):"");
+                    return h3(d.name) + p(d.details) + (d.img ? p(img(d.img)) : "");
                 case "skill":
                     return h3(d.name) + p(d.details);
                 case "project":
@@ -126,62 +139,76 @@ var D3Force = (function () {
             }
         };
 
-        var simulation = d3.forceSimulation()
-            .force("link", d3.forceLink().id(function (d, i) { return i; }).distance(200).strength(1.))
+        this.simulation = d3.forceSimulation()
+            .force("link", d3.forceLink().id(function (d, i) {
+                return i;
+            }).distance(50))
             .force("charge", d3.forceManyBody())
-            .force("collide", d3.forceCollide().radius(function(d) { return radius(d.type) + 1.5; }).iterations(2))
+            .force("collide", d3.forceCollide().radius(function (d) {
+                return radius(d.type) + 1.5;
+            }).iterations(2))
             .force("center", d3.forceCenter(this.width / 2, this.height / 2));
-            // .force("y", d3.forceY(0))
-            // .force("x", d3.forceX(0));
+        // .force("y", d3.forceY(0))
+        // .force("x", d3.forceX(0));
 
         var link = this.svg.append("g")
-                            .attr("class", "links")
-                            .selectAll("line")
-                            .data(data.links)
-                            .enter().append("line")
-                            .attr("stroke-width", function (d) { return Math.sqrt(d.type); });
+            .attr("class", "links")
+            .selectAll("line")
+            .data(data.links)
+            .enter().append("line")
+            .attr("stroke-width", function (d) {
+                return Math.sqrt(d.type);
+            });
 
         var node = this.svg.append("g")
-                            .attr("class", "nodes")
-                            .selectAll("circle")
-                            .data(data.nodes)
-                            .enter().append("circle")
-                            .attr("r", function (d, i) { return radius(d.type); })
-                            .attr("fill", function (d) { return colorScale(d.type.length % 10); })
-                            .on("mouseover", function (d) {
-                                if(d.dragged) return;
-                                toolTip.show(getInfo(d));
-                            })
-                            .on("mouseout", function (d) {
-                                toolTip.hide();
-                            })
-                            .on("dblclick", function (d) {
-                                simulation.alphaTarget(0.3).restart();
-                            });
+            .attr("class", "nodes")
+            .selectAll("circle")
+            .data(data.nodes)
+            .enter().append("circle")
+            .attr("r", function (d, i) {
+                return radius(d.type);
+            })
+            .attr("fill", function (d) {
+                return fillColor(d.type);
+            })
+            .on("mouseover", function (d) {
+                if (d.dragged) return;
+                toolTip.show(getInfo(d));
+            })
+            .on("mouseout", function (d) {
+                toolTip.hide();
+            })
+            .on("dblclick", function (d) {
+                self.simulation.alphaTarget(0.3).restart();
+            });
 
         node.append("title")
-            .text(function (d) { return d.name; });
+            .text(function (d) {
+                return d.name;
+            });
 
         var texts = this.svg.append("g")
-                        .attr("class", "texts")
-                        .selectAll("text")
-                        .data(data.nodes)
-                        .enter()
-                        .append("text")
-                        .attr("opacity", function (d) {
-                            return d.img===undefined? 1: 0;
-                        })
-                        .text(function (d) { return fitText(d.name, d.r || radius(d.type)); })
-                        .attr("fill", function (d, i) {
-                            return fillColor(d);
-                        })
-                        .on("mouseover", function (d) {
-                            if(d.dragged) return;
-                            toolTip.show(getInfo(d));
-                        })
-                        .on("mouseout", function (d) {
-                            toolTip.hide();
-                        });
+            .attr("class", "texts")
+            .selectAll("text")
+            .data(data.nodes)
+            .enter()
+            .append("text")
+            .attr("opacity", function (d) {
+                return d.img === undefined ? 1 : 0;
+            })
+            .text(function (d) {
+                return fitText(d.name, d.r || radius(d.type));
+            })
+            .attr("fill", function (d, i) {
+                return fillTextColor(d.type);
+            })
+            .on("mouseover", function (d) {
+                if (d.dragged) return;
+                toolTip.show(getInfo(d));
+            })
+            .on("mouseout", function (d) {
+                toolTip.hide();
+            });
 
         // Append images
         var images = this.svg.append("g")
@@ -191,11 +218,17 @@ var D3Force = (function () {
             .enter()
             .append("svg:image")
             .attr("opacity", function (d) {
-                            return d.img!==undefined? 1: 0;
-             })
-            .attr("xlink:href",  function(d) { return d.img;})
-            .attr("x", function(d) { return -45;})
-            .attr("y", function(d) { return -35;})
+                return d.img !== undefined ? 1 : 0;
+            })
+            .attr("xlink:href", function (d) {
+                return d.img;
+            })
+            .attr("x", function (d) {
+                return -45;
+            })
+            .attr("y", function (d) {
+                return -35;
+            })
             .attr("height", function (d) {
                 return radius(d.type) + 10;
             })
@@ -204,18 +237,18 @@ var D3Force = (function () {
                 return radius(d.type) + 10;
             })
             .on("mouseover", function (d) {
-                if(d.dragged) return;
+                if (d.dragged) return;
                 toolTip.show(getInfo(d));
             })
             .on("mouseout", function (d) {
-                    toolTip.hide();
+                toolTip.hide();
             });
 
-        simulation
+        this.simulation
             .nodes(data.nodes)
             .on("tick", ticked);
 
-        simulation.force("link")
+        this.simulation.force("link")
             .links(data.links);
 
         var drag_handler = d3.drag()
@@ -229,7 +262,7 @@ var D3Force = (function () {
         var aspect = this.width / this.height;
 
         d3.select(window)
-            .on("resize", function() {
+            .on("resize", function () {
                 // var targetWidth = self.svg.node().getBoundingClientRect().width;
                 // emtpy element
                 d3.select(self.selector).html('');
@@ -245,62 +278,80 @@ var D3Force = (function () {
 
         function ticked() {
             link
-                .attr("x1", function (d) { return d.source.x; })
-                .attr("y1", function (d) { return d.source.y; })
-                .attr("x2", function (d) { return d.target.x; })
-                .attr("y2", function (d) { return d.target.y; });
+                .attr("x1", function (d) {
+                    return d.source.x;
+                })
+                .attr("y1", function (d) {
+                    return d.source.y;
+                })
+                .attr("x2", function (d) {
+                    return d.target.x;
+                })
+                .attr("y2", function (d) {
+                    return d.target.y;
+                });
 
             // Set the top bottom left right collision rules:
             node
-                .attr("cx", function(d) {
+                .attr("cx", function (d) {
                     d.r = d.r || radius(d.type);
                     return (d.x = Math.max(d.r, Math.min(self.width - d.r, d.x)));
                 })
-                .attr("cy", function(d) {
+                .attr("cy", function (d) {
                     d.r = d.r || radius(d.type);
                     return (d.y = Math.max(d.r, Math.min(self.height - d.r, d.y)));
                 });
-            images.attr("x", function(d) {
+            images.attr("x", function (d) {
+                d.r = d.r || radius(d.type);
+                return (d.x = Math.max(d.r, Math.min(self.width - d.r - 20, d.x - 20)));
+            })
+                .attr("y", function (d) {
                     d.r = d.r || radius(d.type);
-                    return (d.x = Math.max(d.r, Math.min(self.width - d.r -20, d.x-20)));
-                })
-                .attr("y", function(d) {
-                    d.r = d.r || radius(d.type);
-                    return (d.y = Math.max(d.r, Math.min(self.height - d.r-20, d.y-20)));
+                    return (d.y = Math.max(d.r, Math.min(self.height - d.r - 20, d.y - 20)));
                 });
             texts
-                .attr("x", function (d) { return d.x - radius(d.type) + 10; })
-                .attr("y", function (d) { return d.y + radius(d.type) - 10 ; })
+                .attr("x", function (d) {
+                    return d.x - radius(d.type) + 10;
+                })
+                .attr("y", function (d) {
+                    return d.y + radius(d.type) - 10;
+                })
         }
+
         function dragstarted(d) {
             if (!d3.event.active)
-                simulation.alphaTarget(0.3).restart();
+                self.simulation.alphaTarget(0.3).restart();
             d.fx = d.x;
             d.fy = d.y;
         }
+
         function dragged(d) {
             d.fx = d3.event.x;
             d.fy = d3.event.y;
         }
+
         function dragended(d) {
             if (!d3.event.active)
-                simulation.alphaTarget(0);
+                self.simulation.alphaTarget(0);
             d.fx = null;
             d.fy = null;
         }
+
         function drag_start(d) {
             d.dragged = true;
-            if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+            if (!d3.event.active) self.simulation.alphaTarget(0.3).restart();
             d.fx = d.x;
             d.fy = d.y;
         }
+
         function drag_drag(d) {
             d.fx = d3.event.x;
             d.fy = d3.event.y;
         }
+
         function drag_end(d) {
             d.dragged = false;
-            if (!d3.event.active) simulation.alphaTarget(0);
+            if (!d3.event.active) self.simulation.alphaTarget(0);
             d.fx = d.x;
             d.fy = d.y;
         }
@@ -330,17 +381,20 @@ var D3Force = (function () {
     };
     D3Force.prototype.search = function (selector) {
         var self = this;
-        var search = d3.select(selector).on("keydown", function(d){
+        var search = d3.select(selector).on("keydown", function (d) {
             console.log(d, d3.event, self.data);
-            if(d3.event.key === "Enter"){
+            if (d3.event.key === "Enter") {
                 var value = d3.select(selector).node().value.toLowerCase();
-                if(value.length === 0){
+                if (value.length === 0) {
                     self.create(self.data);
                 }
-                else{
-                    self.filteredData.nodes = self.data.nodes.filter(function (o) { return o.name.toLowerCase().indexOf(value) > -1; }).slice(0);
+                else {
+                    self.filteredData.nodes = self.data.nodes.filter(function (o) {
+                        return o.name.toLowerCase().indexOf(value) > -1;
+                    }).slice(0);
                     self.filteredData.links = self.data.links.filter(function (o) {
-                        return o.source.name.toLowerCase().indexOf(value) > -1 && o.target.name.toLowerCase().indexOf(value) > -1; }).slice(0);
+                        return o.source.name.toLowerCase().indexOf(value) > -1 && o.target.name.toLowerCase().indexOf(value) > -1;
+                    }).slice(0);
                     self.create(self.filteredData);
                 }
             }
@@ -354,7 +408,21 @@ var D3Timeline = (function () {
     function D3Timeline(selector) {
         this.selector = selector;
     }
-    D3Timeline.prototype.create = function () {
+
+    D3Timeline.prototype.create = function (data) {
+        var self = this;
+        if (typeof (data) === "string") {
+            d3.json(data, function (e, data) {
+                if (e)
+                    throw e;
+                if (data) {
+                    return self._createForce(data);
+                }
+            });
+        }
+        else {
+            return self._createForce(data);
+        }
     };
     D3Timeline.prototype.update = function () {
     };

@@ -1,0 +1,28 @@
+{
+  "name": "mkaranasou.github.io",
+  "version": "1.0.0",
+  "description": "My personal website",
+  "main": "index.js",
+  "dependencies": {
+    "d3-timeline-chart": "^1.3.0",
+    "event-drops": "^0.3.1-alpha4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mkaranasou/mkaranasou.github.io.git"
+  },
+  "keywords": [
+    "d3.js",
+    "cv"
+  ],
+  "author": "Maria Karanasou",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mkaranasou/mkaranasou.github.io/issues"
+  },
+  "homepage": "https://github.com/mkaranasou/mkaranasou.github.io#readme"
+}

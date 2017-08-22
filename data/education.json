@@ -1,24 +1,30 @@
 {
   "education": [
-    {
-      "from": "09-2003",
-      "to": "09-2008",
-      "Institution": "University of Piraeus",
-      "type": "BSc",
-      "in": "Computer Science",
-      "dpt": "Digital Systems",
-      "title": "E-learning",
-      "grade": "7.05"
+    {"name": "BSc - UniPi",
+      "data": ["2003-09-01", "2009-09-01"],
+      "info":{
+        "from": "09-2003",
+        "to": "09-2008",
+        "Institution": "University of Piraeus",
+        "type": "BSc",
+        "in": "Computer Science",
+        "dpt": "Digital Systems",
+        "title": "E-learning",
+        "grade": "7.05"
+      }
     },
-    {
-      "from": "09-2012",
-      "to": "12-2015",
-      "Institution": "University of Piraeus",
-      "type": "MSc",
-      "in": "Computer Science",
-      "dpt": "Digital Systems",
-      "title": "Network Oriented Systems",
-      "grade": "9.07"
+    {"name": "MSc - UniPi",
+      "data": ["2012-09-01", "2015-12-01"],
+      "info": {
+        "from": "09-2012",
+        "to": "12-2015",
+        "Institution": "University of Piraeus",
+        "type": "MSc",
+        "in": "Computer Science",
+        "dpt": "Digital Systems",
+        "title": "Network Oriented Systems",
+        "grade": "9.07"
+      }
     }
   ]
 }
