@@ -9,7 +9,7 @@ var createForce = function () {
 };
 
 var startTyping = function () {
-    if(!introShown){
+    if(times){
         $('#about-me').empty();
 
     for(let i=0; i < data.sections["about-me"].length; i++) {
@@ -31,8 +31,7 @@ var startTyping = function () {
 };
 var welcomeClose = function () {
     introTyped? introTyped.stop() : null;
-    localStorage.setItem("intro", true)
-    localStorage.setItem("times", times+1)
+    localStorage.setItem("times", times+1);
     createForce();
     $(".typed-cursor").hide();
     $('.fixed-welcome').fadeOut(1200, function () {
@@ -44,9 +43,8 @@ var welcomeClose = function () {
 /* Main */
 (function () {
 
-    introShown = localStorage.getItem("intro");
     times = localStorage.getItem("times");
-    if(introShown && times < 2){
+    if(times && times < 2){
         welcomeClose();
     }
     else{

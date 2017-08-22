@@ -3,6 +3,8 @@
 var D3Force = (function () {
     function D3Force(selector, width, height) {
         this.selector = selector;
+        this.data = {};
+        this.filteredData = {};
         this.byId = selector.indexOf("#") === 0;
         this.width = width;
         this.height = height;
@@ -20,10 +22,13 @@ var D3Force = (function () {
         ]
     }
     D3Force.prototype._createForce = function (data) {
-        console.log(data)
         var self = this;
-
+        console.log(data, self.data);
+        if (Object.keys( self.data).length === 0){
+            self.data = data;
+        }
         this.svg = d3.select(this.selector)
+            .html('')
             .append("svg")
             .attr("width",  this.width)
             .attr("height", this.height);
@@ -47,7 +52,7 @@ var D3Force = (function () {
            /* return text.length < r * 2
                         ? text
                         : text.substr(0, r-3) + "...";*/
-        }
+        };
         var fillColor = function (d) {
             switch (d.type) {
                 case "person":
@@ -66,7 +71,7 @@ var D3Force = (function () {
                 case "project":
                     return "rgb(246, 71, 71)"; // SUNSET ORANGE
             }
-        }
+        };
         var radius = function (value) {
             switch (value){
                 case "person":
@@ -130,29 +135,29 @@ var D3Force = (function () {
             // .force("x", d3.forceX(0));
 
         var link = this.svg.append("g")
-            .attr("class", "links")
-            .selectAll("line")
-            .data(data.links)
-            .enter().append("line")
-            .attr("stroke-width", function (d) { return Math.sqrt(d.type); });
+                            .attr("class", "links")
+                            .selectAll("line")
+                            .data(data.links)
+                            .enter().append("line")
+                            .attr("stroke-width", function (d) { return Math.sqrt(d.type); });
 
         var node = this.svg.append("g")
-            .attr("class", "nodes")
-            .selectAll("circle")
-            .data(data.nodes)
-            .enter().append("circle")
-            .attr("r", function (d, i) { return radius(d.type); })
-            .attr("fill", function (d) { return colorScale(d.type.length % 10); })
-            .on("mouseover", function (d) {
-                if(d.dragged) return;
-                toolTip.show(getInfo(d));
-            })
-            .on("mouseout", function (d) {
-                toolTip.hide();
-            })
-            .on("dblclick", function (d) {
-                simulation.alphaTarget(0.3).restart();
-            });
+                            .attr("class", "nodes")
+                            .selectAll("circle")
+                            .data(data.nodes)
+                            .enter().append("circle")
+                            .attr("r", function (d, i) { return radius(d.type); })
+                            .attr("fill", function (d) { return colorScale(d.type.length % 10); })
+                            .on("mouseover", function (d) {
+                                if(d.dragged) return;
+                                toolTip.show(getInfo(d));
+                            })
+                            .on("mouseout", function (d) {
+                                toolTip.hide();
+                            })
+                            .on("dblclick", function (d) {
+                                simulation.alphaTarget(0.3).restart();
+                            });
 
         node.append("title")
             .text(function (d) { return d.name; });
@@ -235,6 +240,8 @@ var D3Force = (function () {
                 self.create(data);
             });
 
+
+        self.search("#search");
 
         function ticked() {
             link
@@ -321,7 +328,24 @@ var D3Force = (function () {
     };
     D3Force.prototype.hide = function () {
     };
-    D3Force.prototype.search = function () {
+    D3Force.prototype.search = function (selector) {
+        var self = this;
+        var search = d3.select(selector).on("keydown", function(d){
+            console.log(d, d3.event, self.data);
+            if(d3.event.key === "Enter"){
+                var value = d3.select(selector).node().value.toLowerCase();
+                if(value.length === 0){
+                    self.create(self.data);
+                }
+                else{
+                    self.filteredData.nodes = self.data.nodes.filter(function (o) { return o.name.toLowerCase().indexOf(value) > -1; }).slice(0);
+                    self.filteredData.links = self.data.links.filter(function (o) {
+                        return o.source.name.toLowerCase().indexOf(value) > -1 && o.target.name.toLowerCase().indexOf(value) > -1; }).slice(0);
+                    self.create(self.filteredData);
+                }
+            }
+
+        })
     };
     return D3Force;
 }());
