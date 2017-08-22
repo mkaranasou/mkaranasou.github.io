@@ -1,0 +1,24 @@
+{
+  "education": [
+    {
+      "from": "09-2003",
+      "to": "09-2008",
+      "Institution": "University of Piraeus",
+      "type": "BSc",
+      "in": "Computer Science",
+      "dpt": "Digital Systems",
+      "title": "E-learning",
+      "grade": "7.05"
+    },
+    {
+      "from": "09-2012",
+      "to": "12-2015",
+      "Institution": "University of Piraeus",
+      "type": "MSc",
+      "in": "Computer Science",
+      "dpt": "Digital Systems",
+      "title": "Network Oriented Systems",
+      "grade": "9.07"
+    }
+  ]
+}
