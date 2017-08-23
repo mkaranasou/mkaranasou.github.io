@@ -1,246 +1,1020 @@
 {
   "nodes": [
-    {"id": 0, "name": "Ionios Brokers SA", "type": "employer", "details": "From 2009 to 2013", "url": "https://ioniosbrokers.gr", "img": "http://www.findhere.gr/findhere/file?p=file-1366723570538.jpg"},
-    {"id": 1, "name": "Nokia", "type": "employer", "details": "From 2013 to 2014", "url": "https://nokia.com", "img": "https://www.famouslogos.net/images/nokia-logo.jpg"},
-    {"id": 2, "name": "CLMS UK", "type": "employer", "details": "From 2014 to 2016", "url": "https://clmsuk.com", "img": "http://www.clmsuk.com/wp-content/uploads/2016/11/clms-2.png"},
-    {"id": 3, "name": "University of Piraeus Research Center", "type": "employer", "details": "From 2015 to 2015", "url": "https://www.kep.unipi.gr", "img": "https://www.kep.unipi.gr//images/modules/logo_kepp.png"},
-    {"id": 4, "name": "ENCODE", "type": "employer", "details": "From 2016 to Present","url": "https://encodegroup.com", "img": "http://encodegroup.com/img/encode-logo-coloured.png"},
-
-    {"id": 5, "name": "IT Engineer", "type": "position", "details": " "},
-    {"id": 6, "name": "Software Engineer", "type": "position", "details": " "},
-    {"id": 7, "name": "Researcher", "type": "position", "details": "From 6/2015 to 10/2015 - Remote"},
-    {"id": 8, "name": "Python Developer (Machine Learning)", "type": "position", "details": " "},
-
-    {"id": 9, "name": "C#", "type": "programming language", "details": " ", "img": "https://chrismckee.co.uk/content/images/2015/11/C-Logo-1.jpg"},
-    {"id": 10, "name": "Python", "type": "programming language", "details": " ", "img": "https://realpython.com/learn/python-first-steps/images/pythonlogo.jpg"},
-    {"id": 11, "name": "Java", "type": "programming language", "details": " ", "img": "https://www.seeklogo.net/wp-content/uploads/2011/06/java-logo-vector.png"},
-    {"id": 12, "name": "JavaScript", "type": "programming language", "details": " ", "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/2000px-Unofficial_JavaScript_logo_2.svg.png"},
-    {"id": 13, "name": "SQL", "type": "programming language", "details": " ", "img": "http://freevector.co/wp-content/uploads/2014/09/56134-sql-document-outlined-interface-symbol.png"},
-    {"id": 14, "name": "C", "type": "programming language", "details": " ", "img":"https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/The_C_Programming_Language_logo.svg/2000px-The_C_Programming_Language_logo.svg.png"},
-    {"id": 15, "name": "C++", "type": "programming language", "details": " ", "img": "http://www.cbronline.com/wp-content/uploads/2016/07/C.png"},
-    {"id": 16, "name": "TNSDL", "type": "programming language", "details": " "},
-
-    {"id": 17, "name": "AngularJS", "type": "framework", "details": " ", "img": "img/angular.png"},
-    {"id": 18, "name": "KnockoutJS", "type": "framework", "details": " ", "img": "https://rwad-tech.com/Content/images/knockoutJS.png"},
-    {"id": 19, "name": "TypeScript", "type": "framework", "details": " ", "img": "https://vignette3.wikia.nocookie.net/dev/images/d/db/Typescript_logo.png/revision/latest?cb=20151023133416"},
-    {"id": 20, "name": "d3.js", "type": "framework", "details": " ", "img": "https://upload.wikimedia.org/wikipedia/en/thumb/1/15/Logo_D3.svg/1079px-Logo_D3.svg.png"},
-    {"id": 21, "name": "scikit-learn", "type": "framework", "details": " ", "img": "http://scikit-learn.org/stable/_images/scikit-learn-logo-notext.png"},
-    {"id": 22, "name": "pandas", "type": "framework", "details": " ", "img": "http://pandas.pydata.org/_static/pandas_logo.png"},
-    {"id": 23, "name": "numpy", "type": "framework", "details": " ", "img": "https://bids.berkeley.edu/sites/default/files/styles/400x225/public/projects/numpy_project_page.jpg?itok=flrdydei"},
-    {"id": 24, "name": "scipy", "type": "framework", "details": " ", "img": "https://docs.scipy.org/doc/scipy-0.10.1/reference/_static/scipyshiny_small.png"},
-    {"id": 25, "name": "nltk", "type": "framework", "details": " ", "img": "https://static1.squarespace.com/static/538cea80e4b00f1fad490c1b/54668a77e4b00fb778d22a34/54668d8ae4b00fb778d2859c/1416007413413/NLTK.png"},
-    {"id": 26, "name": "seneca.js", "type": "framework", "details": " ", "img": "https://camo.githubusercontent.com/4a0178ff2abf26f9214d4d98bc23eec356ced357/687474703a2f2f73656e6563616a732e6f72672f66696c65732f6173736574732f73656e6563612d6c6f676f2e706e67"},
-    {"id": 27, "name": "Apache Storm", "type": "framework", "details": " ", "img": "http://storm.apache.org/images/logo.png"},
-    {"id": 28, "name": "Apache Spark", "type": "framework", "details": " ", "img": "https://spark.apache.org/images/spark-logo-trademark.png"},
-    {"id": 29, "name": "Selenium / Robot", "type": "framework", "details": " ", "img": "https://iamhiring.files.wordpress.com/2015/06/selenium-logo.gif"},
-    {"id": 30, "name": "Node.js", "type": "framework", "details": " ", "img": "https://nodejs.org/static/images/logo.svg"},
-    {"id": 31, "name": ".NET", "type": "framework", "details": " ", "img": "https://dt-cdn.net/assets/images/gfx/icons/tech/dotnetmicrosoft-536938fee2.svg"},
-    {"id": 32, "name": "Django", "type": "framework", "details": " ", "img": "https://www.djangoproject.com/s/img/logos/django-logo-positive.png"},
-    {"id": 33, "name": "Flask", "type": "framework", "details": " ", "img": "http://www.unixstickers.com/image/cache/data/stickers/flask/Flask-text.sh-600x600.png"},
-    {"id": 34, "name": "Jupyter Notebook", "type": "framework", "details": " ", "img": "http://blog.jupyter.org/content/images/2015/02/jupyter-sq-text.png"},
-
-    {"id": 35, "name": "MSSQL\nServer", "type": "data storage", "details": " ", "img": "http://greenwireit.com/wp-content/uploads/2013/05/sql-server-express1.png"},
-    {"id": 36, "name": "MySQL", "type": "data storage", "details": " ", "img": "http://www.enclibrary.com/images/img20160304125409.jpg"},
-    {"id": 37, "name": "MongoDB", "type": "data storage", "details": " ", "img": "https://perlmaven.com/img/mongodb-logo.png"},
-    {"id": 38, "name": "Redis", "type": "data storage", "details": " ",  "img": "http://itecsoftware.com/wp-content/uploads/2010/08/high-speed-redis-cache.jpg"},
-
-    {"id": 39, "name": "Web Development", "type": "skill", "details": " "},
-    {"id": 40, "name": "Software Development", "type": "skill", "details": " "},
-    {"id": 41, "name": "Help Desk", "type": "skill", "details": " "},
-    {"id": 42, "name": "DBA", "type": "skill", "details": " "},
-    {"id": 43, "name": "SysAdmin", "type": "skill", "details": " "},
-    {"id": 44, "name": "Full-Stack", "type": "skill", "details": " "},
-    {"id": 45, "name": "Data Science", "type": "skill", "details": " "},
-    {"id": 46, "name": "Machine Learning", "type": "skill", "details": " "},
-    {"id": 47, "name": "Sentiment Analysis", "type": "skill", "details": " "},
-    {"id": 48, "name": "Data Visualization", "type": "skill", "details": " "},
-    {"id": 49, "name": "Scrum Master", "type": "skill", "details": " "},
-
-    {"id": 50, "name": "EU Projects", "type": "project", "details": " "},
-    {"id": 51, "name": "Sentiment Analysis on Figurative Data", "type": "project", "details": "Thesis", "url": ""},
-    {"id": 52, "name": "Scalable and Real-time Sentiment Analysis", "type": "project", "details": "", "url": ""},
-    {"id": 53, "name": "API consumption semi-automation", "type": "project", "details": "", "url": ""},
-    {"id": 54, "name": "Enorasys Security Analytics: Anomaly/ Outlier Detection", "type": "project", "details": ""},
-    {"id": 55, "name": "Enorasys Security Analytics: Evaluation & Visualization of Results", "type": "project", "details": ""},
-    {"id": 56, "name": "Legacy System Migration", "type": "project", "details": ""},
-    {"id": 57, "name": "SGSN features implementation", "type": "project", "details": ""},
-    {"id": 58, "name": "Figurative Tweets Sentiment Analysis", "type": "project", "details": "", "url": ""},
-    {"id": 59, "name": "normalizer", "type": "project", "details": "", "url": ""},
-    {"id": 60, "name": "TweetUtils", "type": "project", "details": "", "url": ""},
-    {"id": 61, "name": "replicable_experiments", "type": "project", "details": "", "url": ""},
-    {"id": 62, "name": "Snippetmate", "type": "project", "details": "", "url": "https://snippetmate.com"},
-    {"id": 63, "name": "Silver Linings", "type": "project", "details": "", "url": "http://www.silverlinings.today/"},
-
-    {"id": 64, "name": "Maria Karanasou", "type": "person", "details": "", "url": "./img/IMG_20161011_143159_color.jpg", "img":"./img/IMG_20161011_143159_color.jpg"}
-
+    {
+      "id": 0,
+      "name": "Ionios Brokers SA",
+      "type": "employer",
+      "details": "From 2009 to 2013",
+      "url": "https://ioniosbrokers.gr",
+      "img": "http://www.findhere.gr/findhere/file?p=file-1366723570538.jpg",
+      "from": 2009,
+      "to": 2013
+    },
+    {
+      "id": 1,
+      "name": "Nokia",
+      "type": "employer",
+      "details": "From 2013 to 2014",
+      "url": "https://nokia.com",
+      "img": "https://www.famouslogos.net/images/nokia-logo.jpg",
+      "from": 2013,
+      "to": 2014
+    },
+    {
+      "id": 2,
+      "name": "CLMS UK",
+      "type": "employer",
+      "details": "From 2014 to 2016",
+      "url": "https://clmsuk.com",
+      "img": "http://www.clmsuk.com/wp-content/uploads/2016/11/clms-2.png",
+      "from": 2014,
+      "to": 2016
+    },
+    {
+      "id": 3,
+      "name": "University of Piraeus Research Center",
+      "type": "employer",
+      "details": "From 2015 to 2015",
+      "url": "https://www.kep.unipi.gr",
+      "img": "https://www.kep.unipi.gr//images/modules/logo_kepp.png",
+      "from": 2015,
+      "to": 2015
+    },
+    {
+      "id": 4,
+      "name": "ENCODE",
+      "type": "employer",
+      "details": "From 2016 to Present",
+      "url": "https://encodegroup.com",
+      "img": "http://encodegroup.com/img/encode-logo-coloured.png",
+      "from": 2016,
+      "to": 2017
+    },
+    {
+      "id": 5,
+      "name": "IT Engineer",
+      "type": "position",
+      "details": " ",
+      "from": 2009,
+      "to": 2013
+    },
+    {
+      "id": 6,
+      "name": "Software Engineer",
+      "type": "position",
+      "details": " ",
+      "from": 2013,
+      "to": 2016
+    },
+    {
+      "id": 7,
+      "name": "Researcher",
+      "type": "position",
+      "details": "From 6/2015 to 10/2015 - Remote",
+      "from": 2015,
+      "to": 2015
+    },
+    {
+      "id": 8,
+      "name": "Python Developer (Machine Learning)",
+      "type": "position",
+      "details": " ",
+      "from": 2016,
+      "to": 2017
+    },
+    {
+      "id": 9,
+      "name": "C#",
+      "type": "programming language",
+      "details": " ",
+      "img": "https://chrismckee.co.uk/content/images/2015/11/C-Logo-1.jpg",
+      "from": 2009,
+      "to": 2016
+    },
+    {
+      "id": 10,
+      "name": "Python",
+      "type": "programming language",
+      "details": " ",
+      "img": "https://realpython.com/learn/python-first-steps/images/pythonlogo.jpg",
+      "from": 2013,
+      "to": 2017
+    },
+    {
+      "id": 11,
+      "name": "Java",
+      "type": "programming language",
+      "details": " ",
+      "img": "https://www.seeklogo.net/wp-content/uploads/2011/06/java-logo-vector.png",
+      "from": 2012,
+      "to": 2015
+    },
+    {
+      "id": 12,
+      "name": "JavaScript",
+      "type": "programming language",
+      "details": " ",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/2000px-Unofficial_JavaScript_logo_2.svg.png",
+      "from": 2013,
+      "to": 2017
+    },
+    {
+      "id": 13,
+      "name": "SQL",
+      "type": "programming language",
+      "details": " ",
+      "img": "http://freevector.co/wp-content/uploads/2014/09/56134-sql-document-outlined-interface-symbol.png",
+      "from": 2019,
+      "to": 2017
+    },
+    {
+      "id": 14,
+      "name": "C",
+      "type": "programming language",
+      "details": " ",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/The_C_Programming_Language_logo.svg/2000px-The_C_Programming_Language_logo.svg.png",
+      "from": 2013,
+      "to": 2014
+    },
+    {
+      "id": 15,
+      "name": "C++",
+      "type": "programming language",
+      "details": " ",
+      "img": "http://www.cbronline.com/wp-content/uploads/2016/07/C.png",
+      "from": 2013,
+      "to": 2014
+    },
+    {
+      "id": 16,
+      "name": "TNSDL",
+      "type": "programming language",
+      "details": " ",
+      "from": 2013,
+      "to": 2014
+    },
+    {
+      "id": 17,
+      "name": "AngularJS",
+      "type": "framework",
+      "details": " ",
+      "img": "img/angular.png",
+      "from": 2015,
+      "to": 2017
+    },
+    {
+      "id": 18,
+      "name": "KnockoutJS",
+      "type": "framework",
+      "details": " ",
+      "img": "https://rwad-tech.com/Content/images/knockoutJS.png",
+      "from": 2014,
+      "to": 2015
+    },
+    {
+      "id": 19,
+      "name": "TypeScript",
+      "type": "framework",
+      "details": " ",
+      "img": "https://vignette3.wikia.nocookie.net/dev/images/d/db/Typescript_logo.png/revision/latest?cb=20151023133416",
+      "from": 2015,
+      "to": 2017
+    },
+    {
+      "id": 20,
+      "name": "d3.js",
+      "type": "framework",
+      "details": " ",
+      "img": "https://upload.wikimedia.org/wikipedia/en/thumb/1/15/Logo_D3.svg/1079px-Logo_D3.svg.png",
+      "from": 2015,
+      "to": 2017
+    },
+    {
+      "id": 21,
+      "name": "scikit-learn",
+      "type": "framework",
+      "details": " ",
+      "img": "http://scikit-learn.org/stable/_images/scikit-learn-logo-notext.png",
+      "from": 2013,
+      "to": 2017
+    },
+    {
+      "id": 22,
+      "name": "pandas",
+      "type": "framework",
+      "details": " ",
+      "img": "http://pandas.pydata.org/_static/pandas_logo.png",
+      "from": 2016,
+      "to": 2017
+    },
+    {
+      "id": 23,
+      "name": "numpy",
+      "type": "framework",
+      "details": " ",
+      "img": "https://bids.berkeley.edu/sites/default/files/styles/400x225/public/projects/numpy_project_page.jpg?itok=flrdydei",
+      "from": 2015,
+      "to": 2017
+    },
+    {
+      "id": 24,
+      "name": "scipy",
+      "type": "framework",
+      "details": " ",
+      "img": "https://docs.scipy.org/doc/scipy-0.10.1/reference/_static/scipyshiny_small.png",
+      "from": 2015,
+      "to": 2017
+    },
+    {
+      "id": 25,
+      "name": "nltk",
+      "type": "framework",
+      "details": " ",
+      "img": "https://static1.squarespace.com/static/538cea80e4b00f1fad490c1b/54668a77e4b00fb778d22a34/54668d8ae4b00fb778d2859c/1416007413413/NLTK.png",
+      "from": 2013,
+      "to": 2017
+    },
+    {
+      "id": 26,
+      "name": "seneca.js",
+      "type": "framework",
+      "details": " ",
+      "img": "https://camo.githubusercontent.com/4a0178ff2abf26f9214d4d98bc23eec356ced357/687474703a2f2f73656e6563616a732e6f72672f66696c65732f6173736574732f73656e6563612d6c6f676f2e706e67",
+      "from": 2016,
+      "to": 2016
+    },
+    {
+      "id": 27,
+      "name": "Apache Storm",
+      "type": "framework",
+      "details": " ",
+      "img": "http://storm.apache.org/images/logo.png",
+      "from": 2015,
+      "to": 2015
+    },
+    {
+      "id": 28,
+      "name": "Apache Spark",
+      "type": "framework",
+      "details": " ",
+      "img": "https://spark.apache.org/images/spark-logo-trademark.png",
+      "from": 2017,
+      "to": 2017
+    },
+    {
+      "id": 29,
+      "name": "Selenium / Robot",
+      "type": "framework",
+      "details": " ",
+      "img": "https://iamhiring.files.wordpress.com/2015/06/selenium-logo.gif",
+      "from": 2013,
+      "to": 2014
+    },
+    {
+      "id": 30,
+      "name": "Node.js",
+      "type": "framework",
+      "details": " ",
+      "img": "https://nodejs.org/static/images/logo.svg",
+      "from": 2016,
+      "to": 2017
+    },
+    {
+      "id": 31,
+      "name": ".NET",
+      "type": "framework",
+      "details": " ",
+      "img": "https://dt-cdn.net/assets/images/gfx/icons/tech/dotnetmicrosoft-536938fee2.svg",
+      "from": 2009,
+      "to": 2016
+    },
+    {
+      "id": 32,
+      "name": "Django",
+      "type": "framework",
+      "details": " ",
+      "img": "https://www.djangoproject.com/s/img/logos/django-logo-positive.png",
+      "from": 2014,
+      "to": 2016
+    },
+    {
+      "id": 33,
+      "name": "Flask",
+      "type": "framework",
+      "details": " ",
+      "img": "http://www.unixstickers.com/image/cache/data/stickers/flask/Flask-text.sh-600x600.png",
+      "from": 2015,
+      "to": 2017
+    },
+    {
+      "id": 34,
+      "name": "Jupyter Notebook",
+      "type": "framework",
+      "details": " ",
+      "img": "http://blog.jupyter.org/content/images/2015/02/jupyter-sq-text.png",
+      "from": 2016,
+      "to": 2017
+    },
+    {
+      "id": 35,
+      "name": "MSSQL\nServer",
+      "type": "data storage",
+      "details": " ",
+      "img": "http://greenwireit.com/wp-content/uploads/2013/05/sql-server-express1.png",
+      "from": 2009,
+      "to": 2016
+    },
+    {
+      "id": 36,
+      "name": "MySQL",
+      "type": "data storage",
+      "details": " ",
+      "img": "http://www.enclibrary.com/images/img20160304125409.jpg",
+      "from": 2013,
+      "to": 2017
+    },
+    {
+      "id": 37,
+      "name": "MongoDB",
+      "type": "data storage",
+      "details": " ",
+      "img": "https://perlmaven.com/img/mongodb-logo.png",
+      "from": 2015,
+      "to": 2017
+    },
+    {
+      "id": 38,
+      "name": "Redis",
+      "type": "data storage",
+      "details": " ",
+      "img": "http://itecsoftware.com/wp-content/uploads/2010/08/high-speed-redis-cache.jpg",
+      "from": 2015,
+      "to": 2015
+    },
+    {
+      "id": 39,
+      "name": "Web Development",
+      "type": "skill",
+      "details": " ",
+      "from": 2009,
+      "to": 2017
+    },
+    {
+      "id": 40,
+      "name": "Software Development",
+      "type": "skill",
+      "details": " ",
+      "from": 2009,
+      "to": 2017
+    },
+    {
+      "id": 41,
+      "name": "Help Desk",
+      "type": "skill",
+      "details": " ",
+      "from": 2009,
+      "to": 2013
+    },
+    {
+      "id": 42,
+      "name": "DBA",
+      "type": "skill",
+      "details": " ",
+      "from": 2009,
+      "to": 2013
+    },
+    {
+      "id": 43,
+      "name": "SysAdmin",
+      "type": "skill",
+      "details": " ",
+      "from": 2009,
+      "to": 2013
+    },
+    {
+      "id": 44,
+      "name": "Full-Stack",
+      "type": "skill",
+      "details": " ",
+      "from": 2015,
+      "to": 2017
+    },
+    {
+      "id": 45,
+      "name": "Data Science",
+      "type": "skill",
+      "details": " ",
+      "from": 2015,
+      "to": 2017
+    },
+    {
+      "id": 46,
+      "name": "Machine Learning",
+      "type": "skill",
+      "details": " ",
+      "from": 2015,
+      "to": 2017
+    },
+    {
+      "id": 47,
+      "name": "Sentiment Analysis",
+      "type": "skill",
+      "details": " ",
+      "from": 2013,
+      "to": 2015
+    },
+    {
+      "id": 48,
+      "name": "Data Visualization",
+      "type": "skill",
+      "details": " ",
+      "from": 2015,
+      "to": 2017
+    },
+    {
+      "id": 49,
+      "name": "Scrum Master",
+      "type": "skill",
+      "details": " ",
+      "from": 2013,
+      "to": 2014
+    },
+    {
+      "id": 50,
+      "name": "EU Projects",
+      "type": "project",
+      "details": " ",
+      "from": 2014,
+      "to": 2016
+    },
+    {
+      "id": 51,
+      "name": "Sentiment Analysis on Figurative Data",
+      "type": "project",
+      "details": "Thesis",
+      "url": "",
+      "from": 2013,
+      "to": 2015
+    },
+    {
+      "id": 52,
+      "name": "Scalable and Real-time Sentiment Analysis",
+      "type": "project",
+      "details": "",
+      "url": "",
+      "from": 2015,
+      "to": 2015
+    },
+    {
+      "id": 53,
+      "name": "API consumption semi-automation",
+      "type": "project",
+      "details": "",
+      "url": "",
+      "from": 2014,
+      "to": 2016
+    },
+    {
+      "id": 54,
+      "name": "Enorasys Security Analytics: Anomaly/ Outlier Detection",
+      "type": "project",
+      "details": "",
+      "from": 2016,
+      "to": 2017
+    },
+    {
+      "id": 55,
+      "name": "Enorasys Security Analytics: Evaluation & Visualization of Results",
+      "type": "project",
+      "details": "",
+      "from": 2016,
+      "to": 2017
+    },
+    {
+      "id": 56,
+      "name": "Legacy System Migration",
+      "type": "project",
+      "details": "",
+      "from": 2010,
+      "to": 2011
+    },
+    {
+      "id": 57,
+      "name": "SGSN features implementation",
+      "type": "project",
+      "details": "",
+      "from": 2013,
+      "to": 2014
+    },
+    {
+      "id": 58,
+      "name": "Figurative Tweets Sentiment Analysis",
+      "type": "project",
+      "details": "",
+      "url": "",
+      "from": 2014,
+      "to": 2015
+    },
+    {
+      "id": 59,
+      "name": "normalizer",
+      "type": "project",
+      "details": "",
+      "url": "",
+      "from": 2015,
+      "to": 2016
+    },
+    {
+      "id": 60,
+      "name": "TweetUtils",
+      "type": "project",
+      "details": "",
+      "url": "",
+      "from": 2015,
+      "to": 2015
+    },
+    {
+      "id": 61,
+      "name": "replicable_experiments",
+      "type": "project",
+      "details": "",
+      "url": "",
+      "from": 2016,
+      "to": 2017
+    },
+    {
+      "id": 62,
+      "name": "Snippetmate",
+      "type": "project",
+      "details": "",
+      "url": "https://snippetmate.com",
+      "from": 2016,
+      "to": 2017
+    },
+    {
+      "id": 63,
+      "name": "Silver Linings",
+      "type": "project",
+      "details": "",
+      "url": "http://www.silverlinings.today/",
+      "from": 2017,
+      "to": 2017
+    },
+    {
+      "id": 64,
+      "name": "Maria Karanasou",
+      "type": "person",
+      "details": "",
+      "url": "./img/IMG_20161011_143159_color.jpg",
+      "img": "./img/IMG_20161011_143159_color.jpg",
+      "from": 1985,
+      "to": 2017
+    }
   ],
-
   "links": [
-    {"source": 64, "target": 0},
-    {"source": 64, "target": 1},
-    {"source": 64, "target": 2},
-    {"source": 64, "target": 3},
-    {"source": 64, "target": 4},
-
-    {"source": 0, "target": 5},
-    {"source": 1, "target": 6},
-    {"source": 2, "target": 6},
-    {"source": 3, "target": 7},
-    {"source": 4, "target": 8},
-
-    {"source": 6, "target": 9},
-    {"source": 6, "target": 10},
-    {"source": 6, "target": 12},
-    {"source": 6, "target": 13},
-    {"source": 7, "target": 10},
-    {"source": 7, "target": 11},
-    {"source": 8, "target": 10},
-
-    {"source":10, "target": 21},
-    {"source":10, "target": 22},
-    {"source":10, "target": 23},
-    {"source":10, "target": 24},
-    {"source":10, "target": 25},
-    {"source":10, "target": 26},
-    {"source":10, "target": 27},
-    {"source":10, "target": 32},
-    {"source":10, "target": 33},
-    {"source":10, "target": 34},
-    {"source":10, "target": 39},
-    {"source":10, "target": 40},
-    {"source":10, "target": 45},
-    {"source":10, "target": 46},
-    {"source":10, "target": 47},
-
-    {"source":11, "target": 3},
-
-    {"source":12, "target": 4},
-    {"source":12, "target": 5},
-
-    {"source":13, "target": 0},
-    {"source":13, "target": 2},
-    {"source":13, "target": 3},
-    {"source":13, "target": 4},
-
-    {"source":14, "target": 1},
-
-    {"source":15, "target": 1},
-
-    {"source":16, "target": 1},
-
-    {"source":17, "target": 2},
-
-    {"source":18, "target": 2},
-
-    {"source":19, "target": 2},
-
-    {"source":20, "target": 2},
-    {"source":20, "target": 3},
-    {"source":20, "target": 4},
-
-    {"source":21, "target": 2},
-    {"source":21, "target": 3},
-    {"source":21, "target": 4},
-
-    {"source":22, "target": 4},
-
-    {"source":23, "target": 3},
-    {"source":23, "target": 4},
-
-    {"source":24, "target": 3},
-    {"source":24, "target": 4},
-
-    {"source":25, "target": 2},
-    {"source":25, "target": 3},
-
-    {"source":26, "target": 2},
-
-    {"source":27, "target": 3},
-
-    {"source":28, "target": 4},
-
-    {"source":29, "target": 1},
-
-    {"source":30, "target": 2},
-
-    {"source":31, "target": 0},
-    {"source":31, "target": 2},
-
-    {"source":32, "target": 2},
-    {"source":32, "target": 3},
-
-    {"source":33, "target": 2},
-
-    {"source":34, "target": 4},
-
-    {"source":35, "target": 0},
-    {"source":35, "target": 2},
-
-    {"source":36, "target": 2},
-    {"source":36, "target": 3},
-
-    {"source":37, "target": 2},
-    {"source":37, "target": 3},
-    {"source":37, "target": 4},
-
-    {"source":38, "target": 3},
-
-    {"source":39, "target": 0},
-    {"source":39, "target": 2},
-    {"source":39, "target": 3},
-    {"source":39, "target": 4},
-
-    {"source":41, "target": 0},
-
-    {"source":42, "target": 0},
-
-    {"source":43, "target": 0},
-
-    {"source":44, "target": 2},
-    {"source":44, "target": 3},
-
-    {"source":45, "target": 3},
-    {"source":45, "target": 4},
-
-    {"source":46, "target": 3},
-    {"source":46, "target": 4},
-
-    {"source":47, "target": 3},
-
-    {"source":48, "target": 2},
-    {"source":48, "target": 3},
-    {"source":48, "target": 4},
-
-    {"source":49, "target": 1},
-
-    {"source":50, "target": 2},
-
-    {"source":51, "target": 3},
-
-    {"source":52, "target": 3},
-
-    {"source":53, "target": 2},
-
-    {"source":54, "target": 4},
-
-    {"source":55, "target": 4},
-
-    {"source":56, "target": 0},
-
-    {"source":57, "target": 1},
-
-    {"source":58, "target": 3},
-
-    {"source":59, "target": 2},
-    {"source":59, "target": 3},
-
-    {"source":60, "target": 3},
-
-    {"source":61, "target": 3},
-    {"source":61, "target": 4},
-
-    {"source":62, "target": 17},
-
-    {"source":63, "target": 17}
+    {
+      "source": 64,
+      "target": 0
+    },
+    {
+      "source": 64,
+      "target": 1
+    },
+    {
+      "source": 64,
+      "target": 2
+    },
+    {
+      "source": 64,
+      "target": 3
+    },
+    {
+      "source": 64,
+      "target": 4
+    },
+    {
+      "source": 0,
+      "target": 5
+    },
+    {
+      "source": 1,
+      "target": 6
+    },
+    {
+      "source": 2,
+      "target": 6
+    },
+    {
+      "source": 3,
+      "target": 7
+    },
+    {
+      "source": 4,
+      "target": 8
+    },
+    {
+      "source": 6,
+      "target": 9
+    },
+    {
+      "source": 6,
+      "target": 10
+    },
+    {
+      "source": 6,
+      "target": 12
+    },
+    {
+      "source": 6,
+      "target": 13
+    },
+    {
+      "source": 7,
+      "target": 10
+    },
+    {
+      "source": 7,
+      "target": 11
+    },
+    {
+      "source": 8,
+      "target": 10
+    },
+    {
+      "source": 10,
+      "target": 21
+    },
+    {
+      "source": 10,
+      "target": 22
+    },
+    {
+      "source": 10,
+      "target": 23
+    },
+    {
+      "source": 10,
+      "target": 24
+    },
+    {
+      "source": 10,
+      "target": 25
+    },
+    {
+      "source": 10,
+      "target": 26
+    },
+    {
+      "source": 10,
+      "target": 27
+    },
+    {
+      "source": 10,
+      "target": 32
+    },
+    {
+      "source": 10,
+      "target": 33
+    },
+    {
+      "source": 10,
+      "target": 34
+    },
+    {
+      "source": 10,
+      "target": 39
+    },
+    {
+      "source": 10,
+      "target": 40
+    },
+    {
+      "source": 10,
+      "target": 45
+    },
+    {
+      "source": 10,
+      "target": 46
+    },
+    {
+      "source": 10,
+      "target": 47
+    },
+    {
+      "source": 11,
+      "target": 3
+    },
+    {
+      "source": 12,
+      "target": 4
+    },
+    {
+      "source": 12,
+      "target": 5
+    },
+    {
+      "source": 13,
+      "target": 0
+    },
+    {
+      "source": 13,
+      "target": 2
+    },
+    {
+      "source": 13,
+      "target": 3
+    },
+    {
+      "source": 13,
+      "target": 4
+    },
+    {
+      "source": 14,
+      "target": 1
+    },
+    {
+      "source": 15,
+      "target": 1
+    },
+    {
+      "source": 16,
+      "target": 1
+    },
+    {
+      "source": 17,
+      "target": 2
+    },
+    {
+      "source": 18,
+      "target": 2
+    },
+    {
+      "source": 19,
+      "target": 2
+    },
+    {
+      "source": 20,
+      "target": 2
+    },
+    {
+      "source": 20,
+      "target": 3
+    },
+    {
+      "source": 20,
+      "target": 4
+    },
+    {
+      "source": 21,
+      "target": 2
+    },
+    {
+      "source": 21,
+      "target": 3
+    },
+    {
+      "source": 21,
+      "target": 4
+    },
+    {
+      "source": 22,
+      "target": 4
+    },
+    {
+      "source": 23,
+      "target": 3
+    },
+    {
+      "source": 23,
+      "target": 4
+    },
+    {
+      "source": 24,
+      "target": 3
+    },
+    {
+      "source": 24,
+      "target": 4
+    },
+    {
+      "source": 25,
+      "target": 2
+    },
+    {
+      "source": 25,
+      "target": 3
+    },
+    {
+      "source": 26,
+      "target": 2
+    },
+    {
+      "source": 27,
+      "target": 3
+    },
+    {
+      "source": 28,
+      "target": 4
+    },
+    {
+      "source": 29,
+      "target": 1
+    },
+    {
+      "source": 30,
+      "target": 2
+    },
+    {
+      "source": 31,
+      "target": 0
+    },
+    {
+      "source": 31,
+      "target": 2
+    },
+    {
+      "source": 32,
+      "target": 2
+    },
+    {
+      "source": 32,
+      "target": 3
+    },
+    {
+      "source": 33,
+      "target": 2
+    },
+    {
+      "source": 34,
+      "target": 4
+    },
+    {
+      "source": 35,
+      "target": 0
+    },
+    {
+      "source": 35,
+      "target": 2
+    },
+    {
+      "source": 36,
+      "target": 2
+    },
+    {
+      "source": 36,
+      "target": 3
+    },
+    {
+      "source": 37,
+      "target": 2
+    },
+    {
+      "source": 37,
+      "target": 3
+    },
+    {
+      "source": 37,
+      "target": 4
+    },
+    {
+      "source": 38,
+      "target": 3
+    },
+    {
+      "source": 39,
+      "target": 0
+    },
+    {
+      "source": 39,
+      "target": 2
+    },
+    {
+      "source": 39,
+      "target": 3
+    },
+    {
+      "source": 39,
+      "target": 4
+    },
+    {
+      "source": 41,
+      "target": 0
+    },
+    {
+      "source": 42,
+      "target": 0
+    },
+    {
+      "source": 43,
+      "target": 0
+    },
+    {
+      "source": 44,
+      "target": 2
+    },
+    {
+      "source": 44,
+      "target": 3
+    },
+    {
+      "source": 45,
+      "target": 3
+    },
+    {
+      "source": 45,
+      "target": 4
+    },
+    {
+      "source": 46,
+      "target": 3
+    },
+    {
+      "source": 46,
+      "target": 4
+    },
+    {
+      "source": 47,
+      "target": 3
+    },
+    {
+      "source": 48,
+      "target": 2
+    },
+    {
+      "source": 48,
+      "target": 3
+    },
+    {
+      "source": 48,
+      "target": 4
+    },
+    {
+      "source": 49,
+      "target": 1
+    },
+    {
+      "source": 50,
+      "target": 2
+    },
+    {
+      "source": 51,
+      "target": 3
+    },
+    {
+      "source": 52,
+      "target": 3
+    },
+    {
+      "source": 53,
+      "target": 2
+    },
+    {
+      "source": 54,
+      "target": 4
+    },
+    {
+      "source": 55,
+      "target": 4
+    },
+    {
+      "source": 56,
+      "target": 0
+    },
+    {
+      "source": 57,
+      "target": 1
+    },
+    {
+      "source": 58,
+      "target": 3
+    },
+    {
+      "source": 59,
+      "target": 2
+    },
+    {
+      "source": 59,
+      "target": 3
+    },
+    {
+      "source": 60,
+      "target": 3
+    },
+    {
+      "source": 61,
+      "target": 3
+    },
+    {
+      "source": 61,
+      "target": 4
+    },
+    {
+      "source": 62,
+      "target": 17
+    },
+    {
+      "source": 63,
+      "target": 17
+    }
   ]
 }

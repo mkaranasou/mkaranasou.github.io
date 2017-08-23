@@ -5,7 +5,6 @@ var D3Force = (function () {
         this.selector = selector;
         this.data = {};
         this.filteredData = {};
-        this.byId = selector.indexOf("#") === 0;
         this.width = width;
         this.height = height;
         this.colorRange = [
@@ -30,12 +29,13 @@ var D3Force = (function () {
         if (Object.keys(self.data).length === 0) {
             self.data = data;
         }
+        d3.select(this.selector).select("svg").remove();
 
         this.svg = d3.select(this.selector)
-            .html('')
             .append("svg")
             .attr("width", this.width)
-            .attr("height", this.height);
+            .attr("height", this.height)
+            .attr("opacity", 1);
 
         let toolTip = d3.tip()
             .attr("class", "d3-tip")
@@ -379,6 +379,9 @@ var D3Force = (function () {
     };
     D3Force.prototype.hide = function () {
     };
+    D3Force.prototype.toggle = function () {
+        $(this.selector).slideToggle();
+    };
     D3Force.prototype.search = function (selector) {
         var self = this;
         var search = d3.select(selector).on("keydown", function (d) {
@@ -435,4 +438,249 @@ var D3Timeline = (function () {
     D3Timeline.prototype.search = function () {
     };
     return D3Timeline;
+}());
+
+var D3SwimLane = (function () {
+    function D3SwimLane(selector, width, height) {
+        this.selector = selector;
+        this.data = {};
+        this.filteredData = {};
+        this.width = width;
+        this.height = height;
+        this.svg = null;
+    }
+
+    D3SwimLane.prototype._createLanes = function (data)  {
+        var lanes = [];
+        var lanesToItems = {};
+        var items = [];
+        for(let i=0; i < data.nodes.length;  i++){
+            let isPerson = data.nodes[i]["type"]=== "person" ;
+            if (isPerson) continue;
+            if(lanes.indexOf(data.nodes[i]["type"]) === -1){
+                lanes.push(data.nodes[i]["type"]);
+                lanesToItems[data.nodes[i]["type"]] = [];
+            }
+            var e = {
+                "lane": lanes.indexOf(data.nodes[i]["type"]),
+                "id": data.nodes[i]["name"],
+                "start": data.nodes[i]["from"],
+                "end": data.nodes[i]["to"]
+            };
+            lanesToItems[data.nodes[i]["type"]].push(e);
+            items.push(e);
+
+        }
+        console.log(lanes, items);
+        var laneLength = lanes.length;
+        var timeBegin = 2009;
+        var timeEnd = 2018;
+
+		var m = [20, 15, 15, 120], //top right bottom left
+			w = this.width - m[1] - m[3] - 40,
+			h = this.height - m[0] - m[2],
+			miniHeight = laneLength * 12 + 50,
+			mainHeight = h - miniHeight - 50;
+
+		//scales
+		var x = d3.scaleLinear()
+				.domain([timeBegin, timeEnd])
+				.range([0, w]);
+		var x1 = d3.scaleLinear()
+                .domain([timeBegin, timeEnd])
+				.range([0, w]);
+		var y1 = d3.scaleLinear()
+				.domain([0, laneLength])
+				.range([0, mainHeight]);
+		var y2 = d3.scaleLinear()
+				.domain([0, laneLength])
+				.range([0, miniHeight]);
+
+		var chart = d3.select(this.selector)
+					.append("svg")
+					.attr("width", w + m[1] + m[3])
+					.attr("height", h + m[0] + m[2])
+					.attr("class", "chart");
+
+        // Add the x Axis
+        chart.append("g")
+            .attr("transform", "translate("+ m[3]+"," + h + ")")
+            .call(d3.axisBottom(x).tickFormat(d3.format(".0f")));
+
+		chart.append("defs").append("clipPath")
+			.attr("id", "clip")
+			.append("rect")
+			.attr("width", w)
+			.attr("height", mainHeight);
+
+		var main = chart.append("g")
+					.attr("transform", "translate(" + m[3] + "," + m[0] + ")")
+					.attr("width", w)
+					.attr("height", mainHeight)
+					.attr("class", "main");
+
+		var mini = chart.append("g")
+					.attr("transform", "translate(" + m[3] + "," + (mainHeight + m[0]) + ")")
+					.attr("width", w)
+					.attr("height", miniHeight)
+					.attr("class", "mini");
+
+		//main lanes and texts
+		main.append("g").selectAll(".laneLines")
+			.data(items)
+			.enter().append("line")
+			.attr("x1", m[1])
+			.attr("y1", function(d) {return y1(d.lane);})
+			.attr("x2", w)
+			.attr("y2", function(d) {return y1(d.lane);})
+			.attr("stroke", "lightgray");
+
+		main.append("g").selectAll(".laneText")
+			.data(lanes)
+			.enter().append("text")
+			.text(function(d) {return d;})
+			.attr("x", -m[1])
+			.attr("y", function(d, i) {return y1(i + .5);})
+			.attr("dy", ".5ex")
+			.attr("text-anchor", "end")
+			.attr("class", "laneText");
+
+		//mini lanes and texts
+		mini.append("g").selectAll(".laneLines")
+			.data(items)
+			.enter().append("line")
+			.attr("x1", m[1])
+			.attr("y1", function(d) {return y2(d.lane);})
+			.attr("x2", w)
+			.attr("y2", function(d) {return y2(d.lane);})
+			.attr("stroke", "lightgray");
+
+		/*mini.append("g").selectAll(".laneText")
+			.data(lanes)
+			.enter().append("text")
+			.text(function(d) {return d;})
+			.attr("x", -m[1])
+			.attr("y", function(d, i) {return y2(i + .5);})
+			.attr("dy", ".5ex")
+			.attr("text-anchor", "end")
+			.attr("class", "laneText");*/
+
+		var itemRects = main.append("g")
+							.attr("clip-path", "url(#clip)");
+
+		//mini item rects
+		mini.append("g").selectAll("miniItems")
+			.data(items)
+			.enter().append("rect")
+			.attr("class", function(d) {return "miniItem" + d.lane;})
+			.attr("x", function(d) {return x(d.start);})
+			.attr("y", function(d) {return y2(d.lane + .5) - 5;})
+			.attr("width", function(d) {
+                console.log(x(d.end) - x(d.start), d.start, d.end);
+                return x(d.end) - x(d.start);
+			})
+			.attr("height", 10);
+
+		//mini labels
+		/*mini.append("g").selectAll(".miniLabels")
+			.data(items)
+			.enter().append("text")
+			.text(function(d) {return d.id;})
+			.attr("x", function(d) {return x(d.start);})
+			.attr("y", function(d) {return y2(d.lane + .5);})
+			.attr("dy", ".5ex");*/
+
+		const display = function() {
+			let rects;
+			let labels;
+            let minExtent = brush.extent()()[0];
+            let maxExtent = brush.extent()()[1];
+            let visItems = items.filter(function(d) {return d.start < maxExtent[0] && d.end > minExtent[0];});
+
+            console.log(minExtent, maxExtent, visItems)
+			mini.select(".brush")
+				.call(brush.extent([minExtent, maxExtent]));
+
+			x1.domain([minExtent[0], maxExtent[0]]);
+
+			//update main item rects
+			rects = itemRects.selectAll("rect")
+                .data(visItems, function(d) { return d.id; })
+				.attr("x", function(d) {return x(d.start);})
+				.attr("width", function(d) {return x(d.end) - x(d.start);});
+
+			rects.enter().append("rect")
+				.attr("class", function(d) {return "miniItem" + d.lane;})
+				.attr("x", function(d) {return x(d.start);})
+				.attr("y", function(d) {return y1(d.lane) + 10;})
+				.attr("width", function(d) {return x(d.end) - x(d.start);})
+				.attr("height", function(d) {return .8 * y1(1);});
+
+			rects.exit().remove();
+
+			//update the item labels
+			labels = itemRects.selectAll("text")
+				.data(visItems, function (d) { return d.id; })
+				.attr("x", function(d) {return x(Math.max(d.start, minExtent[0]) + 2);});
+
+			labels.enter().append("text")
+				.text(function(d) {return d.id;})
+				.attr("x", function(d) {
+
+				        return x(Math.max(d.start, minExtent[0])) + 5;
+				})
+				.attr("y", function(d, i) {return y1(d.lane + .5)})
+				.attr("text-anchor", "start");
+
+			labels.exit().remove();
+
+		};
+
+		//brush
+		let brush = d3.brushX()
+							.extent([[0, 0], [w, miniHeight]])
+							.on("brush", display);
+
+		mini.append("g")
+			.attr("class", "x brush")
+			.call(brush)
+			.selectAll("rect")
+			.attr("y", 1)
+			.attr("height", miniHeight - 1);
+
+		display();
+
+
+
+    };
+
+    D3SwimLane.prototype.create = function (data) {
+        var self = this;
+        if (typeof (data) === "string") {
+            d3.json(data, function (e, data) {
+                if (e)
+                    throw e;
+                if (data) {
+                    return self._createLanes(data);
+                }
+            });
+        }
+        else {
+            return self._createLanes(data);
+        }
+    };
+    D3SwimLane.prototype.update = function () {
+    };
+    D3SwimLane.prototype.reset = function () {
+    };
+    D3SwimLane.prototype.show = function () {
+    };
+    D3SwimLane.prototype.hide = function () {
+    };
+    D3SwimLane.prototype.toggle = function () {
+        $(this.selector).slideToggle();
+    };
+    D3SwimLane.prototype.search = function () {
+    };
+    return D3SwimLane;
 }());

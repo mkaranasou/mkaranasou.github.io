@@ -2,9 +2,11 @@
 var introTyped;
 var introShown;
 var times = 0;
+var swimLane;
+var d3Force;
 
 var createForce = function () {
-    var d3Force = new D3Force('#experience-chart', parseInt($('.container-fluid').css('width')) - 50, 900);
+    d3Force = new D3Force('#experience-chart', parseInt($('.container-fluid').css('width')) - 50, 900);
     d3Force.create('./data/d3data.json');
 };
 
@@ -71,9 +73,24 @@ var welcomeClose = function () {
 
     });
 };
+var toggleLane = function(){
+    if (!swimLane){
+        swimLane = new D3SwimLane("#experience-timeseries",
+                            parseInt($('.container-fluid').css('width')) - 50,
+                            900);
+        swimLane.create(d3Force.data);
+    }
+    else{
+        swimLane.toggle();
+    }
+
+    d3Force.toggle()
+};
 
 /* Main */
 (function () {
+    $('[data-toggle="popover"]').popover();
+    $('[data-toggle="tooltip"]').tooltip();
 
     times = localStorage.getItem("times");
     if (times && times < 2) {

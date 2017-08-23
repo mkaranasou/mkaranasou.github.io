@@ -288,3 +288,83 @@ text{
 .image{
     cursor: pointer;
 }
+
+/*http://bl.ocks.org/bunkat/2338034*/
+.chart {
+    shape-rendering: crispEdges;
+}
+
+.mini text {
+    font: 9px sans-serif;
+}
+
+.main text {
+    font: 12px sans-serif;
+}
+
+/*https://coolors.co/0f3f9c-e5c6da-b7b7b7-d45986-5f9ea6*/
+.miniItem0 {
+    fill: darksalmon;
+    stroke-width: 1;
+    stroke: white;
+}
+
+.miniItem1 {
+    fill: #5F9EA6;
+    fill-opacity: .7;
+    stroke-width: 1;
+    stroke: white;
+}
+
+.miniItem2 {
+    fill: #B7B7B7;
+    fill-opacity: .7;
+    stroke-width: 1;
+    stroke: white;
+}
+
+.miniItem3 {
+    fill: #0F3F9C;
+    fill-opacity: .7;
+    stroke-width: 1;
+    stroke: white;;
+}
+
+.miniItem4 {
+    fill: #34E4EA;
+    fill-opacity: .7;
+    stroke-width: 1;
+    stroke: white;
+}
+
+.miniItem5 {
+    fill: #0EB1D2;
+    fill-opacity: .7;
+    stroke-width: 1;
+    stroke: white;
+}
+
+.miniItem6 {
+    fill: coral;
+    fill-opacity: .7;
+    stroke-width: 1;
+    stroke: white;
+}
+
+.miniItem7 {
+    fill: lightcoral;
+    fill-opacity: .7;
+    stroke-width: 1;
+    stroke: white;
+}
+
+.brush .extent {
+    stroke: gray;
+    fill: dodgerblue;
+    fill-opacity: .365;
+}
+
+.mini > g > line {
+    fill: white;
+    stroke: lightgray;
+}
