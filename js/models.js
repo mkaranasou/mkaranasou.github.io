@@ -594,7 +594,7 @@ var D3SwimLane = (function () {
 			let labels;
             let minExtent = brush.extent()()[0];
             let maxExtent = brush.extent()()[1];
-            let visItems = items.filter(function(d) {return d.start < maxExtent[0] && d.end > minExtent[0];});
+            let visItems = items.filter(function(d) {return x(d.start) < maxExtent[0] && x(d.end)> minExtent[0];});
 
 			mini.select(".brush")
 				.call(brush.extent([minExtent, maxExtent]));

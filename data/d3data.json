@@ -85,7 +85,7 @@
     {
       "id": 9,
       "name": "C#",
-      "type": "programming language",
+      "type": "language",
       "details": " ",
       "img": "https://chrismckee.co.uk/content/images/2015/11/C-Logo-1.jpg",
       "from": 2009,
@@ -94,7 +94,7 @@
     {
       "id": 10,
       "name": "Python",
-      "type": "programming language",
+      "type": "language",
       "details": " ",
       "img": "https://realpython.com/learn/python-first-steps/images/pythonlogo.jpg",
       "from": 2013,
@@ -103,7 +103,7 @@
     {
       "id": 11,
       "name": "Java",
-      "type": "programming language",
+      "type": "language",
       "details": " ",
       "img": "https://www.seeklogo.net/wp-content/uploads/2011/06/java-logo-vector.png",
       "from": 2012,
@@ -112,7 +112,7 @@
     {
       "id": 12,
       "name": "JavaScript",
-      "type": "programming language",
+      "type": "language",
       "details": " ",
       "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/2000px-Unofficial_JavaScript_logo_2.svg.png",
       "from": 2013,
@@ -121,7 +121,7 @@
     {
       "id": 13,
       "name": "SQL",
-      "type": "programming language",
+      "type": "language",
       "details": " ",
       "img": "http://freevector.co/wp-content/uploads/2014/09/56134-sql-document-outlined-interface-symbol.png",
       "from": 2009,
@@ -130,7 +130,7 @@
     {
       "id": 14,
       "name": "C",
-      "type": "programming language",
+      "type": "language",
       "details": " ",
       "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/The_C_Programming_Language_logo.svg/2000px-The_C_Programming_Language_logo.svg.png",
       "from": 2013,
@@ -139,7 +139,7 @@
     {
       "id": 15,
       "name": "C++",
-      "type": "programming language",
+      "type": "language",
       "details": " ",
       "img": "http://www.cbronline.com/wp-content/uploads/2016/07/C.png",
       "from": 2013,
@@ -148,7 +148,7 @@
     {
       "id": 16,
       "name": "TNSDL",
-      "type": "programming language",
+      "type": "language",
       "details": " ",
       "from": 2013,
       "to": 2014
@@ -318,7 +318,7 @@
     {
       "id": 35,
       "name": "MSSQL\nServer",
-      "type": "data storage",
+      "type": "db",
       "details": " ",
       "img": "http://greenwireit.com/wp-content/uploads/2013/05/sql-server-express1.png",
       "from": 2009,
@@ -327,7 +327,7 @@
     {
       "id": 36,
       "name": "MySQL",
-      "type": "data storage",
+      "type": "db",
       "details": " ",
       "img": "http://www.enclibrary.com/images/img20160304125409.jpg",
       "from": 2013,
@@ -336,7 +336,7 @@
     {
       "id": 37,
       "name": "MongoDB",
-      "type": "data storage",
+      "type": "db",
       "details": " ",
       "img": "https://perlmaven.com/img/mongodb-logo.png",
       "from": 2015,
@@ -345,7 +345,7 @@
     {
       "id": 38,
       "name": "Redis",
-      "type": "data storage",
+      "type": "db",
       "details": " ",
       "img": "http://itecsoftware.com/wp-content/uploads/2010/08/high-speed-redis-cache.jpg",
       "from": 2015,
