@@ -474,7 +474,7 @@ var D3SwimLane = (function () {
         console.log(lanes, items);
         var laneLength = lanes.length;
         var timeBegin = 2009;
-        var timeEnd = 2018;
+        var timeEnd = 2017;
 
 		var m = [20, 15, 15, 120], //top right bottom left
 			w = this.width - m[1] - m[3] - 40,
@@ -597,7 +597,6 @@ var D3SwimLane = (function () {
             let maxExtent = brush.extent()()[1];
             let visItems = items.filter(function(d) {return d.start < maxExtent[0] && d.end > minExtent[0];});
 
-            console.log(minExtent, maxExtent, visItems)
 			mini.select(".brush")
 				.call(brush.extent([minExtent, maxExtent]));
 
