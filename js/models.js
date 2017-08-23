@@ -576,7 +576,6 @@ var D3SwimLane = (function () {
 			.attr("x", function(d) {return x(d.start);})
 			.attr("y", function(d) {return y2(d.lane + .5) - 5;})
 			.attr("width", function(d) {
-                console.log(x(d.end) - x(d.start), d.start, d.end);
                 return x(d.end) - x(d.start);
 			})
 			.attr("height", 10);
