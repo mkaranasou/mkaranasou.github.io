@@ -385,7 +385,6 @@ var D3Force = (function () {
     D3Force.prototype.search = function (selector) {
         var self = this;
         var search = d3.select(selector).on("keydown", function (d) {
-            console.log(d, d3.event, self.data);
             if (d3.event.key === "Enter") {
                 var value = d3.select(selector).node().value.toLowerCase();
                 if (value.length === 0) {
@@ -453,13 +452,67 @@ var D3SwimLane = (function () {
     D3SwimLane.prototype._createLanes = function (data)  {
         var lanes = [];
         var lanesToItems = {};
+        var itemsToGroups = {};
+        var lanesToNames = {};
         var items = [];
+        let toolTip = d3.tip()
+            .attr("class", "d3-tip-lane")
+            .offset([-8, 0])
+            .html(function (d) {
+                return d;
+            });
+
+        function sortBy(data, key) {
+            for(let i=1; i< data.length; i++){
+                if(data[i-1][key] > data[i][key]){
+                    let a = data[i];
+                    data[i] = data[i-1];
+                    data[i-1] = a;
+                }
+            }
+
+            return data;
+        }
+
+        function overlap(data, fromKey, toKey) {
+            for(let i=0; i < data.length; i++){
+                 data[i]["overlaps"] = 0;
+                 itemsToGroups[data[i]["id"]] = [data[i]["id"]];
+                 for (let j = 0; j < data.length; j ++){
+                    if(j === i) continue; // do not match yourself
+                     /*
+                     * |\\\\\\\\\\\\///////////////  from1 less than from2 and to less than from1
+                     * |||||||||||||||||||||||||||
+                     * |    ||||||||||||||||||||||||    my from is > your from and less than your to. my to is >= than your to
+                     * ||||||||||||||||||||||||||||||||_______ my from is >= from your from and less than your to.
+                     * */
+
+                     let notOverlap = ((data[i][fromKey] < data[j][fromKey]) && (data[i][toKey] <= data[j][fromKey])) ||
+                                     ((data[i][fromKey] >= data[j][toKey]) && (data[i][toKey] > data[j][toKey]));
+                     // console.log(data[i][fromKey], "-", data[i][toKey],  data[j][fromKey], "-",data[j][toKey], !notOverlap);
+                    if(!notOverlap){
+                        data[i]["overlaps"] += 1;
+                        if(i <= j){
+                            itemsToGroups[data[i]["id"]].push(data[j]["id"]);
+                        }
+                        else{ // i > j we're looking at previous data
+                            itemsToGroups[data[i]["id"]]= itemsToGroups[data[j]["id"]];
+                        }
+                    }
+                 }
+            }
+            return data;
+        }
+
+        data.nodes = sortBy(data.nodes, "from");
+
         for(let i=0; i < data.nodes.length;  i++){
             let isPerson = data.nodes[i]["type"]=== "person" ;
             if (isPerson) continue;
             if(lanes.indexOf(data.nodes[i]["type"]) === -1){
                 lanes.push(data.nodes[i]["type"]);
-                lanesToItems[data.nodes[i]["type"]] = [];
+                lanesToItems[lanes.length-1] = [];
+                lanesToNames[lanes.length-1] = [];
             }
             var e = {
                 "lane": lanes.indexOf(data.nodes[i]["type"]),
@@ -467,14 +520,19 @@ var D3SwimLane = (function () {
                 "start": data.nodes[i]["from"],
                 "end": data.nodes[i]["to"]
             };
-            lanesToItems[data.nodes[i]["type"]].push(e);
+            lanesToItems[lanes.indexOf(data.nodes[i]["type"])].push(e);
+            lanesToNames[lanes.indexOf(data.nodes[i]["type"])].push(e.id);
             items.push(e);
 
         }
-        console.log(lanes, items);
+
         var laneLength = lanes.length;
-        var timeBegin = 2009;
-        var timeEnd = 2017;
+        var timeBegin = 2009; // min start
+        var timeEnd = 2017;   // min end
+
+        Object.keys(lanesToItems).forEach(function(key) {
+            lanesToItems[key] = overlap(lanesToItems[key], "start", "end");
+        });
 
 		var m = [20, 15, 15, 120], //top right bottom left
 			w = this.width - m[1] - m[3] - 40,
@@ -501,6 +559,8 @@ var D3SwimLane = (function () {
 					.attr("width", w + m[1] + m[3])
 					.attr("height", h + m[0] + m[2])
 					.attr("class", "chart");
+
+		chart.call(toolTip);
 
         // Add the x Axis
         chart.append("g")
@@ -605,14 +665,36 @@ var D3SwimLane = (function () {
 			rects = itemRects.selectAll("rect")
                 .data(visItems, function(d) { return d.id; })
 				.attr("x", function(d) {return x(d.start);})
-				.attr("width", function(d) {return x(d.end) - x(d.start);});
+				.attr("width", function(d) {return x(d.end) - x(d.start) - 5;});
 
 			rects.enter().append("rect")
 				.attr("class", function(d) {return "miniItem" + d.lane;})
 				.attr("x", function(d) {return x(d.start);})
-				.attr("y", function(d) {return y1(d.lane) + 10;})
-				.attr("width", function(d) {return x(d.end) - x(d.start);})
-				.attr("height", function(d) {return .8 * y1(1);});
+				.attr("y", function(d, i) {
+				    let initial = y1(d.lane) + 10;
+
+				    d.index = d.index || lanesToNames[d.lane].indexOf(d.id);
+				    d.height = d.height || .8 * y1(1)*(d.overlaps? 1/(d.overlaps+1): 0);
+
+				    return initial + (d.overlaps? itemsToGroups[d.id].indexOf(d.id)*d.height: 0);
+				})
+				.attr("width", function(d) {return Math.abs(x(d.end) - x(d.start) - 2);})
+				.attr("height", function(d, i) {
+                    d.index = d.index || lanesToNames[d.lane].indexOf(d.id);
+                    d.overlaps = d.overlaps || lanesToItems[d.lane][d.index].overlaps;
+				    let initial = .8 * y1(1);
+                    d.height = initial * (d.overlaps? 1/(d.overlaps+1): 1);
+				    return d.height;
+				})
+                .attr("data-overlaps", function (d) {
+                    return d.overlaps;
+                })
+                .on("mouseover", function (d) {
+                    toolTip.show(d.id);
+                })
+                .on("mouseout", function (d) {
+                    toolTip.hide();
+                });
 
 			rects.exit().remove();
 
@@ -624,11 +706,18 @@ var D3SwimLane = (function () {
 			labels.enter().append("text")
 				.text(function(d) {return d.id;})
 				.attr("x", function(d) {
-
 				        return x(Math.max(d.start, minExtent[0])) + 5;
 				})
-				.attr("y", function(d, i) {return y1(d.lane + .5)})
-				.attr("text-anchor", "start");
+				.attr("y", function(d, i) {
+				    return y1(d.lane + .2) + (d.overlaps? itemsToGroups[d.id].indexOf(d.id)*d.height: 0);
+				})
+				.attr("text-anchor", "start")
+                .on("mouseover", function (d) {
+                    toolTip.show(d.id);
+                })
+                .on("mouseout", function (d) {
+                    toolTip.hide();
+                });
 
 			labels.exit().remove();
 

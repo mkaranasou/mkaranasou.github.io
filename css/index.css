@@ -374,3 +374,11 @@ text{
     fill: white;
     stroke: lightgray;
 }
+
+.d3-tip-lane{
+    color:gray;
+    padding: 10px;
+    z-index: 1000;
+    background-color: white;
+    border: 2px solid lightcoral;
+}
