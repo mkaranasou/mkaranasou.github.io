@@ -583,6 +583,29 @@ var D3SwimLane = (function () {
             .attr("class", "chart");
 
         chart.call(toolTip);
+        // filters go in defs element
+        var defs = chart.append("defs");
+
+        // create filter with id #drop-shadow
+        // height=130% so that the shadow is not clipped
+        var filter = chart.append("filter")
+            .attr("id", "drop-shadow")
+            .attr("height", "130%")
+        filter.append("feGaussianBlur")
+            .attr("in", "SourceAlpha")
+            .attr("stdDeviation", 5)
+            .attr("result", "blur")
+        filter.append("feOffset")
+            .attr("in", "blur")
+            .attr("dx", 5)
+            .attr("dy", 5)
+            .attr("result", "offsetBlur");
+        var feMerge = filter.append("feMerge");
+
+        feMerge.append("feMergeNode")
+                .attr("in", "offsetBlur");
+        feMerge.append("feMergeNode")
+                .attr("in", "SourceGraphic");
 
         // Add the x Axis
         chart.append("g")
@@ -769,9 +792,11 @@ var D3SwimLane = (function () {
                     return d.overlaps;
                 })
                 .on("mouseover", function (d) {
+                    d3.select(this).attr("filter", "url(#drop-shadow)");
                     toolTip.show(d.id);
                 })
                 .on("mouseout", function (d) {
+                    d3.select(this).attr("filter", "");
                     toolTip.hide();
                 });
 
