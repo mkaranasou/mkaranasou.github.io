@@ -449,7 +449,7 @@ var D3SwimLane = (function () {
         this.svg = null;
     }
 
-    D3SwimLane.prototype._createLanes = function (data)  {
+    D3SwimLane.prototype._createLanes = function (data) {
         var lanes = [];
         var lanesToItems = {};
         var itemsToGroups = {};
@@ -463,11 +463,11 @@ var D3SwimLane = (function () {
             });
 
         function sortBy(data, key) {
-            for(let i=1; i< data.length; i++){
-                if(data[i-1][key] > data[i][key]){
+            for (let i = 1; i < data.length; i++) {
+                if (data[i - 1][key] > data[i][key]) {
                     let a = data[i];
-                    data[i] = data[i-1];
-                    data[i-1] = a;
+                    data[i] = data[i - 1];
+                    data[i - 1] = a;
                 }
             }
 
@@ -475,44 +475,66 @@ var D3SwimLane = (function () {
         }
 
         function overlap(data, fromKey, toKey) {
-            for(let i=0; i < data.length; i++){
-                 data[i]["overlaps"] = 0;
-                 itemsToGroups[data[i]["id"]] = [data[i]["id"]];
-                 for (let j = 0; j < data.length; j ++){
-                    if(j === i) continue; // do not match yourself
-                     /*
-                     * |\\\\\\\\\\\\///////////////  from1 less than from2 and to less than from1
-                     * |||||||||||||||||||||||||||
-                     * |    ||||||||||||||||||||||||    my from is > your from and less than your to. my to is >= than your to
-                     * ||||||||||||||||||||||||||||||||_______ my from is >= from your from and less than your to.
-                     * */
-
-                     let notOverlap = ((data[i][fromKey] < data[j][fromKey]) && (data[i][toKey] <= data[j][fromKey])) ||
-                                     ((data[i][fromKey] >= data[j][toKey]) && (data[i][toKey] > data[j][toKey]));
-                     // console.log(data[i][fromKey], "-", data[i][toKey],  data[j][fromKey], "-",data[j][toKey], !notOverlap);
-                    if(!notOverlap){
-                        data[i]["overlaps"] += 1;
-                        if(i <= j){
-                            itemsToGroups[data[i]["id"]].push(data[j]["id"]);
+            for (let i = 0; i < data.length; i++) {
+                data[i]["overlaps"] = 0;
+                itemsToGroups[data[i]["id"]] = [];
+                for (let j = 0; j < data.length; j++) {
+                    if (j === i) {
+                         if(itemsToGroups[data[i]["id"]].length > 0 &&
+                            itemsToGroups[data[i]["id"]].indexOf(data[i]["id"]) === -1){
+                            // itemsToGroups[data[i]["id"]].splice(0, 0, data[i]["id"])
+                            itemsToGroups[data[i]["id"]].push(data[i]["id"]);
                         }
-                        else{ // i > j we're looking at previous data
-                            itemsToGroups[data[i]["id"]]= itemsToGroups[data[j]["id"]];
-                        }
+                        continue;
                     }
-                 }
+                    /*
+                    * |\\\\that1\\\\\//////this///////  that1 is after this
+                    * |                              \\\\\that2\\\\\\\\\ after this
+                    * |_________________________________________________
+                    * */
+
+                    let notOverlap = ((data[i][fromKey] < data[j][fromKey])
+                                        && (data[i][toKey] <= data[j][fromKey])) ||
+                                    ((data[i][fromKey] >= data[j][toKey])
+                                        && (data[i][toKey] > data[j][toKey]));
+
+                    // let index = itemsToGroups[data[i]["id"]].indexOf(data[j]["id"]);
+
+                    if (notOverlap) {
+                        // if (i > j) continue;
+                        // if (index > -1) {
+                        //     itemsToGroups[data[i]["id"]].splice(data[j]["id"], index);
+                        // }
+
+                    } else {
+
+                        data[i]["overlaps"] += 1;
+                        // if (i <= j) {
+                            // if(index === -1){
+                                itemsToGroups[data[i]["id"]].push(data[j]["id"]);
+                            // }
+                        // }
+                        // else { // i > j we're looking at previous data
+                        //     itemsToGroups[data[i]["id"]] = itemsToGroups[data[j]["id"]];
+                        // }
+                    }
+                }
+
+
+                itemsToGroups[data[i]["id"]] = Array.from(new Set(itemsToGroups[data[i]["id"]]));
             }
             return data;
         }
 
         data.nodes = sortBy(data.nodes, "from");
 
-        for(let i=0; i < data.nodes.length;  i++){
-            let isPerson = data.nodes[i]["type"]=== "person" ;
+        for (let i = 0; i < data.nodes.length; i++) {
+            let isPerson = data.nodes[i]["type"] === "person";
             if (isPerson) continue;
-            if(lanes.indexOf(data.nodes[i]["type"]) === -1){
+            if (lanes.indexOf(data.nodes[i]["type"]) === -1) {
                 lanes.push(data.nodes[i]["type"]);
-                lanesToItems[lanes.length-1] = [];
-                lanesToNames[lanes.length-1] = [];
+                lanesToItems[lanes.length - 1] = [];
+                lanesToNames[lanes.length - 1] = [];
             }
             var e = {
                 "lane": lanes.indexOf(data.nodes[i]["type"]),
@@ -530,162 +552,219 @@ var D3SwimLane = (function () {
         var timeBegin = 2009; // min start
         var timeEnd = 2017;   // min end
 
-        Object.keys(lanesToItems).forEach(function(key) {
+        Object.keys(lanesToItems).forEach(function (key) {
             lanesToItems[key] = overlap(lanesToItems[key], "start", "end");
         });
 
-		var m = [20, 15, 15, 120], //top right bottom left
-			w = this.width - m[1] - m[3] - 40,
-			h = this.height - m[0] - m[2],
-			miniHeight = laneLength * 12 + 50,
-			mainHeight = h - miniHeight - 50;
+        var m = [20, 15, 15, 120], //top right bottom left //todo: dictionary
+            w = this.width - m[1] - m[3] - 40,
+            h = this.height,
+            miniHeight = laneLength * 12 + 50,
+            mainHeight = h - miniHeight - 40;
 
-		//scales
-		var x = d3.scaleLinear()
-				.domain([timeBegin, timeEnd])
-				.range([0, w]);
-		var x1 = d3.scaleLinear()
-                .domain([timeBegin, timeEnd])
-				.range([0, w]);
-		var y1 = d3.scaleLinear()
-				.domain([0, laneLength])
-				.range([0, mainHeight]);
-		var y2 = d3.scaleLinear()
-				.domain([0, laneLength])
-				.range([0, miniHeight]);
+        //scales
+        var x = d3.scaleLinear()
+            .domain([timeBegin, timeEnd])
+            .range([0, w]);
+        var x1 = d3.scaleLinear()
+            .domain([timeBegin, timeEnd])
+            .range([0, w]);
+        var y1 = d3.scaleLinear()
+            .domain([0, laneLength])
+            .range([0, mainHeight]);
+        var y2 = d3.scaleLinear()
+            .domain([0, laneLength])
+            .range([0, miniHeight]);
 
-		var chart = d3.select(this.selector)
-					.append("svg")
-					.attr("width", w + m[1] + m[3])
-					.attr("height", h + m[0] + m[2])
-					.attr("class", "chart");
+        var chart = d3.select(this.selector)
+            .append("svg")
+            .attr("width", w + m[1] + m[3])
+            .attr("height", h + m[0] + m[2])
+            .attr("class", "chart");
 
-		chart.call(toolTip);
+        chart.call(toolTip);
 
         // Add the x Axis
         chart.append("g")
-            .attr("transform", "translate("+ m[3]+"," + h + ")")
+            .attr("transform", "translate(" + m[3] + "," + h + ")")
             .call(d3.axisBottom(x).tickFormat(d3.format(".0f")));
 
-		chart.append("defs").append("clipPath")
-			.attr("id", "clip")
-			.append("rect")
-			.attr("width", w)
-			.attr("height", mainHeight);
+        chart.append("defs")
+            .append("clipPath")
+            .attr("id", "clip")
+            .append("rect")
+            .attr("width", w)
+            .attr("height", mainHeight);
 
-		var main = chart.append("g")
-					.attr("transform", "translate(" + m[3] + "," + m[0] + ")")
-					.attr("width", w)
-					.attr("height", mainHeight)
-					.attr("class", "main");
+        var main = chart.append("g")
+            .attr("transform", "translate(" + m[3] + "," + m[0] + ")")
+            .attr("width", w)
+            .attr("height", mainHeight)
+            .attr("class", "main");
 
-		var mini = chart.append("g")
-					.attr("transform", "translate(" + m[3] + "," + (mainHeight + m[0]) + ")")
-					.attr("width", w)
-					.attr("height", miniHeight)
-					.attr("class", "mini");
+        var mini = chart.append("g")
+            .attr("transform", "translate(" + m[3] + "," + (mainHeight + m[0]) + ")")
+            .attr("width", w)
+            .attr("height", miniHeight)
+            .attr("class", "mini");
 
-		//main lanes and texts
-		main.append("g").selectAll(".laneLines")
-			.data(items)
-			.enter().append("line")
-			.attr("x1", m[1])
-			.attr("y1", function(d) {return y1(d.lane);})
-			.attr("x2", w)
-			.attr("y2", function(d) {return y1(d.lane);})
-			.attr("stroke", "lightgray");
 
-		main.append("g").selectAll(".laneText")
-			.data(lanes)
-			.enter().append("text")
-			.text(function(d) {return d;})
-			.attr("x", -m[1])
-			.attr("y", function(d, i) {return y1(i + .5);})
-			.attr("dy", ".5ex")
-			.attr("text-anchor", "end")
-			.attr("class", "laneText");
+        //main lanes and texts
+        main.append("g")
+            .selectAll(".laneLines")
+            .data(items)
+            .enter().append("line")
+            .attr("x1", 0)
+            .attr("y1", function (d) {
+                return y1(d.lane);
+            })
+            .attr("x2", w)
+            .attr("y2", function (d) {
+                return y1(d.lane);
+            })
+            .attr("stroke", "lightgray");
 
-		//mini lanes and texts
-		mini.append("g").selectAll(".laneLines")
-			.data(items)
-			.enter().append("line")
-			.attr("x1", m[1])
-			.attr("y1", function(d) {return y2(d.lane);})
-			.attr("x2", w)
-			.attr("y2", function(d) {return y2(d.lane);})
-			.attr("stroke", "lightgray");
+        main.append("g")
+            .selectAll(".laneText")
+            .data(lanes)
+            .enter().append("text")
+            .text(function (d) {
+                return d;
+            })
+            .attr("x", -m[1])
+            .attr("y", function (d, i) {
+                return y1(i + .5);
+            })
+            .attr("dy", ".5ex")
+            .attr("text-anchor", "end")
+            .attr("class", "laneText");
 
-		/*mini.append("g").selectAll(".laneText")
-			.data(lanes)
-			.enter().append("text")
-			.text(function(d) {return d;})
-			.attr("x", -m[1])
-			.attr("y", function(d, i) {return y2(i + .5);})
-			.attr("dy", ".5ex")
-			.attr("text-anchor", "end")
-			.attr("class", "laneText");*/
+        //mini lanes and texts
+        mini.append("g").selectAll(".laneLines")
+            .data(items)
+            .enter()
+            .append("line")
+            .attr("x1", 0)
+            .attr("y1", function (d) {
+                return y2(d.lane);
+            })
+            .attr("x2", w)
+            .attr("y2", function (d) {
+                return y2(d.lane);
+            })
+            .attr("stroke", "lightgray");
 
-		var itemRects = main.append("g")
-							.attr("clip-path", "url(#clip)");
+        /*mini.append("g").selectAll(".laneText")
+            .data(lanes)
+            .enter().append("text")
+            .text(function(d) {return d;})
+            .attr("x", -m[1])
+            .attr("y", function(d, i) {return y2(i + .5);})
+            .attr("dy", ".5ex")
+            .attr("text-anchor", "end")
+            .attr("class", "laneText");*/
 
-		//mini item rects
-		mini.append("g").selectAll("miniItems")
-			.data(items)
-			.enter().append("rect")
-			.attr("class", function(d) {return "miniItem" + d.lane;})
-			.attr("x", function(d) {return x(d.start);})
-			.attr("y", function(d) {return y2(d.lane + .5) - 5;})
-			.attr("width", function(d) {
+        var itemRects = main.append("g")
+            .attr("clip-path", "url(#clip)");
+
+        //mini item rects
+        mini.append("g").selectAll("miniItems")
+            .data(items)
+            .enter().append("rect")
+            .attr("class", function (d) {
+                return "miniItem" + d.lane;
+            })
+            .attr("x", function (d) {
+                return x(d.start);
+            })
+            .attr("y", function (d) {
+                return y2(d.lane + .5) - 5;
+            })
+            .attr("width", function (d) {
                 return x(d.end) - x(d.start);
-			})
-			.attr("height", 10);
+            })
+            .attr("height", 10);
 
-		//mini labels
-		/*mini.append("g").selectAll(".miniLabels")
-			.data(items)
-			.enter().append("text")
-			.text(function(d) {return d.id;})
-			.attr("x", function(d) {return x(d.start);})
-			.attr("y", function(d) {return y2(d.lane + .5);})
-			.attr("dy", ".5ex");*/
+        //mini labels
+        /*mini.append("g").selectAll(".miniLabels")
+            .data(items)
+            .enter().append("text")
+            .text(function(d) {return d.id;})
+            .attr("x", function(d) {return x(d.start);})
+            .attr("y", function(d) {return y2(d.lane + .5);})
+            .attr("dy", ".5ex");*/
 
-		const display = function() {
-			let rects;
-			let labels;
+        const display = function () {
+            let rects;
+            let labels;
             let minExtent = brush.extent()()[0];
             let maxExtent = brush.extent()()[1];
-            let visItems = items.filter(function(d) {return x(d.start) < maxExtent[0] && x(d.end)> minExtent[0];});
+            let visItems = items.filter(function (d) {
+                return x(d.start) < maxExtent[0] && x(d.end) > minExtent[0];
+            });
 
-			mini.select(".brush")
-				.call(brush.extent([minExtent, maxExtent]));
+            mini.select(".brush")
+                .call(brush.extent([minExtent, maxExtent]));
 
-			x1.domain([minExtent[0], maxExtent[0]]);
+            x1.domain([minExtent[0], maxExtent[0]]);
+            let basicHeight = .8 * y1(1);
 
-			//update main item rects
-			rects = itemRects.selectAll("rect")
-                .data(visItems, function(d) { return d.id; })
-				.attr("x", function(d) {return x(d.start);})
-				.attr("width", function(d) {return x(d.end) - x(d.start) - 5;});
+            //update main item rects
+            rects = itemRects.selectAll("rect")
+                .data(visItems, function (d) {
+                    return d.id;
+                })
+                .attr("x", function (d) {
+                    return x(d.start);
+                })
+                .attr("width", function (d) {
+                    return x(d.end) - x(d.start) - 5;
+                });
 
-			rects.enter().append("rect")
-				.attr("class", function(d) {return "miniItem" + d.lane;})
-				.attr("x", function(d) {return x(d.start);})
-				.attr("y", function(d, i) {
-				    let initial = y1(d.lane) + 10;
+            rects.enter().append("rect")
+                .attr("class", function (d) {
+                    return "miniItem" + d.lane;
+                })
+                .attr("x", function (d) {
+                    return x(d.start);
+                })
+                .attr("y", function (d, i) {
+                    let initial = y1(d.lane) + 5;
+                    d.overlaps = itemsToGroups[d.id].length;
+                    d.index = d.index || itemsToGroups[d.id].indexOf(d.id);
+                    d.height = d.height || basicHeight * (d.overlaps ? 1 / d.overlaps : 1); // divide basic height by the num of items in the overlapping list
 
-				    d.index = d.index || lanesToNames[d.lane].indexOf(d.id);
-				    d.height = d.height || .8 * y1(1)*(d.overlaps? 1/(d.overlaps+1): 0);
 
-				    return initial + (d.overlaps? itemsToGroups[d.id].indexOf(d.id)*d.height: 0);
-				})
-				.attr("width", function(d) {return Math.abs(x(d.end) - x(d.start) - 2);})
-				.attr("height", function(d, i) {
-                    d.index = d.index || lanesToNames[d.lane].indexOf(d.id);
-                    d.overlaps = d.overlaps || lanesToItems[d.lane][d.index].overlaps;
-				    let initial = .8 * y1(1);
-                    d.height = initial * (d.overlaps? 1/(d.overlaps+1): 1);
-				    return d.height;
-				})
+                    /*console.log("--------------------------------------------------|");
+                    console.log("Block", d.id)
+                    console.log("Block Height", d.height)
+                    console.log("Block Overlaps", d.overlaps, itemsToGroups[d.id], d.index)*/
+                    if(d.index <0) {
+                        d.index = 0;
+                    }
+                    // either return intitial y
+                    // or add to initial (d.height / d.index) * d.overlaps
+                    // y = initialY else initialY + (height/num of items overlapping) * index of current item
+                    // return initial + (d.overlaps ? (d.height * lanesToNames[d.lane].indexOf(d.id)): 0);
+
+                    d.y_ = initial + (d.overlaps ? (d.height * d.index): 0);
+                    return d.y_;
+                })
+                .attr("width", function (d) {
+                    d.width = Math.abs(x(d.end) - x(d.start) - 2);
+                    return d.width;
+                })
+                .attr("height", function (d, i) {
+                    d.index = itemsToGroups[d.id].indexOf(d.id);
+                    d.overlaps = itemsToGroups[d.id].length; //lanesToItems[d.lane][d.index].overlaps;
+                    if(d.index <0) {
+                        d.index = 0;
+                    }
+                    // height = initialHeight Or initialHeight / num of items overlapping
+                    d.height = basicHeight * (d.overlaps ? (1 / itemsToGroups[d.id].length) : 1);
+                    // d.height = basicHeight/ lanesToItems[d.lane].length;
+                    return d.height;
+                })
                 .attr("data-overlaps", function (d) {
                     return d.overlaps;
                 })
@@ -696,22 +775,36 @@ var D3SwimLane = (function () {
                     toolTip.hide();
                 });
 
-			rects.exit().remove();
+            rects.exit().remove();
 
-			//update the item labels
-			labels = itemRects.selectAll("text")
-				.data(visItems, function (d) { return d.id; })
-				.attr("x", function(d) {return x(Math.max(d.start, minExtent[0]) + 2);});
+            //update the item labels
+            labels = itemRects.selectAll("text")
+                .data(visItems, function (d) {
+                    return d.id;
+                })
+                .attr("x", function (d) {
+                    return x(Math.max(d.start, minExtent[0]) + 2);
+                });
 
-			labels.enter().append("text")
-				.text(function(d) {return d.id;})
-				.attr("x", function(d) {
-				        return x(Math.max(d.start, minExtent[0])) + 5;
-				})
-				.attr("y", function(d, i) {
-				    return y1(d.lane + .2) + (d.overlaps? itemsToGroups[d.id].indexOf(d.id)*d.height: 0);
-				})
-				.attr("text-anchor", "start")
+            labels.enter().append("text")
+                .text(function (d) {
+                    /*console.log(d);
+                    var s = d3.select(this).append("span").html(d.id);
+                    var l = s.attr("width");
+                    s.remove();
+                    console.log("l", l);*/
+                    // if(l > d.width)return d.height < 8? "": d.id.substr(0, 20);
+                    return d.height < 9? "": d.id.substr(0, 30);
+                })
+                .attr("x", function (d) {
+                    return x(Math.max(d.start, minExtent[0])) + 5;
+                })
+                .attr("y", function (d, i) {
+                    return d.y_ + (d.height/1.5);
+                    return y1(d.lane + .2) + (d.overlaps ? itemsToGroups[d.id].indexOf(d.id) * d.height : 0);
+                })
+                .attr("text-anchor", "start")
+                .attr("class", "lane-text")
                 .on("mouseover", function (d) {
                     toolTip.show(d.id);
                 })
@@ -719,24 +812,23 @@ var D3SwimLane = (function () {
                     toolTip.hide();
                 });
 
-			labels.exit().remove();
+            labels.exit().remove();
 
-		};
+        };
 
-		//brush
-		let brush = d3.brushX()
-							.extent([[0, 0], [w, miniHeight]])
-							.on("brush", display);
+        //brush
+        let brush = d3.brushX()
+            .extent([[0, 0], [w, miniHeight]])
+            .on("brush", display);
 
-		mini.append("g")
-			.attr("class", "x brush")
-			.call(brush)
-			.selectAll("rect")
-			.attr("y", 1)
-			.attr("height", miniHeight - 1);
+        mini.append("g")
+            .attr("class", "x brush")
+            .call(brush)
+            .selectAll("rect")
+            .attr("y", 1)
+            .attr("height", miniHeight - 1);
 
-		display();
-
+        display();
 
 
     };

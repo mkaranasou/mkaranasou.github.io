@@ -337,7 +337,7 @@ text{
 }
 
 .miniItem4 {
-    fill: #34E4EA;
+    fill: #04d0b6;
     fill-opacity: .7;
     stroke-width: 1;
     stroke: white;
@@ -381,4 +381,9 @@ text{
     z-index: 1000;
     background-color: white;
     border: 2px solid lightcoral;
+}
+
+.lane-text{
+    font-size:x-small!important;
+    fill:white;
 }
