@@ -387,3 +387,35 @@ text{
     font-size:x-small!important;
     fill:white;
 }
+
+.fa-flask,
+.fa-code,
+.fa-book,
+.fa-user,
+.fa-info{
+    font-size: 1.5em!important;
+}
+
+.fa-flask:before,
+.fa-code:before,
+.fa-book:before,
+.fa-user:before,
+.fa-info:before {
+    /*https://uigradients.com/#SweetMorning*/
+    background: linear-gradient(45deg, #FF5F6D 50%, #FFC371 70%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: initial; /* reset Font Awesome's display:inline-block */
+}
+
+.fa-cog{
+    font-size: 8em!important;
+}
+
+.fa-cog:before{
+    /*https://uigradients.com/#SweetMorning*/
+    background: linear-gradient(45deg, #000046 30%, #1CB5E0 70%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: initial; /* reset Font Awesome's display:inline-block */
+}

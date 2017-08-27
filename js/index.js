@@ -11,6 +11,7 @@ var createForce = function () {
 };
 
 var createTimeline = function () {
+    return;
     d3.json("./data/education.json", function (e, data) {
 
         /*    var data = [
@@ -91,6 +92,25 @@ var toggleLane = function(){
 (function () {
     $('[data-toggle="popover"]').popover();
     $('[data-toggle="tooltip"]').tooltip();
+    $("nav ul li a[href^='#']").on('click', function(e) {
+
+        // prevent default anchor click behavior
+        e.preventDefault();
+
+        // store hash
+        var hash = this.hash;
+
+        // animate
+        $('html, body').animate({
+            scrollTop: $(hash).offset().top
+        }, 300, function(){
+
+            // when done, add hash to url
+            // (default click behaviour)
+            window.location.hash = hash;
+        });
+
+    });
 
     times = localStorage.getItem("times");
     if (times && times < 2) {

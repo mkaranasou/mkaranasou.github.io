@@ -78,7 +78,7 @@
       "id": 8,
       "name": "Python Developer (Machine Learning)",
       "type": "position",
-      "details": " ",
+      "details": "",
       "from": 2016,
       "to": 2017
     },
@@ -86,7 +86,7 @@
       "id": 9,
       "name": "C#",
       "type": "language",
-      "details": " ",
+      "details": "I have been using C# since 2009, either for Web or Desktop Development.",
       "img": "https://chrismckee.co.uk/content/images/2015/11/C-Logo-1.jpg",
       "from": 2009,
       "to": 2016
@@ -95,7 +95,7 @@
       "id": 10,
       "name": "Python",
       "type": "language",
-      "details": " ",
+      "details": "My favorite choice of Back-end languages. I started learning Python on 2013 and have been using it consistently since then.",
       "img": "https://realpython.com/learn/python-first-steps/images/pythonlogo.jpg",
       "from": 2013,
       "to": 2017
@@ -113,7 +113,7 @@
       "id": 12,
       "name": "JavaScript",
       "type": "language",
-      "details": " ",
+      "details": "I have been using JavaScript for over 4 years.",
       "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/2000px-Unofficial_JavaScript_logo_2.svg.png",
       "from": 2013,
       "to": 2017

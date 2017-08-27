@@ -1,6 +1,6 @@
 "use strict";
 
-var D3Force = (function () {
+let D3Force = (function () {
     function D3Force(selector, width, height) {
         this.selector = selector;
         this.data = {};
@@ -23,7 +23,7 @@ var D3Force = (function () {
     }
 
     D3Force.prototype._createForce = function (data) {
-        var self = this;
+        let self = this;
 
         // set data once
         if (Object.keys(self.data).length === 0) {
@@ -50,14 +50,14 @@ var D3Force = (function () {
 
         this.svg.call(toolTip);
 
-        var color = d3.scaleOrdinal(d3.schemeCategory20);
-        var fitText = function (text, r) {
+        let color = d3.scaleOrdinal(d3.schemeCategory20);
+        let fitText = function (text, r) {
             return text.substr(0, 10);
             /* return text.length < r * 2
                          ? text
                          : text.substr(0, r-3) + "...";*/
         };
-        var fillColor = function (value) {
+        let fillColor = function (value) {
             switch (value) {
                 case "employer":
                     return "rgb(246, 71, 71)"; // LYNCH
@@ -66,7 +66,7 @@ var D3Force = (function () {
             }
         };
 
-        var fillTextColor = function (value) {
+        let fillTextColor = function (value) {
             switch (value) {
                 case "person":
                     return "rgb(249, 105, 14)"; // ECSTASY
@@ -85,7 +85,7 @@ var D3Force = (function () {
                     return "rgb(246, 71, 71)"; // SUNSET ORANGE
             }
         };
-        var radius = function (value) {
+        let radius = function (value) {
             switch (value) {
                 case "person":
                     return 60;
@@ -106,20 +106,20 @@ var D3Force = (function () {
             return value.length + 10;
         };
 
-        var h3 = function (v) {
+        let h3 = function (v) {
             return "<h3>" + v + "</h3>";
         };
-        var p = function (v) {
+        let p = function (v) {
             return "<p>" + v + "</p>";
         };
-        var a = function (v) {
+        let a = function (v) {
             return "<a href='" + v + "'>" + v + "</a>";
         };
 
-        var img = function (v) {
+        let img = function (v) {
             return "<img src='" + v + "'>";
         };
-        var getInfo = function (d) {
+        let getInfo = function (d) {
             switch (d.type) {
                 case "person":
                     return h3(d.name) + p(d.details) + p(img(d.url));
@@ -127,10 +127,10 @@ var D3Force = (function () {
                     return h3(d.name) + p(d.details) + a(d.url) + p(img(d.img));
                 case "position":
                     return h3(d.name) + p(d.details);
-                case "programming language":
+                case "language":
                     return h3(d.name) + p(d.details) + (d.img ? p(img(d.img)) : "");
                 case "framework":
-                case "data storage":
+                case "db":
                     return h3(d.name) + p(d.details) + (d.img ? p(img(d.img)) : "");
                 case "skill":
                     return h3(d.name) + p(d.details);
@@ -151,7 +151,7 @@ var D3Force = (function () {
         // .force("y", d3.forceY(0))
         // .force("x", d3.forceX(0));
 
-        var link = this.svg.append("g")
+        let link = this.svg.append("g")
             .attr("class", "links")
             .selectAll("line")
             .data(data.links)
@@ -160,7 +160,7 @@ var D3Force = (function () {
                 return Math.sqrt(d.type);
             });
 
-        var node = this.svg.append("g")
+        let node = this.svg.append("g")
             .attr("class", "nodes")
             .selectAll("circle")
             .data(data.nodes)
@@ -187,7 +187,7 @@ var D3Force = (function () {
                 return d.name;
             });
 
-        var texts = this.svg.append("g")
+        let texts = this.svg.append("g")
             .attr("class", "texts")
             .selectAll("text")
             .data(data.nodes)
@@ -211,7 +211,7 @@ var D3Force = (function () {
             });
 
         // Append images
-        var images = this.svg.append("g")
+        let images = this.svg.append("g")
             .attr("class", "image")
             .selectAll("image")
             .data(data.nodes)
@@ -251,7 +251,7 @@ var D3Force = (function () {
         this.simulation.force("link")
             .links(data.links);
 
-        var drag_handler = d3.drag()
+        let drag_handler = d3.drag()
             .on("start", drag_start)
             .on("drag", drag_drag)
             .on("end", drag_end);
@@ -259,11 +259,11 @@ var D3Force = (function () {
         drag_handler(node);
         drag_handler(images);
 
-        var aspect = this.width / this.height;
+        let aspect = this.width / this.height;
 
         d3.select(window)
             .on("resize", function () {
-                // var targetWidth = self.svg.node().getBoundingClientRect().width;
+                // let targetWidth = self.svg.node().getBoundingClientRect().width;
                 // emtpy element
                 d3.select(self.selector).html('');
                 // initialize w, h
@@ -357,7 +357,7 @@ var D3Force = (function () {
         }
     };
     D3Force.prototype.create = function (data) {
-        var self = this;
+        let self = this;
         if (typeof (data) === "string") {
             d3.json(data, function (e, data) {
                 if (e)
@@ -383,10 +383,10 @@ var D3Force = (function () {
         $(this.selector).slideToggle();
     };
     D3Force.prototype.search = function (selector) {
-        var self = this;
-        var search = d3.select(selector).on("keydown", function (d) {
+        let self = this;
+        let search = d3.select(selector).on("keydown", function (d) {
             if (d3.event.key === "Enter") {
-                var value = d3.select(selector).node().value.toLowerCase();
+                let value = d3.select(selector).node().value.toLowerCase();
                 if (value.length === 0) {
                     self.create(self.data);
                 }
@@ -406,13 +406,13 @@ var D3Force = (function () {
     return D3Force;
 }());
 
-var D3Timeline = (function () {
+let D3Timeline = (function () {
     function D3Timeline(selector) {
         this.selector = selector;
     }
 
     D3Timeline.prototype.create = function (data) {
-        var self = this;
+        let self = this;
         if (typeof (data) === "string") {
             d3.json(data, function (e, data) {
                 if (e)
@@ -439,7 +439,7 @@ var D3Timeline = (function () {
     return D3Timeline;
 }());
 
-var D3SwimLane = (function () {
+let D3SwimLane = (function () {
     function D3SwimLane(selector, width, height) {
         this.selector = selector;
         this.data = {};
@@ -450,11 +450,11 @@ var D3SwimLane = (function () {
     }
 
     D3SwimLane.prototype._createLanes = function (data) {
-        var lanes = [];
-        var lanesToItems = {};
-        var itemsToGroups = {};
-        var lanesToNames = {};
-        var items = [];
+        let lanes = [];
+        let lanesToItems = {};
+        let itemsToGroups = {};
+        let lanesToNames = {};
+        let items = [];
         let toolTip = d3.tip()
             .attr("class", "d3-tip-lane")
             .offset([-8, 0])
@@ -536,7 +536,7 @@ var D3SwimLane = (function () {
                 lanesToItems[lanes.length - 1] = [];
                 lanesToNames[lanes.length - 1] = [];
             }
-            var e = {
+            let e = {
                 "lane": lanes.indexOf(data.nodes[i]["type"]),
                 "id": data.nodes[i]["name"],
                 "start": data.nodes[i]["from"],
@@ -548,35 +548,35 @@ var D3SwimLane = (function () {
 
         }
 
-        var laneLength = lanes.length;
-        var timeBegin = 2009; // min start
-        var timeEnd = 2017;   // min end
+        let laneLength = lanes.length;
+        let timeBegin = 2009; // min start
+        let timeEnd = 2017;   // min end
 
         Object.keys(lanesToItems).forEach(function (key) {
             lanesToItems[key] = overlap(lanesToItems[key], "start", "end");
         });
 
-        var m = [20, 15, 15, 120], //top right bottom left //todo: dictionary
+        let m = [20, 15, 15, 120], //top right bottom left //todo: dictionary
             w = this.width - m[1] - m[3] - 40,
             h = this.height,
             miniHeight = laneLength * 12 + 50,
             mainHeight = h - miniHeight - 40;
 
         //scales
-        var x = d3.scaleLinear()
+        let x = d3.scaleLinear()
             .domain([timeBegin, timeEnd])
             .range([0, w]);
-        var x1 = d3.scaleLinear()
+        let x1 = d3.scaleLinear()
             .domain([timeBegin, timeEnd])
             .range([0, w]);
-        var y1 = d3.scaleLinear()
+        let y1 = d3.scaleLinear()
             .domain([0, laneLength])
             .range([0, mainHeight]);
-        var y2 = d3.scaleLinear()
+        let y2 = d3.scaleLinear()
             .domain([0, laneLength])
             .range([0, miniHeight]);
 
-        var chart = d3.select(this.selector)
+        let chart = d3.select(this.selector)
             .append("svg")
             .attr("width", w + m[1] + m[3])
             .attr("height", h + m[0] + m[2])
@@ -584,23 +584,23 @@ var D3SwimLane = (function () {
 
         chart.call(toolTip);
         // filters go in defs element
-        var defs = chart.append("defs");
+        let defs = chart.append("defs");
 
         // create filter with id #drop-shadow
         // height=130% so that the shadow is not clipped
-        var filter = chart.append("filter")
+        let filter = chart.append("filter")
             .attr("id", "drop-shadow")
-            .attr("height", "130%")
+            .attr("height", "120%")
         filter.append("feGaussianBlur")
             .attr("in", "SourceAlpha")
-            .attr("stdDeviation", 5)
+            .attr("stdDeviation", 2)
             .attr("result", "blur")
         filter.append("feOffset")
             .attr("in", "blur")
-            .attr("dx", 5)
-            .attr("dy", 5)
+            .attr("dx", 2)
+            .attr("dy", 2)
             .attr("result", "offsetBlur");
-        var feMerge = filter.append("feMerge");
+        let feMerge = filter.append("feMerge");
 
         feMerge.append("feMergeNode")
                 .attr("in", "offsetBlur");
@@ -619,13 +619,13 @@ var D3SwimLane = (function () {
             .attr("width", w)
             .attr("height", mainHeight);
 
-        var main = chart.append("g")
+        let main = chart.append("g")
             .attr("transform", "translate(" + m[3] + "," + m[0] + ")")
             .attr("width", w)
             .attr("height", mainHeight)
             .attr("class", "main");
 
-        var mini = chart.append("g")
+        let mini = chart.append("g")
             .attr("transform", "translate(" + m[3] + "," + (mainHeight + m[0]) + ")")
             .attr("width", w)
             .attr("height", miniHeight)
@@ -687,7 +687,7 @@ var D3SwimLane = (function () {
             .attr("text-anchor", "end")
             .attr("class", "laneText");*/
 
-        var itemRects = main.append("g")
+        let itemRects = main.append("g")
             .attr("clip-path", "url(#clip)");
 
         //mini item rects
@@ -813,13 +813,15 @@ var D3SwimLane = (function () {
 
             labels.enter().append("text")
                 .text(function (d) {
-                    /*console.log(d);
-                    var s = d3.select(this).append("span").html(d.id);
-                    var l = s.attr("width");
+                    let s = d3.select("body").selectAll("span").data([d]).append("span").html(d.id);
+                    let l = s.node().getBoundingClientRect().width;
                     s.remove();
-                    console.log("l", l);*/
-                    // if(l > d.width)return d.height < 8? "": d.id.substr(0, 20);
-                    return d.height < 9? "": d.id.substr(0, 30);
+                    if(l >= d.width){
+                        let ratio = d.width/l
+                        console.warn(ratio, ratio * d.id.length);
+                        return d.height < 8? "": d.id.substr(0, ratio * d.id.length);
+                    }
+                    return d.height < 9? "": d.id.substr(0, 35);
                 })
                 .attr("x", function (d) {
                     return x(Math.max(d.start, minExtent[0])) + 5;
@@ -859,7 +861,7 @@ var D3SwimLane = (function () {
     };
 
     D3SwimLane.prototype.create = function (data) {
-        var self = this;
+        let self = this;
         if (typeof (data) === "string") {
             d3.json(data, function (e, data) {
                 if (e)
