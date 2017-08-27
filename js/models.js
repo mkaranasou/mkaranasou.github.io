@@ -455,6 +455,8 @@ let D3SwimLane = (function () {
         let itemsToGroups = {};
         let lanesToNames = {};
         let items = [];
+        let timeBegin = 2009; // min start
+        let timeEnd = 2017;   // min end
         let toolTip = d3.tip()
             .attr("class", "d3-tip-lane")
             .offset([-8, 0])
@@ -526,31 +528,32 @@ let D3SwimLane = (function () {
             return data;
         }
 
-        data.nodes = sortBy(data.nodes, "from");
+        data = sortBy(data, "from");
 
-        for (let i = 0; i < data.nodes.length; i++) {
-            let isPerson = data.nodes[i]["type"] === "person";
+        for (let i = 0; i < data.length; i++) {
+            let isPerson = data[i]["type"] === "person";
             if (isPerson) continue;
-            if (lanes.indexOf(data.nodes[i]["type"]) === -1) {
-                lanes.push(data.nodes[i]["type"]);
+            if (lanes.indexOf(data[i]["type"]) === -1) {
+                lanes.push(data[i]["type"]);
                 lanesToItems[lanes.length - 1] = [];
                 lanesToNames[lanes.length - 1] = [];
             }
             let e = {
-                "lane": lanes.indexOf(data.nodes[i]["type"]),
-                "id": data.nodes[i]["name"],
-                "start": data.nodes[i]["from"],
-                "end": data.nodes[i]["to"]
+                "lane": lanes.indexOf(data[i]["type"]),
+                "id": data[i]["name"],
+                "start": data[i]["from"],
+                "end": data[i]["to"]
             };
-            lanesToItems[lanes.indexOf(data.nodes[i]["type"])].push(e);
-            lanesToNames[lanes.indexOf(data.nodes[i]["type"])].push(e.id);
+            if (e.start < timeBegin) timeBegin = e.start;
+            if (e.end > timeEnd) timeEnd = e.end;
+            lanesToItems[lanes.indexOf(data[i]["type"])].push(e);
+            lanesToNames[lanes.indexOf(data[i]["type"])].push(e.id);
             items.push(e);
 
         }
 
         let laneLength = lanes.length;
-        let timeBegin = 2009; // min start
-        let timeEnd = 2017;   // min end
+
 
         Object.keys(lanesToItems).forEach(function (key) {
             lanesToItems[key] = overlap(lanesToItems[key], "start", "end");
@@ -813,15 +816,15 @@ let D3SwimLane = (function () {
 
             labels.enter().append("text")
                 .text(function (d) {
-                    let s = d3.select("body").selectAll("span").data([d]).append("span").html(d.id);
+                    let s = d3.select("body").selectAll("span").data([d]).append("text").text(d.id);
                     let l = s.node().getBoundingClientRect().width;
                     s.remove();
+                    let ratio = Math.ceil(d.width/l)
+                    // console.warn(l, d.width, ratio, d.id.length);
                     if(l >= d.width){
-                        let ratio = d.width/l
-                        console.warn(ratio, ratio * d.id.length);
                         return d.height < 8? "": d.id.substr(0, ratio * d.id.length);
                     }
-                    return d.height < 9? "": d.id.substr(0, 35);
+                    return d.height < 9? "": d.id.substr(0, (ratio > 1? d.length: d.length/ratio));
                 })
                 .attr("x", function (d) {
                     return x(Math.max(d.start, minExtent[0])) + 5;
@@ -860,13 +863,16 @@ let D3SwimLane = (function () {
 
     };
 
-    D3SwimLane.prototype.create = function (data) {
+    D3SwimLane.prototype.create = function (data, key) {
         let self = this;
+        key = key || null;
         if (typeof (data) === "string") {
             d3.json(data, function (e, data) {
                 if (e)
                     throw e;
                 if (data) {
+                    console.log(data);
+                    if(key) data = data[key]
                     return self._createLanes(data);
                 }
             });

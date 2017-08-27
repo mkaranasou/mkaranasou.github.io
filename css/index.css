@@ -42,7 +42,9 @@
         filter: blur(0px);
     }
 }
-
+body{
+    font-family: "Century Gothic";
+}
 .calm{
 
 /*    !*background: url(/app/img/calm.jpg) no-repeat center center fixed;*!
@@ -159,9 +161,9 @@ nav{
 }
 
 div > a > img {
-    width:60px;
-    height:60px;
-    padding: 4px;
+    width: 100px;
+    height: 100px;
+    padding: 0;
 }
 .card > div > div > div{
     text-align: center;
@@ -418,4 +420,9 @@ text{
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     display: initial; /* reset Font Awesome's display:inline-block */
+}
+
+.step > .card > .card-body{
+    min-height:500px;
+    padding:20px;
 }

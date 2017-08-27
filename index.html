@@ -23,7 +23,7 @@
 </defs>
 <nav class="navbar navbar-toggleable-md navbar-light bg-faded fixed-top">
     <a class="navbar-brand me" href="#">
-        <div class="badge" data-container="body" data-toggle="popover" data-placement="bottom" title="Work In Progress" data-content="Figuratively and Literally :)">WIP</div>
+        <div class="badge" data-container="body" data-toggle="popover" data-placement="right" title="Work In Progress" data-content="Figuratively and Literally :)">WIP</div>
         <img src="img/IMG_20161011_143159.jpg" class="profile-img sm">
         <!--<img src="/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">-->
         &nbsp;Maria Karanasou
@@ -82,7 +82,14 @@
                             <section class="step" id="about">
                                 <i class="fa fa-flask" aria-hidden="true"></i>
                                 <label class="title">About me</label>
-                                <div id="about-me">
+                                <label class="text-muted">Excited to learn new things and ideally apply them for a good cause.</label>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div id="about-me">
+
+                                        </div>
+                                    </div>
+                                </div>
                                     <!--<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                                         <ol class="carousel-indicators">
                                             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -109,7 +116,6 @@
                                             <span class="sr-only">Next</span>
                                         </a>
                                     </div>-->
-                                </div>
                             </section>
                         </div>
                     </div>
@@ -117,29 +123,34 @@
                         <div class="col-md-12">
                             <section class="step" id="experience">
                                 <i class="fa fa-code" aria-hidden="true"></i>
-                                <label class="title">Experience</label>
-                                <button class="btn btn-default"
-                                        data-animation="false"
-                                        data-toggle="tooltip"
-                                        data-placement="bottom"
-                                        title="A graph is not very practical, switch me to a semi-functional swimlane chart!"
-                                        onclick="toggleLane();"><span class="badge" title="Work In Progress">WIP</span>&nbsp;Toggle Swim-lane view</button>
+                                <label class="title">Experience</label><label class="text-muted">8+ years, ranging from IT to Machine Learning.</label>
 
-                                <div id="experience-chart">
-                                    <div class="input-group col-md-3">
-                                        <input id="search" type="text" class="form-control" placeholder="Search..." aria-describedby="basic-addon2">
-                                        <span class="input-group-addon fa fa-search" id="search-ico"></span>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <button class="btn btn-defaul pull-right"
+                                                data-animation="false"
+                                                data-toggle="tooltip"
+                                                data-placement="bottom"
+                                                title="A graph is not very practical, switch me to a semi-functional swimlane chart!"
+                                                onclick="toggleLane();"><span class="badge" title="Work In Progress">WIP</span>&nbsp;Toggle Swim-lane view</button>
+                                        <div id="experience-chart">
+                                            <div class="input-group col-md-3">
+                                                <input id="search" type="text" class="form-control" placeholder="Search..." aria-describedby="basic-addon2">
+                                                <span class="input-group-addon fa fa-search" id="search-ico"></span>
+                                            </div>
+                                        </div>
+                                        <div id="experience-timeseries">
+                                            <!--
+                                                Todo: combine:
+                                                https://codepen.io/chris-creditdesign/pen/yuFjr
+                                                https://www.npmjs.com/package/d3-timelines
+                                                http://bl.ocks.org/TBD/600b23e56545026ae6fda2905efa42ce
+                                                http://bl.ocks.org/bunkat/2338034
+                                            -->
+                                        </div>
                                     </div>
                                 </div>
-                                <div id="experience-timeseries">
-                                    <!--
-                                        Todo: combine:
-                                        https://codepen.io/chris-creditdesign/pen/yuFjr
-                                        https://www.npmjs.com/package/d3-timelines
-                                        http://bl.ocks.org/TBD/600b23e56545026ae6fda2905efa42ce
-                                        http://bl.ocks.org/bunkat/2338034
-                                    -->
-                                </div>
+
                             </section>
                         </div>
                     </div>
@@ -148,6 +159,13 @@
                             <section class="step" id="education">
                                 <i class="fa fa-book" aria-hidden="true"></i>
                                 <label class="title">Education</label>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div id="education-lane">
+
+                                        </div>
+                                    </div>
+                                </div>
                             </section>
                         </div>
                     </div>
@@ -156,68 +174,73 @@
                             <section class="step" id="interesting-stuff">
                                 <i class="fa fa-info" aria-hidden="true"></i>
                                 <label class="title">Interesting stuff</label>
-                                <p>In my free time, I enjoy coding, reading, photography and being involved with animals among other stuff.</p>
-                                <!--<p><label class="grey">Coding</label></p>-->
-                                <div class="row">
-                                    <div class="col-md-3">
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <div class="badge">beta</div>&nbsp;<a href="https://bitbucket.org/mkaranasou/daily-silver-linings" target="_blank">Silver Linings</a>
-                                        </div>
-                                        <div class="card-text">
-                                                This is a simple project with a simple goal:
-                                                to document the daily small good things that happen so that we keep perspective and get a boost to get on with our day.
-                                        </div>
-                                        <div class="card-footer">Angular2/4 | AngularCLI | Bootstrap 4 | fontawesome | Flask | Flask-SQLAlchemy</div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="card">
-                                            <div class="card-header">
-                                                <div class="badge">beta</div>&nbsp;<a href="http://snippetmate.com" target="_blank">Snippetmate</a>
-                                            </div>
-                                            <div class="card-text">
-                                                    Snippetmate let's you organize the problems you've faced as a developer and their solutions, all in one place!
-                                            </div>
-                                            <div class="card-footer">Angular2/4 | AngularCLI | Bootstrap 4 | fontawesome | Node.js | MongoDB</div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="card">
-                                            <div class="card-header">
-                                                <div class="badge">beta</div>&nbsp;<a href="https://bitbucket.org/mkaranasou/replicable_experiments" target="_blank">Replicable Experiments</a>
-                                            </div>
-                                            <div class="card-text">
-                                                    An effort to standardize ML experiments and to move from script-like code that saves results to file to a more structured framework that
-                                                    can save results in a database in such a way so that the experiments can be repeated and/or resumed with the same parameters and in the
-                                                    same way and the results can be compared with a simple query.
-                                            </div>
-                                            <div class="card-footer">Python | scikit-learn | pandas | pyodm | MongoDB</div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="card">
-                                            <div class="card-header">
-                                                <a href="https://bitbucket.org/roadrunner_team/large-scale-sentiment-analysis" target="_blank">Large Scale Sentiment Analysis</a>
-                                            </div>
-                                            <div class="card-text">
-                                                    This repository is for the Roadrunner "Efficient and Scalable Processing of Big Data" project. The result of this project was published in SENTIRE 2016.
-                                            </div>
-                                            <div class="card-footer">
-                                                <!--<nav class="nav nav-pills flex-column flex-sm-row">
-                                                    <a class="flex-sm-fill text-sm-center nav-link" href="#">Apache Storm</a>
-                                                    <a class="flex-sm-fill text-sm-center nav-link" href="#">MongoDB</a>
-                                                    <a class="flex-sm-fill text-sm-center nav-link" href="#">MySQL</a>
-                                                    <a class="flex-sm-fill text-sm-center nav-link" href="#">Python</a>
-                                                    <a class="flex-sm-fill text-sm-center nav-link" href="#">scikit-learn</a>
-                                                    <a class="flex-sm-fill text-sm-center nav-link" href="#">Redis</a>
-                                                    <a class="flex-sm-fill text-sm-center nav-link" href="#">Django</a>
-                                                </nav>-->
+                                <label class="text-muted">In my free time, I enjoy coding, reading, photography and being involved with animals among other stuff.</label>
+                                <div class="card">
+                                    <div class="card-body">
 
-                                                Apache Storm | MongoDB | MySQL | Python | scikit-learn | Redis | Django
-                                            </div>
+                                            <!--<p><label class="grey">Coding</label></p>-->
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="card">
+                                                        <div class="card-header">
+                                                            <div class="badge">beta</div>&nbsp;<a href="https://bitbucket.org/mkaranasou/daily-silver-linings" target="_blank">Silver Linings</a>
+                                                        </div>
+                                                        <div class="card-text">
+                                                            This is a simple project with a simple goal:
+                                                            to document the daily small good things that happen so that we keep perspective and get a boost to get on with our day.
+                                                        </div>
+                                                        <div class="card-footer">Angular2/4 | AngularCLI | Bootstrap 4 | fontawesome | Flask | Flask-SQLAlchemy</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="card">
+                                                        <div class="card-header">
+                                                            <div class="badge">beta</div>&nbsp;<a href="http://snippetmate.com" target="_blank">Snippetmate</a>
+                                                        </div>
+                                                        <div class="card-text">
+                                                            Snippetmate let's you organize the problems you've faced as a developer and their solutions, all in one place!
+                                                        </div>
+                                                        <div class="card-footer">Angular2/4 | AngularCLI | Bootstrap 4 | fontawesome | Node.js | MongoDB</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="card">
+                                                        <div class="card-header">
+                                                            <div class="badge">beta</div>&nbsp;<a href="https://bitbucket.org/mkaranasou/replicable_experiments" target="_blank">Replicable Experiments</a>
+                                                        </div>
+                                                        <div class="card-text">
+                                                            An effort to standardize ML experiments and to move from script-like code that saves results to file to a more structured framework that
+                                                            can save results in a database in such a way so that the experiments can be repeated and/or resumed with the same parameters and in the
+                                                            same way and the results can be compared with a simple query.
+                                                        </div>
+                                                        <div class="card-footer">Python | scikit-learn | pandas | pyodm | MongoDB</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="card">
+                                                        <div class="card-header">
+                                                            <a href="https://bitbucket.org/roadrunner_team/large-scale-sentiment-analysis" target="_blank">Large Scale Sentiment Analysis</a>
+                                                        </div>
+                                                        <div class="card-text">
+                                                            This repository is for the Roadrunner "Efficient and Scalable Processing of Big Data" project. The result of this project was published in SENTIRE 2016.
+                                                        </div>
+                                                        <div class="card-footer">
+                                                            <!--<nav class="nav nav-pills flex-column flex-sm-row">
+                                                                <a class="flex-sm-fill text-sm-center nav-link" href="#">Apache Storm</a>
+                                                                <a class="flex-sm-fill text-sm-center nav-link" href="#">MongoDB</a>
+                                                                <a class="flex-sm-fill text-sm-center nav-link" href="#">MySQL</a>
+                                                                <a class="flex-sm-fill text-sm-center nav-link" href="#">Python</a>
+                                                                <a class="flex-sm-fill text-sm-center nav-link" href="#">scikit-learn</a>
+                                                                <a class="flex-sm-fill text-sm-center nav-link" href="#">Redis</a>
+                                                                <a class="flex-sm-fill text-sm-center nav-link" href="#">Django</a>
+                                                            </nav>-->
+
+                                                            Apache Storm | MongoDB | MySQL | Python | scikit-learn | Redis | Django
+                                                        </div>
+                                                    </div>
+                                                </div>
                                         </div>
-                                    </div>
+                                </div>
 
                                 </div>
 
@@ -234,51 +257,59 @@
                     <div class="row">
                         <div class="col-md-12 col-sm-12">
                             <section class="step" id="contact">
-                                <div class="row">
-                                <div class="col-md-2 col-sm-4">
-                                    <i class="fa fa-user" aria-hidden="true"></i>
-                                    <label class="title">Contact</label>
-                                </div>
-                                <div class="col-md-10 col-sm-10">
-                                    <div class="row">
-                                        <div class="col-sm-1 col-xs-2">
-                                            <a href="https://www.linkedin.com/in/maria-karanasou/" target="_blank">
-                                                <img src="img/In-2C-108px-R.png">
-                                            </a>
-                                        </div>
-                                        <div class="col-sm-1 col-xs-2">
-                                            <a href="https://bitbucket.org/mkaranasou" target="_blank">
-                                                <img src="img/bitbucket-repository-svn-manage-files-contribute-branch-128.png">
-                                            </a>
-                                        </div>
-                                        <div class="col-sm-1 col-xs-2">
-                                            <a href="https://stackoverflow.com/users/3433323/mkaran" target="_blank">
-                                                <img src="img/stackoverflow.svg">
-                                            </a>
-                                        </div>
-                                        <div class="col-sm-1 col-xs-2">
-                                            <a href="https://github.com/mkaranasou" target="_blank">
-                                                <img src="img/GitHub-Mark.png">
-                                            </a>
-                                        </div>
-                                        <div class="col-sm-1 col-xs-2">
-                                            <a href="https://twitter.com/mk2911" target="_blank">
-                                                <img src="img/Twitter_Social_Icon_Circle_Color.svg">
-                                            </a>
-                                        </div>
-                                        <div class="col-sm-1 col-xs-2">
-                                            <a href="https://tryexceptfinally.wordpress.com/" target="_blank">
-                                                <img src="img/tryexceptfinally.png">
-                                            </a>
-                                        </div>
-                                        <div class="col-sm-1 col-xs-2">
-                                            <a href="https://medium.com/@karanasou" target="_blank">
-                                                <span class="fa fa-medium fa-3x"></span>
-                                            </a>
+
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                                <label class="title">Contact</label>
+
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-2 col-sm-4">
+
+                                            </div>
+                                            <div class="col-md-10 col-sm-10">
+                                                <div class="row">
+                                                    <div class="col-sm-1 col-xs-2">
+                                                        <a href="https://www.linkedin.com/in/maria-karanasou/" target="_blank">
+                                                            <img src="img/In-2C-108px-R.png">
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-sm-1 col-xs-2">
+                                                        <a href="https://bitbucket.org/mkaranasou" target="_blank">
+                                                            <img src="img/bitbucket-repository-svn-manage-files-contribute-branch-128.png">
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-sm-1 col-xs-2">
+                                                        <a href="https://stackoverflow.com/users/3433323/mkaran" target="_blank">
+                                                            <img src="img/stackoverflow.svg">
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-sm-1 col-xs-2">
+                                                        <a href="https://github.com/mkaranasou" target="_blank">
+                                                            <img src="img/GitHub-Mark.png">
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-sm-1 col-xs-2">
+                                                        <a href="https://twitter.com/mk2911" target="_blank">
+                                                            <img src="img/Twitter_Social_Icon_Circle_Color.svg">
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-sm-1 col-xs-2">
+                                                        <a href="https://tryexceptfinally.wordpress.com/" target="_blank">
+                                                            <img src="img/tryexceptfinally.png">
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-sm-1 col-xs-2">
+                                                        <a href="https://medium.com/@karanasou" target="_blank">
+                                                            <span class="fa fa-medium fa-5x"></span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    </div>
                                 </div>
+
                             </section>
                         </div>
                     </div>

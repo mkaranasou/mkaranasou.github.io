@@ -3,6 +3,7 @@ var introTyped;
 var introShown;
 var times = 0;
 var swimLane;
+var educationLane;
 var d3Force;
 
 var createForce = function () {
@@ -11,6 +12,10 @@ var createForce = function () {
 };
 
 var createTimeline = function () {
+
+        educationLane = new D3SwimLane("#education-lane", parseInt($('.container-fluid').css('width')) - 50, 200);
+        educationLane.create("./data/education.json", "education");
+
     return;
     d3.json("./data/education.json", function (e, data) {
 
@@ -79,7 +84,7 @@ var toggleLane = function(){
         swimLane = new D3SwimLane("#experience-timeseries",
                             parseInt($('.container-fluid').css('width')) - 50,
                             900);
-        swimLane.create(d3Force.data);
+        swimLane.create(d3Force.data.nodes);
     }
     else{
         swimLane.toggle();

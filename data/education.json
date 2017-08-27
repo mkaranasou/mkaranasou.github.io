@@ -1,10 +1,11 @@
 {
   "education": [
-    {"name": "BSc - UniPi",
+    {"name": "BSc - University of Piraeus - Digital Systems",
       "data": ["2003-09-01", "2009-09-01"],
+      "type": "Education",
+      "from": 2003,
+      "to": 2008,
       "info":{
-        "from": "09-2003",
-        "to": "09-2008",
         "Institution": "University of Piraeus",
         "type": "BSc",
         "in": "Computer Science",
@@ -13,11 +14,12 @@
         "grade": "7.05"
       }
     },
-    {"name": "MSc - UniPi",
+    {"name": "MSc - University of Piraeus - Network-Oriented Systems",
       "data": ["2012-09-01", "2015-12-01"],
+      "type": "Education",
+      "from": 2012,
+      "to": 2015,
       "info": {
-        "from": "09-2012",
-        "to": "12-2015",
         "Institution": "University of Piraeus",
         "type": "MSc",
         "in": "Computer Science",
