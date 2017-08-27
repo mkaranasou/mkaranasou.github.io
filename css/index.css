@@ -421,7 +421,9 @@ text{
     -webkit-text-fill-color: transparent;
     display: initial; /* reset Font Awesome's display:inline-block */
 }
-
+.step > .card{
+    width: 99%;
+}
 .step > .card > .card-body{
     min-height:500px;
     padding:20px;
