@@ -7,13 +7,13 @@ var educationLane;
 var d3Force;
 
 var createForce = function () {
-    d3Force = new D3Force('#experience-chart', parseInt($('.container-fluid').css('width')) - 50, 900);
+    d3Force = new D3Force('#experience-chart', parseInt($('.container-fluid').css('width')) - 50, 700);
     d3Force.create('./data/d3data.json');
 };
 
 var createTimeline = function () {
 
-        educationLane = new D3SwimLane("#education-lane", parseInt($('.container-fluid').css('width')) - 50, 200);
+        educationLane = new D3SwimLane("#education-lane", parseInt($('.container-fluid').css('width')) - 50, 350);
         educationLane.create("./data/education.json", "education");
 
     return;
@@ -71,6 +71,7 @@ var startTyping = function () {
 var welcomeClose = function () {
     introTyped ? introTyped.stop() : null;
     localStorage.setItem("times", times + 1);
+    animateTo("#about");
     createForce();
     createTimeline();
     $(".typed-cursor").hide();
@@ -93,6 +94,18 @@ var toggleLane = function(){
     d3Force.toggle()
 };
 
+function animateTo(hash){
+    // animate
+    $('html, body').animate({
+        scrollTop: $(hash).offset().top
+    }, 300, function(){
+
+        // when done, add hash to url
+        // (default click behaviour)
+        window.location.hash = hash;
+    });
+}
+
 /* Main */
 (function () {
     $('[data-toggle="popover"]').popover();
@@ -106,14 +119,7 @@ var toggleLane = function(){
         var hash = this.hash;
 
         // animate
-        $('html, body').animate({
-            scrollTop: $(hash).offset().top
-        }, 300, function(){
-
-            // when done, add hash to url
-            // (default click behaviour)
-            window.location.hash = hash;
-        });
+        animateTo(hash);
 
     });
 

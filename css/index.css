@@ -67,9 +67,9 @@ body{
 }
 
 .step {
-    margin-bottom: 100px;
+    /*margin-bottom: 100px;*/
     padding-top:74px;
-    min-height: 550px;
+    min-height: 800px;
 
 }
 
@@ -219,7 +219,7 @@ text{
 circle{
     cursor: pointer;
     /*fill: #FFFFFF;*/
-    stroke: blue;
+    stroke: #60e2d6;
     stroke-width: 3px;
     stroke-opacity: 0.5;
 }
@@ -288,7 +288,7 @@ text{
 }
 
 #search-ico{
-    background-color: transparent;
+    background-color: white;
     color: rgba(240, 128, 128, 0.9);
     cursor: pointer;
 }
@@ -312,7 +312,7 @@ text{
 
 /*https://coolors.co/0f3f9c-e5c6da-b7b7b7-d45986-5f9ea6*/
 .miniItem0 {
-    fill: darksalmon;
+    fill: #fb7e89;
     stroke-width: 1;
     stroke: white;
 }
@@ -353,7 +353,7 @@ text{
 }
 
 .miniItem6 {
-    fill: coral;
+    fill: #80eccc;
     fill-opacity: .7;
     stroke-width: 1;
     stroke: white;
@@ -377,7 +377,7 @@ text{
     stroke: lightgray;
 }
 
-.d3-tip-lane{
+.d3-tip-lane {
     color:gray;
     padding: 10px;
     z-index: 1000;
@@ -385,8 +385,8 @@ text{
     border: 2px solid lightcoral;
 }
 
-.lane-text{
-    font-size:x-small!important;
+.lane-text {
+    /*font-size:x-small!important;*/
     fill:white;
 }
 
@@ -425,6 +425,39 @@ text{
     width: 99%;
 }
 .step > .card > .card-body{
-    min-height:500px;
+    min-height:750px;
     padding:20px;
+}
+
+.card-deck > .card > .card-body{
+    padding:20px;
+    height:100px;
+}
+
+.card-deck > .card > .card-body > a {
+    margin: 10px;
+}
+
+.card-deck > .card > .card-body > a > img{
+    width:60px;
+    height:60px;
+}
+.card-deck > .card > .card-text{
+    min-height: 10px;
+    padding: 0;
+    height: 48px;
+    text-align: center;
+}
+
+.laneText{
+    fill:white;
+}
+
+.tick > text,
+.path{
+    fill:rgba(240, 128, 128, 1.0);
+    fill:white;
+}
+.domain{
+    stroke:rgba(240, 128, 128, 1.0) !important;
 }

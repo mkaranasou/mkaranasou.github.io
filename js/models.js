@@ -59,48 +59,50 @@ let D3Force = (function () {
         };
         let fillColor = function (value) {
             switch (value) {
-                case "employer":
-                    return "rgb(246, 71, 71)"; // LYNCH
+                case "Employer":
+                    return "#EE6E73"; // LYNCH
                 default:
-                    return "#7979FF"
+                    return "#4DB6AC"
             }
         };
 
         let fillTextColor = function (value) {
+            return "white";
+
             switch (value) {
-                case "person":
+                case "Person":
                     return "rgb(249, 105, 14)"; // ECSTASY
-                case "employer":
+                case "Employer":
                     return "rgb(25, 181, 254)"; // DODGER BLUE
-                case "position":
+                case "Position":
                     return "rgb(191, 85, 236)"; // MEDIUM PURPLE
-                case "programming language":
+                case "Language":
                     return "rgb(3, 201, 169)"; // CARIBBEAN GREEN
-                case "framework":
-                case "data storage":
+                case "Framework":
+                case "DB":
                     return "rgb(34, 167, 240)"; // PICTON BLUE
-                case "skill":
+                case "Skill":
                     return "rgb(210, 77, 87)"; //  CHESTNUT ROSE
-                case "project":
+                case "Project":
                     return "rgb(246, 71, 71)"; // SUNSET ORANGE
             }
         };
         let radius = function (value) {
             switch (value) {
-                case "person":
+                case "Person":
                     return 60;
-                case "employer":
+                case "Employer":
                     return 55;
-                case "position":
+                case "Position":
                     return 50;
-                case "programming language":
+                case "Language":
                     return 45;
-                case "framework":
-                case "data storage":
+                case "Framework":
+                case "DB":
                     return 40;
-                case "skill":
+                case "Skill":
                     return 35;
-                case "project":
+                case "Project":
                     return 30;
             }
             return value.length + 10;
@@ -115,26 +117,25 @@ let D3Force = (function () {
         let a = function (v) {
             return "<a href='" + v + "'>" + v + "</a>";
         };
-
         let img = function (v) {
             return "<img src='" + v + "'>";
         };
         let getInfo = function (d) {
             switch (d.type) {
-                case "person":
+                case "Person":
                     return h3(d.name) + p(d.details) + p(img(d.url));
-                case "employer":
+                case "Employer":
                     return h3(d.name) + p(d.details) + a(d.url) + p(img(d.img));
-                case "position":
+                case "Position":
                     return h3(d.name) + p(d.details);
-                case "language":
+                case "Language":
                     return h3(d.name) + p(d.details) + (d.img ? p(img(d.img)) : "");
-                case "framework":
-                case "db":
+                case "Framework":
+                case "DB":
                     return h3(d.name) + p(d.details) + (d.img ? p(img(d.img)) : "");
-                case "skill":
+                case "Skill":
                     return h3(d.name) + p(d.details);
-                case "project":
+                case "Project":
                     return h3(d.name) + p(d.details);
             }
         };
@@ -274,7 +275,7 @@ let D3Force = (function () {
             });
 
 
-        self.search("#search");
+        self.search("#search", ".fa-search");
 
         function ticked() {
             link
@@ -382,26 +383,34 @@ let D3Force = (function () {
     D3Force.prototype.toggle = function () {
         $(this.selector).slideToggle();
     };
-    D3Force.prototype.search = function (selector) {
+
+    D3Force.prototype._searchForce = function (value) {
+        if (value.length === 0) {
+            this.create(this.data);
+        }
+        else {
+            this.filteredData.nodes = this.data.nodes.filter(function (o) {
+                return o.name.toLowerCase().indexOf(value) > -1;
+            }).slice(0);
+            this.filteredData.links = this.data.links.filter(function (o) {
+                return o.source.name.toLowerCase().indexOf(value) > -1 && o.target.name.toLowerCase().indexOf(value) > -1;
+            }).slice(0);
+            this.create(this.filteredData);
+        }
+    }
+    D3Force.prototype.search = function (selector, icon) {
         let self = this;
         let search = d3.select(selector).on("keydown", function (d) {
             if (d3.event.key === "Enter") {
-                let value = d3.select(selector).node().value.toLowerCase();
-                if (value.length === 0) {
-                    self.create(self.data);
-                }
-                else {
-                    self.filteredData.nodes = self.data.nodes.filter(function (o) {
-                        return o.name.toLowerCase().indexOf(value) > -1;
-                    }).slice(0);
-                    self.filteredData.links = self.data.links.filter(function (o) {
-                        return o.source.name.toLowerCase().indexOf(value) > -1 && o.target.name.toLowerCase().indexOf(value) > -1;
-                    }).slice(0);
-                    self.create(self.filteredData);
-                }
+                self._searchForce(d3.select(selector).node().value.toLowerCase())
             }
+        });
 
+        d3.select(icon).on("click", function (d) {
+            self._searchForce(d3.select(selector).node().value.toLowerCase());
         })
+
+
     };
     return D3Force;
 }());
@@ -531,7 +540,7 @@ let D3SwimLane = (function () {
         data = sortBy(data, "from");
 
         for (let i = 0; i < data.length; i++) {
-            let isPerson = data[i]["type"] === "person";
+            let isPerson = data[i]["type"] === "Person";
             if (isPerson) continue;
             if (lanes.indexOf(data[i]["type"]) === -1) {
                 lanes.push(data[i]["type"]);
@@ -579,6 +588,7 @@ let D3SwimLane = (function () {
             .domain([0, laneLength])
             .range([0, miniHeight]);
 
+        d3.select(this.selector).select("svg").remove();
         let chart = d3.select(this.selector)
             .append("svg")
             .attr("width", w + m[1] + m[3])
@@ -835,6 +845,9 @@ let D3SwimLane = (function () {
                 })
                 .attr("text-anchor", "start")
                 .attr("class", "lane-text")
+                .style("font-size",function (d) {
+                    return d.height < 100? "xx-small":"medium";
+                })
                 .on("mouseover", function (d) {
                     toolTip.show(d.id);
                 })
