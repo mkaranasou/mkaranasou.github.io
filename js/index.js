@@ -9,44 +9,13 @@ var subject;
 var body;
 
 var createForce = function () {
-    d3Force = new D3Force('#experience-chart', parseInt($('.container-fluid').css('width')) - 50, 700);
+    d3Force = new D3Force('#experience-chart', parseInt($('#steps').css('width')) - 50, 700);
     d3Force.create('./data/d3data.json');
 };
 
 var createTimeline = function () {
-
-        educationLane = new D3SwimLane("#education-lane", parseInt($('.container-fluid').css('width')) - 50, 350);
-        educationLane.create("./data/education.json", "education");
-
-    return;
-    d3.json("./data/education.json", function (e, data) {
-
-        /*    var data = [
-          { name: "http requests", data: [new Date('2014/09/15 13:24:54'), new Date('2014/09/15 13:25:03'), new Date('2014/09/15 13:25:05')] },
-          { name: "SQL queries", data: [new Date('2014/09/15 13:24:57'), new Date('2014/09/15 13:25:04'), new Date('2014/09/15 13:25:04')] },
-          { name: "cache invalidations", data: [new Date('2014/09/15 13:25:12')] }
-        ];*/
-        if (e) throw e;
-
-        for(let i=0; i < data["education"].length; i++){
-            for(let j=0; j < data["education"][i]["data"].length;j++){
-                data["education"][i]["data"][j] = new Date(data["education"][i]["data"][j]);
-            }
-
-        }
-        var eventDropsChart = d3.chart.eventDrops()
-            .start(new Date("2000-01-01"))
-            .end(new Date(Date.now()))
-            .mouseover(function (d) {
-                console.log(d);
-            });
-
-        d3.select('#education')
-            .datum(data["education"])
-            .call(eventDropsChart);
-
-    });
-
+    educationLane = new D3SwimLane("#education-lane", parseInt($('#steps').css('width')) - 50, 350);
+    educationLane.create("./data/education.json", "education");
 };
 
 var mailTo = function(){
@@ -87,6 +56,7 @@ var startTyping = function () {
     subject = $("#subject");
     body = $("#body");
 };
+
 var welcomeClose = function () {
     introTyped ? introTyped.stop() : null;
     localStorage.setItem("times", times + 1);
@@ -99,10 +69,11 @@ var welcomeClose = function () {
 
     });
 };
+
 var toggleLane = function(){
     if (!swimLane){
         swimLane = new D3SwimLane("#experience-timeseries",
-                            parseInt($('.container-fluid').css('width')) - 50,
+                            parseInt($('#steps').css('width')) - 50,
                             900);
         swimLane.create(d3Force.data.nodes);
     }
