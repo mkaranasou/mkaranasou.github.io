@@ -29,7 +29,6 @@ let D3Force = (function () {
         links.forEach(function(d) {
             self.linkedByIndex[d.source.name + "," + d.target.name] = 1;
         });
-        console.log(this.linkedByIndex)
         return this.linkedByIndex;
     }
 
@@ -928,7 +927,6 @@ let D3SwimLane = (function () {
                 if (e)
                     throw e;
                 if (data) {
-                    console.log(data);
                     if(key) data = data[key]
                     return self._createLanes(data);
                 }
