@@ -5,6 +5,8 @@ var times = 0;
 var swimLane;
 var educationLane;
 var d3Force;
+let subject;
+let body;
 
 var createForce = function () {
     d3Force = new D3Force('#experience-chart', parseInt($('.container-fluid').css('width')) - 50, 700);
@@ -47,6 +49,21 @@ var createTimeline = function () {
 
 };
 
+var mailTo = function(){
+    if(subject[0].value === "" || body[0].value === ""){
+        // $.notify("Please, fill all neccessary fields!");
+        return;
+    }
+    var completeSubj = "subject=" + subject[0].value;
+    var completeBody = "&body=" + body[0].value;
+    var recipient="karanasou";
+    var at = String.fromCharCode(64);
+    var dotcom="gmail.com?";
+    var mail="mailto:";
+
+    window.open(mail+recipient+at+dotcom + completeSubj + completeBody);
+}
+
 var startTyping = function () {
     if (times) {
         $('#about-me').empty();
@@ -67,6 +84,8 @@ var startTyping = function () {
         }
     }
 
+    subject = $("#subject");
+    body = $("#body");
 };
 var welcomeClose = function () {
     introTyped ? introTyped.stop() : null;

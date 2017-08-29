@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
           integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/index.css">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/css/tether.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="js/data.js"></script>
@@ -305,6 +304,35 @@
                                                         <div class="card-text">
                                                             <small class="text-muted">Social</small>
                                                         </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12 col-sm-12">
+                                                <div class="card-deck">
+                                                    <div class="card">
+                                                            <div class="card-body contact">
+                                                                <form>
+                                                                    <div class="card-header">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <input id="subject" type="text" required placeholder="Subject">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="card-body">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <textarea id="body" cols="50" rows="10" required placeholder="Body"></textarea>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="card-footer">
+                                                                        <button class="btn btn-primary" type="submit" onclick="mailTo()">SEND</button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
                                                     </div>
                                                 </div>
                                             </div>

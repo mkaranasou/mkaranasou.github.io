@@ -423,6 +423,7 @@ text{
 }
 .step > .card{
     width: 99%;
+    margin-bottom: 15px;
 }
 .step > .card > .card-body{
     min-height:750px;
@@ -460,4 +461,21 @@ text{
 }
 .domain{
     stroke:rgba(240, 128, 128, 1.0) !important;
+}
+
+#subject{
+    width: 420px;
+    border: none;
+    border-bottom: 1px solid;
+    margin:10px;
+}
+
+#body{
+    border: none;
+    border-bottom: 1px solid;
+    margin:10px;
+}
+
+.contact{
+    min-height:450px;
 }
