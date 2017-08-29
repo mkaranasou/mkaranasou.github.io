@@ -5,8 +5,8 @@ var times = 0;
 var swimLane;
 var educationLane;
 var d3Force;
-let subject;
-let body;
+var subject;
+var body;
 
 var createForce = function () {
     d3Force = new D3Force('#experience-chart', parseInt($('.container-fluid').css('width')) - 50, 700);
