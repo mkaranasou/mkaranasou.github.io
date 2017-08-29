@@ -486,3 +486,12 @@ text{
     font-size: large;
     text-align: center;
 }
+
+button{
+    cursor: pointer;
+}
+
+button >  a {
+    color: white!important;
+    text-decoration: none!important;
+}
