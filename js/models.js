@@ -1,10 +1,12 @@
 "use strict";
 
 let D3Force = (function () {
+
     function D3Force(selector, width, height) {
         this.selector = selector;
         this.data = {};
         this.filteredData = {};
+        this.linkedByIndex = {};
         this.width = width;
         this.height = height;
         this.colorRange = [
@@ -20,6 +22,19 @@ let D3Force = (function () {
             // "rgba(38, 194, 129, 1.0)",
         ]
         this.simulation = null;
+    }
+
+    D3Force.prototype._getLinkedByIndex = function (links) {
+        var self = this;
+        links.forEach(function(d) {
+            self.linkedByIndex[d.source.name + "," + d.target.name] = 1;
+        });
+        console.log(this.linkedByIndex)
+        return this.linkedByIndex;
+    }
+
+    D3Force.prototype._isConnected = function(a, b) {
+        return this.linkedByIndex[a.name + "," + b.name] || this.linkedByIndex[b.name + "," + a.name]; // || a.name == b.name;
     }
 
     D3Force.prototype._createForce = function (data) {
@@ -158,7 +173,8 @@ let D3Force = (function () {
             .data(data.links)
             .enter().append("line")
             .attr("stroke-width", function (d) {
-                return Math.sqrt(d.type);
+                return "8px";
+                return Math.sqrt(d.source);
             });
 
         let node = this.svg.append("g")
@@ -260,13 +276,15 @@ let D3Force = (function () {
         drag_handler(node);
         drag_handler(images);
 
+        self._getLinkedByIndex(data.links);
+
         let aspect = this.width / this.height;
 
         d3.select(window)
             .on("resize", function () {
                 // let targetWidth = self.svg.node().getBoundingClientRect().width;
                 // emtpy element
-                d3.select(self.selector).html('');
+                // d3.select(self.selector).html('');
                 // initialize w, h
                 self.width = window.innerWidth - 50;
                 // self.height = window.innerWidth / aspect;
@@ -389,12 +407,26 @@ let D3Force = (function () {
             this.create(this.data);
         }
         else {
+            var self = this;
+
             this.filteredData.nodes = this.data.nodes.filter(function (o) {
                 return o.name.toLowerCase().indexOf(value) > -1;
             }).slice(0);
+            var extra = [];
+
+            this.data.nodes.forEach(function(d){
+                self.filteredData.nodes.forEach(function(o){
+                    if(self._isConnected(d, o)){
+                        extra.push(d);
+                    }
+                })
+            });
+
+            this.filteredData.nodes = this.filteredData.nodes.concat(extra);
             this.filteredData.links = this.data.links.filter(function (o) {
-                return o.source.name.toLowerCase().indexOf(value) > -1 && o.target.name.toLowerCase().indexOf(value) > -1;
+                return self.filteredData.nodes.indexOf(o.source) > -1 && self.filteredData.nodes.indexOf(o.target) > -1;
             }).slice(0);
+
             this.create(this.filteredData);
         }
     }
@@ -459,6 +491,7 @@ let D3SwimLane = (function () {
     }
 
     D3SwimLane.prototype._createLanes = function (data) {
+        let self = this;
         let lanes = [];
         let lanesToItems = {};
         let itemsToGroups = {};
@@ -873,6 +906,17 @@ let D3SwimLane = (function () {
 
         display();
 
+        d3.select(window)
+            .on("resize", function () {
+                // let targetWidth = self.svg.node().getBoundingClientRect().width;
+                // emtpy element
+                // d3.select(self.selector).html('');
+                // initialize w, h
+                self.width = window.innerWidth - 50;
+                // self.height = window.innerWidth / aspect;
+                // redraw
+                self.create(data);
+            });
 
     };
 

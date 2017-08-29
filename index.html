@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">-->
     <title>Maria Karanasou</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
           integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
@@ -20,9 +20,9 @@
       <use xlink:href="#c"/>
     </clipPath>
 </defs>
-<nav class="navbar navbar-toggleable-md navbar-light bg-faded fixed-top">
-    <a class="navbar-brand me" href="#">
-        <div class="badge" data-container="body" data-toggle="popover" data-placement="right" title="Work In Progress" data-content="Figuratively and Literally :)">WIP</div>
+<nav class="navbar navbar-toggleable-md navbar-expand-lg navbar-light bg-faded fixed-top">
+    <a class="navbar-brand me" href="#about">
+        <div class="badge" data-container="body" data-toggle="popover" data-placement="right" title="Work In Progress" data-content="Figuratively and Literally :) Currently trying out Bootstrap 4 beta and d3.js v4">WIP</div>
         <img src="img/IMG_20161011_143159.jpg" class="profile-img sm">
         <!--<img src="/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">-->
         &nbsp;Maria Karanasou
@@ -32,7 +32,9 @@
         </div>
 
     </a>
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"></button>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
@@ -54,20 +56,23 @@
     </div>
 </nav>
 <div class="fixed-welcome">
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-md-2 offset-1">
+            <div class="col-md-1">
+
+            </div>
+            <div class="col-md-2">
                 <div class="placeholder" data-large="img/IMG_20161011_143159.jpg">
-                    <img src="img/IMG_20161011_143159_llq.jpg" class="calm profile-img lg">
+                    <img src="img/IMG_20161011_143159_llq.jpg" class="img-responsive calm profile-img lg">
                 </div>
                 <!--<img src="img/IMG_20161011_143159.jpg" class="profile-img lg">-->
             </div>
-            <div class="col-md-6 offset-1">
+            <div class="col-md-8">
+                <span class="close lg float-right" onclick="welcomeClose();">&nbsp;Close&nbsp;<i class="fa fa-close"></i></span>
+                <!--<span class="badge float-right" onclick="welcomeClose();"><i class="fa fa-trash"></i>&nbsp;Do not show this again.</span>-->
                 <div class="intro"></div>
             </div>
-            <div class="col-md-1">
-                <span class="close lg float-right" onclick="welcomeClose();">X</span>
-            </div>
+
         </div>
     </div>
 </div>
@@ -81,7 +86,7 @@
                             <section class="step" id="about">
                                 <i class="fa fa-flask" aria-hidden="true"></i>
                                 <label class="title">About me</label>
-                                <label class="text-muted">Excited to learn new things and ideally apply them for a good cause.</label>
+                                <label class="text-muted">An avid learner</label>
                                 <div class="card text-white bg-info ">
                                     <div class="card-body">
                                         <div id="about-me">
@@ -179,7 +184,7 @@
                                     <div class="card-body">
 
                                             <!--<p><label class="grey">Coding</label></p>-->
-                                            <div class="row">
+                                        <div class="row">
                                                 <div class="col-md-3">
                                                     <div class="card">
                                                         <div class="card-header">
@@ -239,6 +244,21 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <a href="http://productiveengine.com" target="_blank">Productive Engine</a>
+                                                    </div>
+                                                    <div class="card-text">
+                                                        I am the 1/2 of the Productive Engine team. Snippetmate is one of our projects.
+                                                    </div>
+                                                    <div class="card-footer">
+                                                        Angular 2/4 | MongoDB | Node.js | Python | MySQL
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                 </div>
 
@@ -357,7 +377,6 @@
         integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 <script src="//d3js.org/d3.v4.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.js"></script>
-<script src="js/eventDrops.js"></script>
 <script src="js/index.js"></script>
 </body>
 <footer class="footer">

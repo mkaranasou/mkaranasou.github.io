@@ -143,7 +143,7 @@ function animateTo(hash){
     });
 
     times = localStorage.getItem("times");
-    if (times && times < 2) {
+    if (times && times < 1) {
         welcomeClose();
     }
     else {
@@ -171,7 +171,7 @@ function animateTo(hash){
         };
         placeholder.appendChild(imgLarge);
         placeholder.removeChild(small);
-        imgLarge.className = "calm loaded profile-img lg";
+        imgLarge.className = "calm loaded img-responsive profile-img lg";
 
 
     }

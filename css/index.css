@@ -133,7 +133,7 @@ nav{
 
 .fixed-welcome{
     position: fixed;
-    padding: 100px;
+    padding: 50px;
     top:0;
     left:0;
     right:0;
@@ -185,7 +185,7 @@ label.grey{
 
 line{
     stroke: rgba(240, 128, 128, 1.0);
-    stroke-width: 1px;
+    stroke-width: 2px;
 }
 
 text{
@@ -231,6 +231,7 @@ text{
     font-weight: 500;
 }
 .card{
+    margin-bottom: 10px;
     border: none;
     border-radius: 0;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
@@ -271,6 +272,7 @@ text{
 }
 
 .badge{
+    cursor: pointer;
     background-color: #f00;
     color: white;
 }
@@ -478,4 +480,9 @@ text{
 
 .contact{
     min-height:450px;
+}
+
+#about-me{
+    font-size: large;
+    text-align: center;
 }
