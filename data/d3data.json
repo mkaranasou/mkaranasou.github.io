@@ -569,7 +569,108 @@
       "img": "./img/IMG_20161011_143159_color.jpg",
       "from": 1985,
       "to": 2017
+    },
+    {
+      "id": 65,
+      "name": "Neo4J",
+      "type": "DB",
+      "details": "",
+      "url": "https://s3.amazonaws.com/dev.assets.neo4j.com/wp-content/uploads/neo4j_logo_globe1.png",
+      "img": "https://s3.amazonaws.com/dev.assets.neo4j.com/wp-content/uploads/neo4j_logo_globe1.png",
+      "from": 2015,
+      "to": 2016
+    },
+    {
+      "id": 66,
+      "name": "ConceptNet",
+      "type": "Framework",
+      "details": "",
+      "url": "http://conceptnet.io/",
+      "img": "http://s4.51cto.com/wyfs01/M01/10/69/wKioJlHnjEfzVZf5AAD1q7fs0pI014.jpg-wh_651x-s_4111563426.jpg",
+      "from": 2015,
+      "to": 2016
+    },
+    {
+      "id": 67,
+      "name": "WebForms",
+      "type": "Framework",
+      "details": "My first professional Web Development Experience was using C# and Webforms to creat a Web Application for the Insurance application process. The Web App communicated asynchronously with the ERP's database to keep data up-to-date and to submit applications.",
+      "url": "http://conceptnet.io/",
+      "img": "http://s4.51cto.com/wyfs01/M01/10/69/wKioJlHnjEfzVZf5AAD1q7fs0pI014.jpg-wh_651x-s_4111563426.jpg",
+      "from": 2009,
+      "to": 2012
+    },
+    {
+      "id": 68,
+      "name": "REST APIs",
+      "type": "Technology",
+      "details": "My first professional Web Development Experience was using C# and Webforms to creat a Web Application for the Insurance application process. The Web App communicated asynchronously with the ERP's database to keep data up-to-date and to submit applications.",
+      "url": "http://conceptnet.io/",
+      "img": "http://s4.51cto.com/wyfs01/M01/10/69/wKioJlHnjEfzVZf5AAD1q7fs0pI014.jpg-wh_651x-s_4111563426.jpg",
+      "from": 2012,
+      "to": 2017
+    },
+    {
+      "id": 69,
+      "name": "SOAP APIs",
+      "type": "Technology",
+      "details": "",
+      "url": "",
+      "img": "",
+      "from": 2012,
+      "to": 2016
+    },
+    {
+      "id": 70,
+      "name": "RabbitMQ",
+      "type": "Technology",
+      "details": "",
+      "url": "https://www.rabbitmq.com/",
+      "img": "https://cdn.worldvectorlogo.com/logos/rabbitmq.svg",
+      "from": 2015,
+      "to": 2016
+    },
+    {
+      "id": 71,
+      "name": "NLP",
+      "type": "Technology",
+      "details": "",
+      "url": "",
+      "img": "",
+      "from": 2013,
+      "to": 2016
+    },
+    {
+      "id": 72,
+      "name": "Micro-services",
+      "type": "Technology",
+      "details": "",
+      "url": "",
+      "img": "",
+      "from": 2016,
+      "to": 2016
+    },
+    {
+      "id": 73,
+      "name": "3G Core",
+      "type": "Technology",
+      "details": "",
+      "url": "",
+      "img": "",
+      "from": 2013,
+      "to": 2014
+    },
+    {
+      "id": 74,
+      "name": "Code Generation",
+      "type": "Skill",
+      "details": "",
+      "url": "",
+      "img": "",
+      "from": 2014,
+      "to": 2016
     }
+
   ],
   "links": [
     {
@@ -1015,6 +1116,90 @@
     {
       "source": 63,
       "target": 17
+    },
+    {
+      "source": 65,
+      "target": 16
+    },
+    {
+      "source": 65,
+      "target": 2
+    },
+    {
+      "source": 66,
+      "target": 2
+    },
+    {
+      "source": 67,
+      "target": 0
+    },
+    {
+      "source": 68,
+      "target": 6
+    },
+    {
+      "source": 69,
+      "target": 2
+    },
+    {
+      "source": 70,
+      "target": 2
+    },
+    {
+      "source": 66,
+      "target": 25
+    },
+    {
+      "source": 71,
+      "target": 25
+    },
+    {
+      "source": 71,
+      "target": 47
+    },
+    {
+      "source": 71,
+      "target": 51
+    },
+    {
+      "source": 71,
+      "target": 52
+    },
+    {
+      "source": 71,
+      "target": 53
+    },
+    {
+      "source": 66,
+      "target": 53
+    },
+    {
+      "source": 68,
+      "target": 53
+    },
+    {
+      "source": 72,
+      "target": 2
+    },
+    {
+      "source": 72,
+      "target": 26
+    },
+    {
+      "source": 72,
+      "target": 30
+    },
+    {
+      "source": 73,
+      "target": 1
+    },
+    {
+      "source": 74,
+      "target": 2
+    },
+    {
+      "source": 74,
+      "target": 53
     }
   ]
 }

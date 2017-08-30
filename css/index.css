@@ -367,6 +367,12 @@ text{
     stroke-width: 1;
     stroke: white;
 }
+.miniItem8 {
+    fill: #e3b3f0;
+    fill-opacity: .7;
+    stroke-width: 1;
+    stroke: white;
+}
 
 .brush .extent {
     stroke: gray;

@@ -99,6 +99,8 @@ let D3Force = (function () {
                     return "rgb(210, 77, 87)"; //  CHESTNUT ROSE
                 case "Project":
                     return "rgb(246, 71, 71)"; // SUNSET ORANGE
+                default:
+                    return "white";
             }
         };
         let radius = function (value) {
@@ -118,8 +120,9 @@ let D3Force = (function () {
                     return 35;
                 case "Project":
                     return 30;
+                default:
+                    return 30;
             }
-            return value.length + 10;
         };
 
         let h3 = function (v) {
@@ -148,6 +151,8 @@ let D3Force = (function () {
                 case "DB":
                     return h3(d.name) + p(d.details) + (d.img ? p(img(d.img)) : "");
                 case "Skill":
+                    return h3(d.name) + p(d.details);
+                case "Technology":
                     return h3(d.name) + p(d.details);
                 case "Project":
                     return h3(d.name) + p(d.details);
@@ -210,7 +215,7 @@ let D3Force = (function () {
             .enter()
             .append("text")
             .attr("opacity", function (d) {
-                return d.img === undefined ? 1 : 0;
+                return (d.img === undefined || d.img === "")? 1 : 0;
             })
             .text(function (d) {
                 return fitText(d.name, d.r || radius(d.type));
@@ -329,7 +334,8 @@ let D3Force = (function () {
                 });
             texts
                 .attr("x", function (d) {
-                    return d.x - radius(d.type) + 10;
+                    let cannotFit = d.name.length > 5;
+                    return d.x + (cannotFit?(-radius(d.type) + 12):0);
                 })
                 .attr("y", function (d) {
                     return d.y + radius(d.type) - 10;
