@@ -239,7 +239,7 @@ let D3Force = (function () {
             .enter()
             .append("svg:image")
             .attr("opacity", function (d) {
-                return d.img !== undefined ? 1 : 0;
+                return (d.img === undefined || d.img === "")? 0 : 1;
             })
             .attr("xlink:href", function (d) {
                 return d.img;
