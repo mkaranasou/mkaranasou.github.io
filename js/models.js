@@ -772,9 +772,9 @@ let D3SwimLane = (function () {
         const display = function () {
             let rects;
             let labels;
-            let d0 = d3.event? d3.event.selection.map(x.invert): brush.extent()();
-            let minExtent = d3.event?[Math.floor(d0[0])]:d0[0];
-            let maxExtent = d3.event?[Math.floor(d0[1])]:d0[1];
+            // let d0 = d3.event? d3.event.selection.map(x.invert): brush.extent()();
+            let minExtent = brush.extent()()[0];
+            let maxExtent = brush.extent()()[1];
             let visItems = items.filter(function (d) {
                 return x(d.start) <= maxExtent[0] && x(d.end) >= minExtent[0];
             });
@@ -919,8 +919,8 @@ let D3SwimLane = (function () {
         }
         //brush
         let brush = d3.brushX()
-            .extent([[0, 0], [w, miniHeight]])
-            .on("end", brushended);
+            .extent([[0, 0], [w, miniHeight]]);
+            // .on("end", brushended);
 
         mini.append("g")
             .attr("class", "x brush")
