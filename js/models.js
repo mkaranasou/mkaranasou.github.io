@@ -621,7 +621,8 @@ let D3SwimLane = (function () {
             .range([0, w]);
         let y1 = d3.scaleLinear()
             .domain([0, laneLength])
-            .range([0, mainHeight]);
+            .range([0, h]);
+            // .range([0, mainHeight]);
         let y2 = d3.scaleLinear()
             .domain([0, laneLength])
             .range([0, miniHeight]);
@@ -713,7 +714,7 @@ let D3SwimLane = (function () {
             .attr("text-anchor", "end")
             .attr("class", "laneText");
 
-        //mini lanes and texts
+       /* //mini lanes and texts
         mini.append("g").selectAll(".laneLines")
             .data(items)
             .enter()
@@ -726,7 +727,7 @@ let D3SwimLane = (function () {
             .attr("y2", function (d) {
                 return y2(d.lane);
             })
-            .attr("stroke", "lightgray");
+            .attr("stroke", "lightgray");*/
 
         /*mini.append("g").selectAll(".laneText")
             .data(lanes)
@@ -741,7 +742,7 @@ let D3SwimLane = (function () {
         let itemRects = main.append("g")
             .attr("clip-path", "url(#clip)");
 
-        //mini item rects
+        /*//mini item rects
         mini.append("g").selectAll("miniItems")
             .data(items)
             .enter().append("rect")
@@ -758,7 +759,7 @@ let D3SwimLane = (function () {
                 return x(d.end) - x(d.start);
             })
             .attr("height", 10);
-
+*/
         //mini labels
         /*mini.append("g").selectAll(".miniLabels")
             .data(items)
@@ -771,16 +772,17 @@ let D3SwimLane = (function () {
         const display = function () {
             let rects;
             let labels;
-            let minExtent = brush.extent()()[0];
-            let maxExtent = brush.extent()()[1];
+            let d0 = d3.event? d3.event.selection.map(x.invert): brush.extent()();
+            let minExtent = d3.event?[Math.floor(d0[0])]:d0[0];
+            let maxExtent = d3.event?[Math.floor(d0[1])]:d0[1];
             let visItems = items.filter(function (d) {
-                return x(d.start) < maxExtent[0] && x(d.end) > minExtent[0];
+                return x(d.start) <= maxExtent[0] && x(d.end) >= minExtent[0];
             });
 
-            mini.select(".brush")
+           /* mini.select(".brush")
                 .call(brush.extent([minExtent, maxExtent]));
-
-            x1.domain([minExtent[0], maxExtent[0]]);
+*/
+            x1.domain([minExtent, maxExtent]);
             let basicHeight = .8 * y1(1);
 
             //update main item rects
@@ -897,10 +899,28 @@ let D3SwimLane = (function () {
 
         };
 
+        function brushended() {
+            if(!d3.event) return;
+            if (!d3.event.sourceEvent) return; // Only transition after input.
+            if (!d3.event.selection) return; // Ignore empty selections.
+            display();
+             /* var d0 = d3.event.selection.map(x.invert),
+                  d1 = d0.map(d3.timeDay.round);
+
+              console.log(d0, d1);
+
+              // If empty when rounded, use floor & ceil instead.
+              if (d1[0] >= d1[1]) {
+                d1[0] = d3.timeDay.floor(d0[0]);
+                d1[1] = d3.timeDay.offset(d1[0]);
+              }
+
+              d3.select(this).transition().call(d3.event.target.move, d1.map(x));*/
+        }
         //brush
         let brush = d3.brushX()
             .extent([[0, 0], [w, miniHeight]])
-            .on("brush", display);
+            .on("end", brushended);
 
         mini.append("g")
             .attr("class", "x brush")
