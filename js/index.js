@@ -142,7 +142,7 @@ function animateTo(hash){
         };
         placeholder.appendChild(imgLarge);
         placeholder.removeChild(small);
-        imgLarge.className = "calm loaded img-responsive profile-img lg";
+        imgLarge.className = "calm loaded img-fluid profile-img lg";
 
 
     }
