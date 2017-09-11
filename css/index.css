@@ -246,7 +246,7 @@ text{
     padding: 10px;
     height: 120px;
     min-height:120px;
-    overflow-y: scroll;
+    overflow-y: auto;
     border-left: 7px solid rgba(240, 128, 128, 0.9);
 }
 
@@ -501,3 +501,10 @@ button >  a {
     color: white!important;
     text-decoration: none!important;
 }
+
+.card.interesting-stuff > .card-text{
+    height:225px;
+    max-height: 225px;
+    overflow-y: auto;
+}
+
